@@ -1,6 +1,12 @@
 
 package com.wukong.examples.controller;
 
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
+
+
+
 import org.testng.annotations.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 
-import java.util.HashMap;
+
 import java.util.List;
 import java.util.Map;
 
@@ -63,5 +69,22 @@ public class HelloControllerTests extends AbstractTestNGSpringContextTests {
         assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(entity.getBody()).isEqualTo("show logo");
     }
+
+    @Test
+    public void testGetCityList() {
+        String url="/hello/getCityList";
+
+        ResponseEntity<String> entity = this.restTemplate.getForEntity(url, String.class);
+        assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
+
+        String jsonArrayStr=entity.getBody();
+        List<City> cityList = JSON.parseObject(jsonArrayStr, new TypeReference<List<City>>() {});
+        int i=1;
+        for(City city:cityList){
+            assertThat(city.getId()).isEqualTo(i);
+            i++;
+        }
+    }
+
 
 }

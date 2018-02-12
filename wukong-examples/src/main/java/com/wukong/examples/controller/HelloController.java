@@ -3,10 +3,8 @@ package com.wukong.examples.controller;
 
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.Array;
+import java.util.*;
 
 
 @RestController  //等同于类上加@Controller 和 方法上加@RequestBody
@@ -64,13 +62,37 @@ public class HelloController  {
      */
     @RequestMapping("/logo")
     public String logo() {
-//        logger.debug("日志输出测试 Debug");
-//        logger.trace("日志输出测试 Trace");
-//        logger.info("日志输出测试 Info");
-//        logger.warn("日志输出测试 warn");
-//        logger.error("日志输出测试 error");
-
         return "show logo";
     }
+
+
+    /**
+     * 得到用户的列表
+     * 地址：https://localhost:8443/hello/getCityList
+     */
+    @RequestMapping("/getCityList")
+    public List<City> getCityList() {
+
+        City city1=new City(1,"city1","001");
+        City city2=new City(2,"city2","002");
+        City city3=new City(3,"city3","003");
+
+        List<City> cityList=Arrays.asList(city1,city2,city3);
+
+        return cityList;
+    }
+
+    /**
+     * post 一个city信息，并返回一个数据
+     * 地址：https://localhost:8443/hello/addCity
+     * 利用postman进行测试
+     */
+    @RequestMapping("/addCity")
+    public City addCity(@RequestBody City city){
+        city.setCode(city.getCode()+"ok");
+        return city;
+    }
+
+
 
 }
