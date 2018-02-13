@@ -24,8 +24,9 @@ public class Http2HttpsTests extends AbstractTestNGSpringContextTests {
 
     /**
      * 测试 http重新定向是否可以  使用的是8080端口，如果是80与443，需要修改一下下面的代码
+     * 如果要用这个，请将enabled=true
      */
-    @Test
+    @Test(enabled = false)
     public void testHttp2Https(){
         if(http2https){ //不重新定向 8080 与 8443都可以
             String url="http://localhost:8080/hello";

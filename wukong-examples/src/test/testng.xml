@@ -4,7 +4,7 @@
 
     <!--这个用途不大，到测试数据的时候再-->
 
-    <test name="all" enabled="false">
+    <test name="all" enabled="true">
         <packages>
             <package name="com.wukong.examples.controller.*"/>
         </packages>
@@ -16,7 +16,7 @@
         </classes>
     </test>
 
-    <test name="testByClass2">
+    <test name="testByClass2" enabled="false">
         <classes>
             <class name="com.wukong.examples.controller.Http2HttpsTests"/>
         </classes>
