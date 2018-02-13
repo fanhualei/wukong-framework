@@ -1,8 +1,14 @@
 package com.wukong.examples.controller;
 
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 import java.lang.reflect.Array;
 import java.util.*;
 
@@ -92,6 +98,107 @@ public class HelloController  {
         city.setCode(city.getCode()+"ok");
         return city;
     }
+
+    @Value("${wukong.uploadPath:/home/fan/IdeaProjects/wukong-framework/log/upload/}")
+    private String uploadPath;
+
+    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    public String upload(@RequestParam("file") MultipartFile file) {
+        if (!file.isEmpty()) {
+            try {
+                // 这里只是简单例子，文件直接输出到项目路径下。
+                // 实际项目中，文件需要输出到指定位置，需要在增加代码处理。
+                // 还有关于文件格式限制、文件大小限制，详见：中配置。
+                BufferedOutputStream out = new BufferedOutputStream(
+                        new FileOutputStream(new File(uploadPath+file.getOriginalFilename())));
+                out.write(file.getBytes());
+                out.flush();
+                out.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                return "上传失败," + e.getMessage();
+            } catch (IOException e) {
+                e.printStackTrace();
+                return "上传失败," + e.getMessage();
+            }
+            return "上传成功";
+        } else {
+            return "上传失败，因为文件是空的.";
+        }
+    }
+
+
+    @RequestMapping(value = "/upload/batch", method = RequestMethod.POST)
+    public @ResponseBody String batchUpload(HttpServletRequest request) {
+        List<MultipartFile> files = ((MultipartHttpServletRequest) request).getFiles("file");
+        MultipartFile file = null;
+        BufferedOutputStream stream = null;
+        for (int i = 0; i < files.size(); ++i) {
+            file = files.get(i);
+            if (!file.isEmpty()) {
+                try {
+                    byte[] bytes = file.getBytes();
+                    stream = new BufferedOutputStream(new FileOutputStream(new File(uploadPath+file.getOriginalFilename())));
+                    stream.write(bytes);
+                    stream.close();
+                } catch (Exception e) {
+                    stream = null;
+                    return "You failed to upload " + i + " => " + e.getMessage();
+                }
+            } else {
+                return "You failed to upload " + i + " because the file was empty.";
+            }
+        }
+        return "upload successful";
+    }
+
+
+    @RequestMapping("/download")
+    public String downLoad(HttpServletResponse response)throws Exception{
+
+        String renStr="download ok";
+
+        String filename="倪妮.jpg";
+        String filePath = uploadPath ;
+        File file = new File(filePath + "/" + filename);
+        if(file.exists()){ //判断文件父目录是否存在
+
+            response.setContentType("application/force-download;charset=utf-8");
+            response.setHeader("Content-Disposition", "attachment;fileName=" + java.net.URLEncoder.encode(filename, "UTF-8"));
+
+            byte[] buffer = new byte[1024];
+            FileInputStream fis = null; //文件输入流
+            BufferedInputStream bis = null;
+
+            OutputStream os = null; //输出流
+            try {
+                os = response.getOutputStream();
+                fis = new FileInputStream(file);
+                bis = new BufferedInputStream(fis);
+                int i = bis.read(buffer);
+                while(i != -1){
+                    os.write(buffer);
+                    i = bis.read(buffer);
+                }
+
+            } catch (Exception e) {
+
+                e.printStackTrace();
+                renStr=e.toString();
+            }
+
+            try {
+                bis.close();
+                fis.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return renStr;
+    }
+
+
+
 
 
 
