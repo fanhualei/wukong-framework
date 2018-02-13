@@ -21,6 +21,7 @@ public class HelloController  {
      * 默认映射，可不填二级
      * <p>
      * 地址：http://localhost:8080/hello
+     *      https://localhost:8443/hello
      * 显示：Hello Spring-Boot
      */
     @RequestMapping
@@ -99,7 +100,7 @@ public class HelloController  {
         return city;
     }
 
-    @Value("${wukong.uploadPath:/home/fan/IdeaProjects/wukong-framework/log/upload/}")
+    @Value("${wukong.web.upload.path:/home/fan/IdeaProjects/wukong-framework/log/upload/}")
     private String uploadPath;
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)

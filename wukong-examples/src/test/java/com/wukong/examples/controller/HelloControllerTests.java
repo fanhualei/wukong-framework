@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
@@ -209,7 +210,9 @@ public class HelloControllerTests extends AbstractTestNGSpringContextTests {
 
 
         }
-
     }
+
+
+
 
 }
