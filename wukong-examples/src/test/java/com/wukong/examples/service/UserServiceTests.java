@@ -21,7 +21,7 @@ public class UserServiceTests extends AbstractTestNGSpringContextTests {
     @Test
     public void  testDeleteByPrimaryKey(){
         //delNum 删除的记录数量
-        int  delNum=userService.deleteByPrimaryKey(40);
+        int  delNum=userService.deleteByPrimaryKey(16);
         System.out.println("===========:"+delNum);
     }
 
@@ -118,8 +118,8 @@ public class UserServiceTests extends AbstractTestNGSpringContextTests {
      *  @TODO 这个有错误  需要看 mysql 的官方的例子
      */
     @Test
-    public  void testGetById(){
-       User user=  userService.getById(1);
+    public  void testSelectById(){
+       User user=  userService.selectById(1);
         System.out.println("count===========:"+user.getUserName());
     }
 

@@ -15,9 +15,6 @@ import static org.mybatis.dynamic.sql.SqlBuilder.isLike;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-//事务回滚
-//@Transactional  //开启全局事务
-//@Rollback       //数据数据回滚
 public class MyUserMapperTests extends AbstractTestNGSpringContextTests {
     @Autowired
     private MyUserMapper userMapper;
