@@ -12,5 +12,5 @@ public interface MyUserMapper extends UserMapper {
      * @param id
      * @return 实体
      */
-    public User getById(int id);
+    public User selectById(int id);
 }

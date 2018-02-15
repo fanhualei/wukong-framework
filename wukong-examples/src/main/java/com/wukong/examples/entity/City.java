@@ -1,4 +1,4 @@
-package com.wukong.examples.controller;
+package com.wukong.examples.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

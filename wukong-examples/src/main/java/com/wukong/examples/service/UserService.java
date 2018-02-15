@@ -71,8 +71,8 @@ public class UserService  {
     /**
      *  自己添加的xml来写的sql语句
      */
-    public User getById(int id) {
-        return userMapper.getById(id);
+    public User selectById(int id) {
+        return userMapper.selectById(id);
     }
 
 
