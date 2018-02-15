@@ -80,6 +80,14 @@
             <artifactId>aspectjweaver</artifactId>
         </dependency>
 
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>1.1.6</version>
+        </dependency>
+
+
         <!--分页-->
         <!--
         MyBatis提供了拦截器接口，我们可以实现自己的拦截器，
