@@ -23,8 +23,8 @@
       1、集成了mybatis,按照官网的，越简单越好
       2、testNG中进行了测试，分别测试了Dao与Service，今后只用测试Service
       3、引入了这个aspectj包太老了，看看有没有其他更好的
-      4、@todo mybatis多数据源与动态切换，官方应该有特别简单例子，这样符合springboot的特点
-      ，别上网看那些代码，写的太复杂      
+      ~~4、@todo mybatis多数据源与动态切换，官方应该有特别简单例子，这样符合springboot的特点
+      ，别上网看那些代码，写的太复杂  ~~    
 
 02-15 做了主从数据库，实现了多年的心愿。 
       
@@ -35,14 +35,15 @@
         @SpringBootApplication(scanBasePackages={"com.wukong.core","com.wukong.examples"})
       
       todo 
-      1、@todo 撰写一个标签  可以制定从主数据库上读取数据
+      ~~1、@todo 撰写一个标签  可以制定从主数据库上读取数据~~
       2、@todo 今后可以动态的配置slave数量
       3、@todo 撰写unitTest保证这部分数据没有问题。
       4、@todo 拦截器可以配置到配置文件中
-      5、@todo 将代码移到core目录中
+      ~~5、@todo 将代码移到core目录中~~
       6、@todo 升级druid到1.8.1版本，看看好用不用。 估计要同时升级到springboot2.0
-      7、@todo 使用spring的aop，而不是老的apache的aop
-      8、@todo service方法中只要是:insert update delete add  remove 就表示非查询语句
+      ~~7、@todo 使用spring的aop，而不是老的apache的aop~~
+      ~~8、@todo service方法中只要是:insert update delete add  remove 就表示非查询语句~~
+      
       
       到底拦截器做在DAO(sql)上好 还是在service上好
       service的好处
