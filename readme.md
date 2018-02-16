@@ -57,5 +57,10 @@
 
       1、 @DatasourceAnno(name=master) 或 @DatasourceAnno(name=slave) 后不再根据函数名来判断获取的数据库
       2、maven 引用了 spring-boot-starter-aop ，就不用引用aspectjweaver 
+      3、wukong-generator 用来生成相关的代码
+      
+      todo
+      1、代码生成器
+      2、安全框架
       
       
