@@ -119,7 +119,7 @@ public class UserServiceTests extends AbstractTestNGSpringContextTests {
      */
     @Test
     public  void testSelectById(){
-       User user=  userService.selectById(1);
+       User user=  userService.selectByPrimaryKey(1);
         System.out.println("count===========:"+user.getUserName());
     }
 

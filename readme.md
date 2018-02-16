@@ -52,5 +52,9 @@
       1、如果有人从controler这部分调用dao，就拦截不住。
       
       
+02-16 做了拦截器，可以拦截service上指定的数据库
+
+      1、 @DatasourceAnno(name=master) 或 @DatasourceAnno(name=slave) 后不再根据函数名来判断获取的数据库
+       
       
       

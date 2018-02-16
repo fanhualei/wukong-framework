@@ -2,6 +2,7 @@ package com.wukong.examples.service;
 
 
 
+import com.wukong.core.datasource.DatasourceAnno;
 import com.wukong.examples.dao.MyUserMapper;
 import com.wukong.examples.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static com.wukong.core.datasource.DatasourceAnno.master;
 import static com.wukong.examples.dao.auto.UserDynamicSqlSupport.userName;
 import static org.mybatis.dynamic.sql.SqlBuilder.isLike;
 
@@ -51,7 +53,7 @@ public class UserService  {
         return userMapper.countByExample().build().execute();
     }
 
-
+    @DatasourceAnno(name=master)
     public User selectByPrimaryKey(Integer userId_){
         return userMapper.selectByPrimaryKey(userId_);
     }
@@ -71,6 +73,7 @@ public class UserService  {
     /**
      *  自己添加的xml来写的sql语句
      */
+
     public User selectById(int id) {
         return userMapper.selectById(id);
     }

@@ -1,10 +1,12 @@
 package com.wukong.core.datasource.druid;
 
+import com.wukong.core.datasource.DatasourceAnno;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;
@@ -21,7 +23,7 @@ public class DynamicDataSourceAspect {
     private static final Logger logger = LoggerFactory.getLogger(DynamicDataSourceAspect.class);
 
     //@TODO  配置需要拦截的只读操作，这里拦截的是dao
-    private final String[] QUERY_PREFIX = {"select"};
+    private final String[] UPDATE_PREFIX = {"insert","update","delete","drop","remove"};
 
     /**
      * Dao aspect. @TODO 这个拦截器配置最好配置到文件中
@@ -38,7 +40,10 @@ public class DynamicDataSourceAspect {
      */
     @Before("daoAspect()")
     public void switchDataSource(JoinPoint point) {
-        Boolean isQueryMethod = isQueryMethod(point.getSignature().getName());
+        DatasourceAnno datasourceAnno=
+                ((MethodSignature)point.getSignature()).getMethod().getAnnotation(DatasourceAnno.class);
+
+        Boolean isQueryMethod = isQueryMethod(point.getSignature().getName(),datasourceAnno);
         if (isQueryMethod) {
             DynamicDataSourceContextHolder.useSlaveDataSource();
             logger.debug("Switch DataSource to [{}] in Method [{}]",
@@ -60,18 +65,27 @@ public class DynamicDataSourceAspect {
 
 
     /**
-     * Judge if method start with query prefix
+     * Judge if method start with update prefix
      *
      * @param methodName
      * @return
      */
-    private Boolean isQueryMethod(String methodName) {
-        for (String prefix : QUERY_PREFIX) {
-            if (methodName.startsWith(prefix)) {
+    private Boolean isQueryMethod(String methodName,DatasourceAnno datasourceAnno) {
+        if(datasourceAnno!=null){
+            if(datasourceAnno.name().equals("master"))
+                return false;
+            else if (datasourceAnno.name().equals("slave"))
                 return true;
+
+        }
+
+
+        for (String prefix : UPDATE_PREFIX) {
+            if (methodName.startsWith(prefix)) {
+                return false;
             }
         }
-        return false;
+        return true;
     }
 
 }

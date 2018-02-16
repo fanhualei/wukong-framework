@@ -74,11 +74,12 @@ public class DataSourceConfigurer {
     public DataSource dynamicDataSource() {
         DynamicRoutingDataSource dynamicRoutingDataSource = new DynamicRoutingDataSource();
         Map<Object, Object> dataSourceMap = new HashMap<>(4);
-        // @TODO DataSourceKey 这个可以忽略掉
         dataSourceMap.put(DataSourceKey.master.name(), master());
         dataSourceMap.put(DataSourceKey.slave1.name(), slave1());
         dataSourceMap.put(DataSourceKey.slave2.name(), slave2());
         dataSourceMap.put(DataSourceKey.slave3.name(), slave3());
+
+
 
         // Set master datasource as default
         dynamicRoutingDataSource.setDefaultTargetDataSource(master());
