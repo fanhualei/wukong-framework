@@ -55,6 +55,6 @@
 02-16 做了拦截器，可以拦截service上指定的数据库
 
       1、 @DatasourceAnno(name=master) 或 @DatasourceAnno(name=slave) 后不再根据函数名来判断获取的数据库
-       
+      2、maven 引用了 spring-boot-starter-aop ，就不用引用aspectjweaver 
       
       
