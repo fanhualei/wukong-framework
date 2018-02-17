@@ -1,35 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<!DOCTYPE generatorConfiguration
-        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
-        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
-
-<generatorConfiguration>
-
-    <!-- 配置mysql 驱动jar包路径.用了绝对路径 -->
-    <classPathEntry location="/home/fan/IdeaProjects/wukong-framework/wukong-generator/src/main/resources/mysql-connector-java-5.1.45-bin.jar" />
-    <!--<classPathEntry location="mysql-connector-java-5.1.45-bin.jar" />-->
-
-
-    <!--MyBatis3DynamicSql  MyBatis3=可以生成xml-->
-    <context id="wukong-generator" targetRuntime="MyBatis3DynamicSql">
-
-        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
-        <plugin type="com.wukong.generator.plugins.WukongPlugin"/>
-
-        <!-- 为了防止生成的代码中有很多注释，比较难看，加入下面的配置控制 -->
+<?xml version="1.0" encoding="UTF-8"?>多注释，比较难看，加入下面的配置控制 -->
         <commentGenerator>
-            <!--<property name="suppressAllComments" value="true" />-->
-            <!--<property name="suppressDate" value="true" />-->
+            <property name="suppressAllComments" value="false" />
+            <property name="suppressDate" value="false" />
         </commentGenerator>
 
-        <!--去掉表的前缀-->
-        <property name="prefix" value="wu_"/>
-        <!--忽略掉的Table，用逗号隔离-->
-        <!--<property name="ignores" value=""/>-->
+        <!--<property name="prefix" value="wk_"/>-->
 
-
-        <!-- 数据库连接 -->
+           <!-- 数据库连接 -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://127.0.0.1:3306/wukong_read?useSSL=false"
                         userId="root"

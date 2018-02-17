@@ -23,3 +23,16 @@ GeneratorDaoWithJava 不读取xml文件，有以下功能：
     1、开发plugin，来实现扩展的功能。
     2、通过插件 自动生成Service类。
     3、用springboot 自动配置，来简化代码
+    
+   
+    
+配置技巧:有时候不好用
+   
+    1、备注的注释方法
+       数据库表中的表和列备注将被添加到生成的注释中。
+    <commentGenerator>
+      <property name =“addRemarkComments”value =“true”/>
+    </ commentGenerator>
+    
+    2、去掉表的前缀,在Table中添加下面代码
+    <domainObjectRenamingRule searchString =“^ Sys”replaceString =“”/>

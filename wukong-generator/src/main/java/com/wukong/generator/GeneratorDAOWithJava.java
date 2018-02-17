@@ -55,14 +55,17 @@ public class GeneratorDAOWithJava {
 
         //set commentGenerator
         CommentGeneratorConfiguration commentConfig = new CommentGeneratorConfiguration();
-        commentConfig.addProperty("suppressAllComments","true");
-        commentConfig.addProperty("suppressDate","true");
+        commentConfig.addProperty("suppressAllComments","false");
+        commentConfig.addProperty("suppressDate","false");
         commentConfig.addProperty("addRemarkComments","true");//include table and column remarks from db table
         context.setCommentGeneratorConfiguration(commentConfig);
 
         //set property
         context.addProperty("prefix","wk_");
         context.addProperty("ignores","user");
+
+
+
 
         //set jdbcConnection
         JDBCConnectionConfiguration jdbcConfig = new JDBCConnectionConfiguration();
