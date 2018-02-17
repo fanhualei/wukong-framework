@@ -4,15 +4,23 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <!--<groupId>com.runzhichina.wukong</groupId>-->
+    <groupId>com.runzhichina.wukong</groupId>
     <artifactId>wukong-generator</artifactId>
-    <!--<version>1.1.RELEASE</version>-->
+    <version>1.1.RELEASE</version>
+
+    <!--<parent>-->
+        <!--<groupId>com.runzhichina.wukong</groupId>-->
+        <!--<artifactId>wukong-parent</artifactId>-->
+        <!--<version>1.1.RELEASE</version>-->
+    <!--</parent>-->
 
     <parent>
-        <groupId>com.runzhichina.wukong</groupId>
-        <artifactId>wukong-parent</artifactId>
-        <version>1.1.RELEASE</version>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.2.RELEASE</version>
     </parent>
+
+
 
     <!--参考文档 http://www.mybatis.org/generator/
     http://blog.csdn.net/w410589502/article/details/70756764
@@ -21,10 +29,42 @@
 <dependencies>
 
     <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter</artifactId>
+    </dependency>
+
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+    </dependency>
+
+
+    <dependency>
         <groupId>org.mybatis.generator</groupId>
         <artifactId>mybatis-generator-core</artifactId>
         <version>1.3.6</version>
     </dependency>
+
+    <dependency>
+        <groupId>commons-lang</groupId>
+        <artifactId>commons-lang</artifactId>
+        <version>2.6</version>
+    </dependency>
+
+    <!-- Test -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <scope>test</scope>
+    </dependency>
+
+
+    <!-- 便于变成的包 -->
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+    </dependency>
+
 
 </dependencies>
 
