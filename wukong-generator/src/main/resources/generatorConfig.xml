@@ -1,12 +1,29 @@
-<?xml version="1.0" encoding="UTF-8"?>多注释，比较难看，加入下面的配置控制 -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <classPathEntry location="/home/fan/IdeaProjects/wukong-framework/wukong-generator/src/main/resources/mysql-connector-java-5.1.45-bin.jar" />
+
+
+    <context id="wukong-generator" targetRuntime="MyBatis3DynamicSql">
+
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+        <plugin type="com.wukong.generator.plugins.WukongPlugin"/>
+.
         <commentGenerator>
-            <property name="suppressAllComments" value="false" />
-            <property name="suppressDate" value="false" />
+            <property name="suppressAllComments" value="true" />
+            <property name="suppressDate" value="true" />
         </commentGenerator>
 
-        <!--<property name="prefix" value="wk_"/>-->
 
-           <!-- 数据库连接 -->
+        <!--<property name="prefix" value="wu_"/>-->
+        <!--<property name="ignores" value=""/>-->
+
+
+        <!-- db -->
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://127.0.0.1:3306/wukong_read?useSSL=false"
                         userId="root"
@@ -17,35 +34,27 @@
             <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
 
-        <!-- 数据表对应的model 层  -->
+        <!-- model -->
         <javaModelGenerator targetPackage="com.wukong.examples.entity" targetProject="log">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
 
-        <!-- sql mapper 隐射配置文件 如果是 MyBatis3DynamicSql 就不生成xml文件 -->
+        <!-- sql mapper  MyBatis3DynamicSql not creat xml  -->
         <sqlMapGenerator targetPackage="com.wukong.examples.mapper"  targetProject="log">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
-        <!-- 在ibatis2 中是dao层，但在mybatis3中，其实就是mapper接口 -->
+        <!-- dao -->
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.wukong.examples.dao"  targetProject="log">
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-        <!-- 要对那些数据表进行生成操作，必须要有一个. -->
-        <!--<table tableName="user" domainObjectName="user">-->
-        <!--</table>-->
 
+        <!--table-->
         <table tableName="wk_order" >
-
-
             <generatedKey column="order_id" sqlStatement="Mysql" identity="true"/>
-
-            <!--去掉前缀，但是现在好像有问题-->
             <domainObjectRenamingRule searchString="wk_" />
-
         </table>
-
     </context>
 </generatorConfiguration>
