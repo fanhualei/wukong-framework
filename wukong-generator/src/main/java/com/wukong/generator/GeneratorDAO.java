@@ -1,7 +1,9 @@
 package com.wukong.generator;
 
+import org.mybatis.generator.api.GeneratedJavaFile;
 import org.mybatis.generator.api.MyBatisGenerator;
 import org.mybatis.generator.config.Configuration;
+import org.mybatis.generator.config.Context;
 import org.mybatis.generator.config.xml.ConfigurationParser;
 import org.mybatis.generator.internal.DefaultShellCallback;
 
@@ -31,7 +33,20 @@ public class GeneratorDAO {
         Configuration config = cp.parseConfiguration(configFile);
         DefaultShellCallback callback = new DefaultShellCallback(overwrite);
         MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
+
+        Context context=  config.getContexts().get(0);
+
+
         myBatisGenerator.generate(null);
+
+        GeneratedJavaFile gj =myBatisGenerator.getGeneratedJavaFiles().get(0);
+
+
+        File project = new File("log");
+
+        int i=0;
+
+
     }
 
 }
