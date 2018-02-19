@@ -1,4 +1,4 @@
-package com.wukong.generator.plugins;
+package com.wukong.generator.mybatis.plugins;
 
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.generator.api.IntrospectedTable;
@@ -17,6 +17,6 @@ public class WukongPlugin extends PluginAdapter {
     public void initialized(IntrospectedTable introspectedTable) {
         String oldType = introspectedTable.getExampleType();
         introspectedTable.setExampleType(oldType);
-        log.debug("ok================");
+//        log.debug("ok================");
     }
 }

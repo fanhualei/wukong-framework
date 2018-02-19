@@ -1,4 +1,4 @@
-package com.wukong.generator.util;
+package com.wukong.generator.mybatis;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,21 +1,17 @@
-package com.wukong.generator.util;
+package com.wukong.generator.mybatis;
 
+import com.wukong.generator.service.ServiceConfig;
 import lombok.Getter;
 import org.apache.commons.lang.ArrayUtils;
-import org.mybatis.generator.config.Configuration;
 import org.mybatis.generator.config.Context;
 import org.mybatis.generator.internal.util.JavaBeansUtil;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
-import java.io.*;
 import java.sql.*;
-import java.util.Map;
 
-public class TablesContext {
-    private Context context;
+public class TablesInDatabase {
+    //private Context context;
     private String driver;
     private String url;
     private String userid;
@@ -27,22 +23,19 @@ public class TablesContext {
 
     @Getter
     private Map<String,TableInfo> tableList=new HashMap<String, TableInfo>();
-//
-    public TablesContext(Context a_context){
-        context=a_context;
 
+
+
+    public TablesInDatabase(Context a_context, ServiceConfig serviceConfig){
         driver= a_context.getJdbcConnectionConfiguration().getDriverClass();
         url=a_context.getJdbcConnectionConfiguration().getConnectionURL();
         userid=a_context.getJdbcConnectionConfiguration().getUserId();
         password=a_context.getJdbcConnectionConfiguration().getPassword();
-
-        prefix=a_context.getProperty("prefix");
-
-        String strIgnores=a_context.getProperty("ignores");
+        prefix=serviceConfig.getPrefix();
+        String strIgnores=serviceConfig.getIgnores();
         if( strIgnores!=null){
             ignores=strIgnores.split(",");
         }
-
         tableSchema=getTableSchema(url);
         try {
             initTables();
@@ -50,6 +43,7 @@ public class TablesContext {
             e.printStackTrace();
         }
     }
+
 
     /**
      * get Schema

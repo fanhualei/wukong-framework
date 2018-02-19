@@ -1,40 +1,35 @@
-package com.wukong.generator;
+package com.wukong.generator.service;
 
 
 import com.github.javaparser.utils.CodeGenerationUtils;
 import com.github.javaparser.utils.SourceRoot;
-import com.wukong.generator.service.DaoBeanInfo;
-import com.wukong.generator.service.ServiceImplInfo;
 import org.apache.commons.io.FileUtils;
 
 
 import java.io.File;
 
-public class ServiceMain {
+public class ServiceGenerator {
 
     private Boolean writeFile=true;
     private Boolean saveOldFile=true;
 
     public static void main(String[] args) throws Exception {
+        ServiceGenerator serviceMain=new ServiceGenerator();
+        SourceRoot sourceRoot = new SourceRoot(CodeGenerationUtils.mavenModuleRoot(ServiceGenerator.class).resolve(".."));
+        System.out.printf(sourceRoot.getRoot().toString());
 
-        ServiceMain serviceMain=new ServiceMain();
-        serviceMain.run();
+        String daoFilePath=sourceRoot.getRoot().toString()+"/log/com/wukong/examples/dao/"+"OrderMapper.java";
+        String servicePath=sourceRoot.getRoot().toString()+"/log/com/wukong/examples/servic/";
+        String servicePackageName="com.wukong.examples.service";
 
-
+        serviceMain.run(daoFilePath,servicePath,servicePackageName);
     }
 
 
-    private void run()throws Exception{
-        SourceRoot sourceRoot = new SourceRoot(CodeGenerationUtils.mavenModuleRoot(ServiceMain.class).resolve(".."));
-        System.out.printf(sourceRoot.getRoot().toString());
-        File daoFile = new File(sourceRoot.getRoot().toString()+"/log/com/wukong/examples/dao/"+"OrderMapper.java");
-
+    public void run(String daoFilePath,String servicePath,String servicePackageName)throws Exception{
+        File daoFile = new File(daoFilePath);
         DaoBeanInfo daoBeanInfo=new DaoBeanInfo(daoFile);
-
-        String aPath= sourceRoot.getRoot().toString()+"/log/com/wukong/examples/servic/";
-        ServiceImplInfo serviceImplInfo=new ServiceImplInfo(daoBeanInfo,"com.wukong.examples.service",aPath);
-
-        System.out.printf(serviceImplInfo.toString());
+        ServiceImplInfo serviceImplInfo=new ServiceImplInfo(daoBeanInfo,servicePackageName,servicePath);
         creatJavaFile(serviceImplInfo);
     }
 
@@ -50,9 +45,7 @@ public class ServiceMain {
         }
     }
 
-    public static String getIndent(){
-        return "    ";
-    }
+
 
 }
 
