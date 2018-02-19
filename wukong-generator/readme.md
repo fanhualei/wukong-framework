@@ -31,6 +31,13 @@ http://www.mybatis.org/generator
     4、运行 WukongGenerator ,并生成代码              
 
 
+TODO
+
+    1、要测试一下这样的表 wk_order_detail生成对象的名称，以及wk_orderDetail
+    2、今后多谢谢代码，把Service代码生成器一步一步完善一下。
+    3、今后生成Swagger，用来生成API自动化测试界面。
+
+
 代码说明：
 
     java
@@ -51,8 +58,7 @@ http://www.mybatis.org/generator
         generatorConfig.xml
         mysql-connector-java-5.1.45-bin.jar    
 
-
-    
+ 
    
     
 配置技巧:有时候不好用
@@ -65,3 +71,4 @@ http://www.mybatis.org/generator
     
     2、去掉表的前缀,在Table中添加下面代码
     <domainObjectRenamingRule searchString =“^ Sys”replaceString =“”/>
+    
