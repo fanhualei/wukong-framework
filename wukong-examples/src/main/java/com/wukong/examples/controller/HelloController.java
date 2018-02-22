@@ -2,6 +2,8 @@ package com.wukong.examples.controller;
 
 
 import com.wukong.examples.entity.City;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,7 +26,8 @@ public class HelloController  {
      *      https://localhost:8443/hello
      * 显示：Hello Spring-Boot
      */
-    @RequestMapping
+    @ApiOperation(value="欢迎", notes="")
+    @GetMapping
     public String hello() {
         return "Hello World";
     }
@@ -36,6 +39,8 @@ public class HelloController  {
      * 地址：http://localhost:8080/hello/info?name=abc
      * 显示：{"name":"张三"}
      */
+    @ApiOperation(value="得到名称", notes="")
+    @ApiImplicitParam(name = "name", value = "用户名称", required = true, dataType = "String")
     @RequestMapping("/info")
     public Map<String, String> getInfo(@RequestParam String name) {
         Map<String, String> map = new HashMap<String, String>();
@@ -49,6 +54,7 @@ public class HelloController  {
      * 地址：http://localhost:8080/hello/json
      * 显示：[{"name":"Shanhy-1"},{"name":"Shanhy-2"},{"name":"Shanhy-3"},{"name":"Shanhy-4"},{"name":"Shanhy-5"}]
      */
+    @ApiOperation(value="得到列表", notes="" )
     @RequestMapping("/json")
     public List<Map<String, String>> getList() {
         List<Map<String, String>> list = new ArrayList<Map<String, String>>();
@@ -94,6 +100,7 @@ public class HelloController  {
      * 地址：https://localhost:8443/hello/addCity
      * 利用postman进行测试
      */
+    @ApiOperation(value="添加city", notes="" )
     @RequestMapping("/addCity")
     public City addCity(@RequestBody City city){
         city.setCode(city.getCode()+"ok");

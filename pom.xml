@@ -88,6 +88,20 @@
         </dependency>
 
 
+
+        <!--引入Swagger2的依赖-->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.8.0</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.8.0</version>
+        </dependency>
+
+
         <!--分页-->
         <!--
         MyBatis提供了拦截器接口，我们可以实现自己的拦截器，
