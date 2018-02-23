@@ -32,11 +32,12 @@ public class Swagger2Config {
     private ApiInfo apiInfo() {
         Contact contact = new Contact("wukong","http://www.runzhichina.com","fanhl@189.cn");
         return new ApiInfoBuilder()
-                .title("欢迎使用Wukong API Swager")
+                .title("欢迎使用Wukong API Swagger")
                 .description("Hello Swager")
                 .contact(contact)
                 .version("1.0")
                 .build();
+
     }
 
     }

@@ -22,3 +22,6 @@ Java程序
 >HelloControllerTests.java 自动化测试
 
 
+>resouce/postman/ has postman script
+
+
