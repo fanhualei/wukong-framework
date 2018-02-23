@@ -27,7 +27,7 @@ public class HelloController  {
      * 显示：Hello Spring-Boot
      */
     @ApiOperation(value="欢迎", notes="")
-    @GetMapping
+    @RequestMapping
     public String hello() {
         return "Hello World";
     }
