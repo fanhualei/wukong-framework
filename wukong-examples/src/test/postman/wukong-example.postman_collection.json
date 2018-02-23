@@ -1,0 +1,649 @@
+{
+	"info": {
+		"name": "wukong-example",
+		"_postman_id": "cf06859c-0f12-8996-fba9-30b684500c45",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "hello",
+			"description": "",
+			"item": [
+				{
+					"name": "hello",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/html"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/hello",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"hello"
+							]
+						},
+						"description": ""
+					},
+					"response": [
+						{
+							"id": "85e69244-15ad-489e-84ed-cd8c11a47744",
+							"name": "hello",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "text/html",
+										"disabled": false
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8080/hello",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"hello"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"_postman_previewtype": "parsed",
+							"header": [],
+							"cookie": [],
+							"responseTime": 0,
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "info?name=abc",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/html"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/hello/info?name=abc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"hello",
+								"info"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "abc",
+									"equals": true
+								}
+							]
+						},
+						"description": ""
+					},
+					"response": [
+						{
+							"id": "f64f6912-8237-4c8d-b998-071a40f5441a",
+							"name": "hello",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "text/html",
+										"disabled": false
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8080/hello",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"hello"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"_postman_previewtype": "parsed",
+							"header": [],
+							"cookie": [],
+							"responseTime": 0,
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "json",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/html"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/hello/json",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"hello",
+								"json"
+							]
+						},
+						"description": ""
+					},
+					"response": [
+						{
+							"id": "dd5ae3f2-1a85-49f7-8a5a-7f2aab8d0859",
+							"name": "hello",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "text/html",
+										"disabled": false
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8080/hello",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"hello"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"_postman_previewtype": "parsed",
+							"header": [],
+							"cookie": [],
+							"responseTime": 0,
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "logo",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/html"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/hello/logo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"hello",
+								"logo"
+							]
+						},
+						"description": ""
+					},
+					"response": [
+						{
+							"id": "bf083242-bd41-4457-9800-152ecd31733c",
+							"name": "hello",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "text/html",
+										"disabled": false
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8080/hello",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"hello"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"_postman_previewtype": "parsed",
+							"header": [],
+							"cookie": [],
+							"responseTime": 0,
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "getCityList",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/html"
+							}
+						],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:8080/hello/getCityList",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"hello",
+								"getCityList"
+							]
+						},
+						"description": ""
+					},
+					"response": [
+						{
+							"id": "846c8bf9-7c43-4f7c-9202-e3c9ffb49ab2",
+							"name": "hello",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "text/html",
+										"disabled": false
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8080/hello",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"hello"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"_postman_previewtype": "parsed",
+							"header": [],
+							"cookie": [],
+							"responseTime": 0,
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "addCity",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": " { \"id\": 1,\"name\": \"city1\",\"code\": \"001\"}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/hello/addCity",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"hello",
+								"addCity"
+							]
+						},
+						"description": ""
+					},
+					"response": [
+						{
+							"id": "644e3cab-a752-478d-81e5-29c69d2193d9",
+							"name": "hello",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "text/html",
+										"disabled": false
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8080/hello",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"hello"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"_postman_previewtype": "parsed",
+							"header": [],
+							"cookie": [],
+							"responseTime": 0,
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "/upload",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"description": "",
+									"type": "file",
+									"src": "选区_119.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost:8443/hello//upload",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"hello",
+								"",
+								"upload"
+							]
+						},
+						"description": ""
+					},
+					"response": [
+						{
+							"id": "7af1eda8-89fe-413e-86a9-037c5b176c0f",
+							"name": "hello",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "text/html",
+										"disabled": false
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8080/hello",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"hello"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"_postman_previewtype": "parsed",
+							"header": [],
+							"cookie": [],
+							"responseTime": 0,
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "/upload/batch",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"description": "",
+									"type": "file",
+									"src": "选区_115.png"
+								},
+								{
+									"key": "file",
+									"description": "",
+									"type": "file",
+									"src": "选区_116.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost:8443/hello/upload/batch",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"hello",
+								"upload",
+								"batch"
+							]
+						},
+						"description": ""
+					},
+					"response": [
+						{
+							"id": "08e9bf91-92dc-491e-b0d7-956c0488ad4f",
+							"name": "hello",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "text/html",
+										"disabled": false
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8080/hello",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"hello"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"_postman_previewtype": "parsed",
+							"header": [],
+							"cookie": [],
+							"responseTime": 0,
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "/download",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"description": "",
+									"type": "file",
+									"src": "选区_119.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost:8443/hello/download",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"hello",
+								"download"
+							]
+						},
+						"description": ""
+					},
+					"response": [
+						{
+							"id": "c6dbef8a-de6c-4437-968a-63019fe5b068",
+							"name": "hello",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "text/html",
+										"disabled": false
+									}
+								],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:8080/hello",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"hello"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "",
+							"_postman_previewtype": "parsed",
+							"header": [],
+							"cookie": [],
+							"responseTime": 0,
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "mybatis",
+			"description": "",
+			"item": [
+				{
+					"name": "searchList",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/html;charset=utf-8"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "三",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost:8443/mybatis/searchList",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"mybatis",
+								"searchList"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
