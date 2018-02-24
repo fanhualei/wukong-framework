@@ -31,6 +31,7 @@
         <module>wukong-examples</module>
         <module>wukong-core</module>
         <module>wukong-generator</module>
+        <module>wukong-security</module>
     </modules>
 
 
@@ -101,6 +102,17 @@
             <version>2.8.0</version>
         </dependency>
 
+
+        <!--安全方面-->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>0.7.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
 
         <!--分页-->
         <!--
