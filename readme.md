@@ -38,14 +38,19 @@ wukong-framework(基于spring boot框架)
 
 
 #### 02-15 做了主从数据库，实现了多年的心愿。 
-      
+
+   主要工作
+   
       1、实现了 1个master库， n个slave库。1个master库， 3个slave库，出现select时，从slave库上轮训选择要查询的库
       2、集成了阿里的druid数据源，spring 推荐的是hikariCP ，速度快稳定。 druid太复杂，但是容易监控sql语句
       3、输入https://localhost:8443/druid/， 能看到druid的监控页面
       4、解决了springBoot跨包的问题
         @SpringBootApplication(scanBasePackages={"com.wukong.core","com.wukong.examples"})
       
-      todo 
+  
+      
+   todo 
+   
       ~~1、@todo 撰写一个标签  可以制定从主数据库上读取数据~~
       2、@todo 今后可以动态的配置slave数量
       3、@todo 撰写unitTest保证这部分数据没有问题。
@@ -55,6 +60,7 @@ wukong-framework(基于spring boot框架)
       ~~7、@todo 使用spring的aop，而不是老的apache的aop~~
       ~~8、@todo service方法中只要是:insert update delete add  remove 就表示非查询语句~~
       
+   思考      
       
       到底拦截器做在DAO(sql)上好 还是在service上好
       service的好处
