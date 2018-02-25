@@ -2,9 +2,10 @@ wukong-framework(基于spring boot框架)
 ===
 
 
-效果：`linux` `网络编程` `socket` `epoll`
+组件：`springboot` `springsecurity`  `mybatis` `jwt` `主从数据库` `https` `redis`
 
-|`这是一个 ~~删除线~~`|这是一个 ~~删除线~~|
+
+这是一个 ~~删除线~~
 
 
 ### 复选框列表
@@ -24,6 +25,10 @@ wukong-framework(基于spring boot框架)
        2.2、将权限信息保存到数据库中，便于调整
        2.3、将Token保存到redis中,这样可以提高效率
             最好做一个开关，可以保存到内存也可以保存到redis中
+        - [ ] 编码
+        - [ ] 测试    
+            
+            
 
 
       
