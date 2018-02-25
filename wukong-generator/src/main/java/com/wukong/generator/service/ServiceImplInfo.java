@@ -131,16 +131,19 @@ public class ServiceImplInfo {
         String s= GeneratorUtil.getIndent();
         StringBuffer sb= new StringBuffer();
         for(String methodName:this.daoBeanInfo.getOutPutMethods()){
-            //sb.append(getMethodComment());  //函数注释
-            sb.append(getMethodAnnotation(methodName)); //函数注解释
+
 
             String e=this.daoBeanInfo.getMethods().get(methodName);
-            String tempStr=e.substring(e.indexOf(" "),e.length()).trim();
-            String funStr="public "+e.substring(0,e.length())+" {";
+            if(e!=null && e.length()>0) {
+                //sb.append(getMethodComment());  //函数注释
+                sb.append(getMethodAnnotation(methodName)); //函数注解释
+                String tempStr = e.substring(e.indexOf(" "), e.length()).trim();
+                String funStr = "public " + e.substring(0, e.length()) + " {";
 
-            sb.append(s).append(funStr).append("\n"); //函数头
-            sb.append(s).append(s).append(getDaoFunStr(tempStr)).append("\n"); //函数体
-            sb.append(s).append("}").append("\n").append("\n");
+                sb.append(s).append(funStr).append("\n"); //函数头
+                sb.append(s).append(s).append(getDaoFunStr(tempStr)).append("\n"); //函数体
+                sb.append(s).append("}").append("\n").append("\n");
+            }
         }
         return sb.toString();
     }
@@ -217,7 +220,7 @@ public class ServiceImplInfo {
                     + ".countByExample().build().execute();";
         }else if(funName.equals("selectAll")){
             daoFunstr="return "+ StringUtils.uncapitalize(this.daoBeanInfo.getName())
-                    + ".selectByExample().build().execute()";
+                    + ".selectByExample().build().execute();";
         }
 
 

@@ -11,6 +11,7 @@
     <context id="wukong-generator" targetRuntime="MyBatis3DynamicSql">
 
         <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
         <plugin type="com.wukong.generator.mybatis.plugins.WukongPlugin"/>
 
         <commentGenerator>
@@ -34,7 +35,7 @@
         </javaTypeResolver>
 
         <!--model-->
-        <javaModelGenerator targetPackage="com.wukong.examples.model" targetProject="log">
+        <javaModelGenerator targetPackage="com.wukong.security.model" targetProject="log">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
@@ -45,11 +46,11 @@
         </sqlMapGenerator>
 
         <!--dao-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.wukong.examples.dao"  targetProject="log">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.wukong.security.dao"  targetProject="log">
             <property name="enableSubPackages" value="true" />
             <property name="prefix" value="wk_"/>
-            <property name="ignores" value=""/>
-            <property name="targetPackage" value="com.wukong.examples.service"/>
+            <property name="ignores" value="groups,user,wk_order"/>
+            <property name="targetPackage" value="com.wukong.security.service"/>
             <property name="targetProject" value="log"/>
             <property name="runWukongRule" value="true"/>
         </javaClientGenerator>
