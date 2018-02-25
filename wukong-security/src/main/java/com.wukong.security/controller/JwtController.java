@@ -15,7 +15,7 @@ import java.util.HashMap;
 public class JwtController {
 
 
-    @PostMapping("/login")
+    @RequestMapping("/login")
     public Object login(HttpServletResponse response,
                         @RequestBody Account account) throws IOException {
         if(isValidPassword(account)) {

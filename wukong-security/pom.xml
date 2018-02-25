@@ -12,7 +12,9 @@
     <groupId>com.runzhichina.wukong</groupId>
     <artifactId>wukong-security</artifactId>
 
+    <dependencies>
 
+    </dependencies>
 
 
 
