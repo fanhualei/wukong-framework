@@ -17,9 +17,9 @@ public class JwtController {
 
     @RequestMapping("/login")
     public Object login(HttpServletResponse response,
-                        @RequestBody Account account) throws IOException {
-        if(isValidPassword(account)) {
-            String jwt = JwtUtil.generateToken(account.username);
+                        @RequestParam String username,@RequestParam String password) throws IOException {
+        if(isValidPassword(username,password)) {
+            String jwt = JwtUtil.generateToken(username);
             response.setHeader("dddd",jwt);
             return new HashMap<String,String>(){{
                 put("token", jwt);
@@ -30,10 +30,11 @@ public class JwtController {
     }
 
 
-    private boolean isValidPassword(Account ac) {
+
+    private boolean isValidPassword(String username,String password) {
         //we just have 2 hardcoded user
-        if ("admin".equals(ac.username) && "admin".equals(ac.password)
-                || "user".equals(ac.username) && "user".equals(ac.password)) {
+        if ("admin".equals(username) && "admin".equals(password)
+                || "user".equals(username) && "user".equals(password)) {
             return true;
         }
         return false;

@@ -24,12 +24,44 @@ wukong-framework(基于spring boot框架)
        2.2、将权限信息保存到数据库中，便于调整
        2.3、将Token保存到redis中,这样可以提高效率
             最好做一个开关，可以保存到内存也可以保存到redis中
-        - [ ] 编码
-        - [ ] 测试    
+ 
+    
+>今天有重大收获,通过拦截器自动给testNg追加tonken，!!!
+
+    1、追加了BasicJwtInterceptor，每个request追加token
+    2、HelloControllerTests 中追加@BeforeMethod，初始化上面的拦截器           
             
-            
+>HelloControllerTests 相关代码
+        
+```Java
+@BeforeMethod
+public void getToken(){
+    String url="/author/jwt/login?username=admin&password=admin";
+    ResponseEntity<Map> entity = this.restTemplate.getForEntity(url, Map.class);
+    assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
+    Map<String, String> returnMap=entity.getBody();
+    String token=returnMap.get("token");
+    BasicJwtInterceptor basicJwtInterceptor= new BasicJwtInterceptor(token);
+    restTemplate.getRestTemplate().getInterceptors().add(basicJwtInterceptor);
+}
+```    
+
+>BasicJwtInterceptor 相关代码
+
+```Java
+public BasicJwtInterceptor(String token) {
+    Assert.hasLength(token, "token must not be empty");
+    this.token = token;
+}
 
 
+@Override
+public ClientHttpResponse intercept(HttpRequest request, byte[] body,
+                                    ClientHttpRequestExecution execution) throws IOException {
+    request.getHeaders().add("Authorization", token);
+    return execution.execute(request, body);
+}
+```
       
 #### 02-19 完成了service代码生成的主要工作
      

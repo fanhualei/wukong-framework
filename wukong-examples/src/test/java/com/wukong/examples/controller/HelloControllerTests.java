@@ -11,6 +11,8 @@ import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.*;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,9 +38,23 @@ public class HelloControllerTests extends AbstractTestNGSpringContextTests {
     @Autowired
     private TestRestTemplate restTemplate;
 
+    @BeforeMethod
+    public void getToken(){
+        String url="/author/jwt/login?username=admin&password=admin";
+        ResponseEntity<Map> entity = this.restTemplate.getForEntity(url, Map.class);
+        assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        Map<String, String> returnMap=entity.getBody();
+        String token=returnMap.get("token");
+        BasicJwtInterceptor basicJwtInterceptor= new BasicJwtInterceptor(token);
+        restTemplate.getRestTemplate().getInterceptors().add(basicJwtInterceptor);
+    }
+
+
     @Test
     public void testHello() {
         String url="/hello";
+
+
         ResponseEntity<String> entity = this.restTemplate.getForEntity(url, String.class);
         assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(entity.getBody()).isEqualTo("Hello World");
