@@ -1,9 +1,8 @@
-wukong-framework
+wukong-framework(基于spring boot框架)
 ===
 
-一个基于spring boot boot的框架
 
-      
+
 
 >02-25 追加了security与redis部分
     
