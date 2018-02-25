@@ -2,19 +2,18 @@ wukong-framework(基于spring boot框架)
 ===
 
 
-组件：`springboot` `springsecurity`  `mybatis` `jwt` `主从数据库` `https` `redis`
+组件：`springboot` `springsecurity` `testng`  `mybatis` `jwt` `https` `redis`
 
 
-这是一个 ~~删除线~~
-
-
-### 复选框列表
-- [x] 需求分析
-- [x] 系统设计
-- [x] 详细设计
-- [ ] 编码
-- [ ] 测试
-- [ ] 交付
+### 完成情况
+- [x] 主从数据库
+- [x] Rest Api规范
+- [x] Testing 测试框架
+- [x] PostMan 测试框架
+- [ ] 前端框架
+- [ ] 安全框架
+- [ ] 使用文档
+- [ ] 部署文档
 
 
 #### 02-25 追加了security与redis部分
