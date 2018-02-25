@@ -1,10 +1,8 @@
 wukong-framework(基于spring boot框架)
 ===
 
-## 说明
 
-
->02-25 追加了security与redis部分
+#### 02-25 追加了security与redis部分
     
     1、把核心模块追加了
     2、TODO
@@ -15,7 +13,7 @@ wukong-framework(基于spring boot框架)
 
 
       
->02-19 完成了service代码生成的主要工作
+#### 02-19 完成了service代码生成的主要工作
      
      1、熟悉了javaparse的工作原理
      2、书写了Mybatis代码生成的原理，可以自动的添加table，并且可以追加内容进行相关代码的生成。
@@ -25,7 +23,7 @@ wukong-framework(基于spring boot框架)
 
  
 
->02-16 做了拦截器，可以拦截service上指定的数据库
+#### 02-16 做了拦截器，可以拦截service上指定的数据库
 
       1、 @DatasourceAnno(name=master) 或 @DatasourceAnno(name=slave) 后不再根据函数名来判断获取的数据库
       2、maven 引用了 spring-boot-starter-aop ，就不用引用aspectjweaver 
@@ -39,7 +37,7 @@ wukong-framework(基于spring boot框架)
 
 
 
->02-15 做了主从数据库，实现了多年的心愿。 
+#### 02-15 做了主从数据库，实现了多年的心愿。 
       
       1、实现了 1个master库， n个slave库。1个master库， 3个slave库，出现select时，从slave库上轮训选择要查询的库
       2、集成了阿里的druid数据源，spring 推荐的是hikariCP ，速度快稳定。 druid太复杂，但是容易监控sql语句
@@ -66,7 +64,7 @@ wukong-framework(基于spring boot框架)
       1、如果有人从controler这部分调用dao，就拦截不住。
  
  
->02-14 集成了mybatis，今天最大的收获是，别把没看懂的代码提交到工程中，会影响其他程序的。
+#### 02-14 集成了mybatis，今天最大的收获是，别把没看懂的代码提交到工程中，会影响其他程序的。
 
       1、集成了mybatis,按照官网的，越简单越好
       2、testNG中进行了测试，分别测试了Dao与Service，今后只用测试Service
@@ -76,7 +74,7 @@ wukong-framework(基于spring boot框架)
  
  
  
->02-13 做了http rest的代码 
+#### 02-13 做了http rest的代码 
 
       1、添加了文件上传 下载 
       2、post json代码  
@@ -85,7 +83,7 @@ wukong-framework(基于spring boot框架)
       5、@todo testng 传递对象测试 excel表测试 随机数测试    
     
      
->02-12 将原先代码都删除了，实现了下面的功能
+#### 02-12 将原先代码都删除了，实现了下面的功能
  
        1、多pom
        2、https
