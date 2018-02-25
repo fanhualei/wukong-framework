@@ -1,32 +1,46 @@
-# wukong-framework
-一个基于spring boot的框架
+wukong-framework
+===
+
+一个基于spring boot boot的框架
+
+      
+
+>02-25 追加了security与redis部分
+    
+    1、把核心模块追加了
+    2、TODO
+       2.1、在testNG中加入Token，不然运行不了
+       2.2、将权限信息保存到数据库中，便于调整
+       2.3、将Token保存到redis中,这样可以提高效率
+            最好做一个开关，可以保存到内存也可以保存到redis中
 
 
-02-12 将原先代码都删除了，实现了下面的功能
-
-      1、多pom
-      2、https
-      3、testNG测试
-      4、rest接口
+      
+>02-19 完成了service代码生成的主要工作
      
+     1、熟悉了javaparse的工作原理
+     2、书写了Mybatis代码生成的原理，可以自动的添加table，并且可以追加内容进行相关代码的生成。
+     3、原先想将配置数据用springboot来配置，后来发现不用了。先读取xml文件，然后调用数据库相关文件。
+ 
+ 
 
-02-13 做了http rest的代码 
+ 
 
-      1、添加了文件上传 下载 
-      2、post json代码  
-      3、http2https重新定向  
-      4、testng参数测试
-      5、@todo testng 传递对象测试 excel表测试 随机数测试
+>02-16 做了拦截器，可以拦截service上指定的数据库
 
-02-14 集成了mybatis，今天最大的收获是，别把没看懂的代码提交到工程中，会影响其他程序的。
+      1、 @DatasourceAnno(name=master) 或 @DatasourceAnno(name=slave) 后不再根据函数名来判断获取的数据库
+      2、maven 引用了 spring-boot-starter-aop ，就不用引用aspectjweaver 
+      3、wukong-generator 用来生成相关的代码
+      
+      todo
+      1、代码生成器
+      2、安全框架
+      3、主键不会返回
+      4、生成class类的时候，要把前缀给去掉
 
-      1、集成了mybatis,按照官网的，越简单越好
-      2、testNG中进行了测试，分别测试了Dao与Service，今后只用测试Service
-      3、引入了这个aspectj包太老了，看看有没有其他更好的
-      ~~4、@todo mybatis多数据源与动态切换，官方应该有特别简单例子，这样符合springboot的特点
-      ，别上网看那些代码，写的太复杂  ~~    
 
-02-15 做了主从数据库，实现了多年的心愿。 
+
+>02-15 做了主从数据库，实现了多年的心愿。 
       
       1、实现了 1个master库， n个slave库。1个master库， 3个slave库，出现select时，从slave库上轮训选择要查询的库
       2、集成了阿里的druid数据源，spring 推荐的是hikariCP ，速度快稳定。 druid太复杂，但是容易监控sql语句
@@ -51,22 +65,30 @@
       2、今后可以重用Dao的这部分代码？ 但是想想，这条不成立。
       坏处：
       1、如果有人从controler这部分调用dao，就拦截不住。
-      
-      
-02-16 做了拦截器，可以拦截service上指定的数据库
+ 
+ 
+>02-14 集成了mybatis，今天最大的收获是，别把没看懂的代码提交到工程中，会影响其他程序的。
 
-      1、 @DatasourceAnno(name=master) 或 @DatasourceAnno(name=slave) 后不再根据函数名来判断获取的数据库
-      2、maven 引用了 spring-boot-starter-aop ，就不用引用aspectjweaver 
-      3、wukong-generator 用来生成相关的代码
-      
-      todo
-      1、代码生成器
-      2、安全框架
-      3、主键不会返回
-      4、生成class类的时候，要把前缀给去掉
-      
-02-19 完成了service代码生成的主要工作
+      1、集成了mybatis,按照官网的，越简单越好
+      2、testNG中进行了测试，分别测试了Dao与Service，今后只用测试Service
+      3、引入了这个aspectj包太老了，看看有没有其他更好的
+      ~~4、@todo mybatis多数据源与动态切换，官方应该有特别简单例子，这样符合springboot的特点
+      ，别上网看那些代码，写的太复杂  ~~     
+ 
+ 
+ 
+>02-13 做了http rest的代码 
+
+      1、添加了文件上传 下载 
+      2、post json代码  
+      3、http2https重新定向  
+      4、testng参数测试
+      5、@todo testng 传递对象测试 excel表测试 随机数测试    
+    
      
-     1、熟悉了javaparse的工作原理
-     2、书写了Mybatis代码生成的原理，可以自动的添加table，并且可以追加内容进行相关代码的生成。
-     3、原先想将配置数据用springboot来配置，后来发现不用了。先读取xml文件，然后调用数据库相关文件。
+>02-12 将原先代码都删除了，实现了下面的功能
+ 
+       1、多pom
+       2、https
+       3、testNG测试
+       4、rest接口    
