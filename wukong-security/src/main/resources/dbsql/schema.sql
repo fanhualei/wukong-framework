@@ -1,17 +1,109 @@
 
-DROP TABLE IF EXISTS `wk_users`;
 
-create table wk_users (
-  username varchar(256) NOT NULL PRIMARY KEY,
-  password varchar(256) NOT NULL,
-  enabled boolean DEFAULT TRUE
+
+DROP TABLE IF EXISTS wk_user_role;
+DROP TABLE IF EXISTS wk_role_resource;
+
+DROP TABLE IF EXISTS wk_resource;
+DROP TABLE IF EXISTS wk_role;
+DROP TABLE IF EXISTS wk_user_ex;
+DROP TABLE IF EXISTS wk_user;
+
+create table wk_user (
+  user_id    bigint(20)     NOT NULL AUTO_INCREMENT  COMMENT '用户id',
+  username  varchar(256)   NOT NULL                 COMMENT '用户名',
+  password  varchar(256)   NOT NULL                 COMMENT '密码',
+  enabled   boolean        DEFAULT TRUE             COMMENT '是否有效',
+  phone     varchar(255)                            COMMENT '手机号码',
+  email     varchar(255)                            COMMENT '邮箱地址',
+  PRIMARY KEY (user_id),
+  UNIQUE KEY `uq_user_username` (`username`),
+  UNIQUE KEY `uq_user_phone`    (`phone`),
+  UNIQUE KEY `uq_user_email`    (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8 COMMENT='用户表';
+
+
+
+INSERT INTO wk_user(user_id,username,password,enabled) VALUES (1,'admin','admin',true);
+INSERT INTO wk_user(user_id,username,password,enabled) VALUES (2,'user1','user1',true);
+
+
+
+create table wk_user_ex (
+  user_id    bigint(20)     NOT NULL                 COMMENT '用户id',
+  nickname  varchar(255)   DEFAULT ''               COMMENT '昵称',
+  signature varchar(255)   DEFAULT ''               COMMENT '个性签名',
+  qq        varchar(50)    DEFAULT ''               COMMENT 'QQ号码',
+  weixin    varchar(50)    DEFAULT ''               COMMENT '微信号码',
+  weibo     varchar(50)    DEFAULT ''               COMMENT '微博号码',
+  avatar    varchar(500)   DEFAULT ''               COMMENT '头像图片路径',
+  PRIMARY KEY (user_id),
+  CONSTRAINT fk_user_ex_user FOREIGN KEY (user_id) REFERENCES wk_user (user_id)
 );
 
-DROP TABLE IF EXISTS `wk_authorities`;
 
-create table wk_authorities (
-  username varchar(256),
-  authority varchar(256),
-  CONSTRAINT wk_authorities_pk PRIMARY KEY (username, authority),
-  CONSTRAINT wk_authorities_wk_users_fk FOREIGN KEY (username) REFERENCES wk_users (username);
-);
+
+
+
+CREATE TABLE wk_role (
+  role_id        bigint(20)     NOT NULL AUTO_INCREMENT  COMMENT '权限编号',
+  rolename      varchar(255)   NOT NULL                 COMMENT '权限名称',
+  description   varchar(255)                            COMMENT '中文描述',
+  sort          int            DEFAULT 0                COMMENT '排序号，越大越靠前',
+  PRIMARY KEY (role_id)
+) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8 COMMENT='权限字典表';
+
+
+
+INSERT INTO wk_role(role_id,rolename,description) VALUES(1,"ROLE_ADMIN" ,"管理员");
+INSERT INTO wk_role(role_id,rolename,description) VALUES(2,"ROLE_USER"  ,"普通用户");
+
+
+
+CREATE TABLE wk_user_role (
+  user_role_id        bigint(20) NOT NULL AUTO_INCREMENT,
+  user_id             bigint(20) NOT NULL,
+  role_id             bigint(20) NOT NULL,
+  PRIMARY KEY (user_role_id),
+  CONSTRAINT fk_user_role_user FOREIGN KEY (user_id) REFERENCES wk_user (user_id),
+  CONSTRAINT fk_user_role_role FOREIGN KEY (role_id) REFERENCES wk_role (role_id)
+
+) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8;
+
+
+INSERT INTO wk_user_role(user_role_id, user_id, role_id) VALUES (1,1,1);
+INSERT INTO wk_user_role(user_role_id, user_id, role_id) VALUES (2,2,2);
+
+
+
+
+CREATE TABLE wk_resource (
+  resource_id      bigint(20)   NOT NULL AUTO_INCREMENT,
+  resource_name    varchar(255) NOT NULL                  COMMENT '权限名称',
+  url              varchar(255) DEFAULT ''                COMMENT 'API RUL',
+  description      varchar(255) DEFAULT ''                COMMENT '资源描述',
+  sort             int          DEFAULT 0                 COMMENT '排序号，越大越靠前',
+  parent_id        bigint(20)   NOT NULL DEFAULT 0        COMMENT '父ID',
+  PRIMARY KEY (`resource_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8  COMMENT='资源（权限）表';
+
+
+INSERT INTO wk_resource(resource_id, resource_name, url) VALUES (1,'欢迎页'   ,'/hello/**');
+INSERT INTO wk_resource(resource_id, resource_name, url) VALUES (2,'Mybatis' ,'/mybatis/**');
+
+
+
+CREATE TABLE wk_role_resource (
+  role_resource_id    bigint(20) NOT NULL AUTO_INCREMENT,
+  role_id             bigint(20) DEFAULT NULL,
+  resource_id         bigint(20) DEFAULT NULL,
+  PRIMARY KEY (role_resource_id),
+  CONSTRAINT fk_role_resource_role      FOREIGN KEY (role_id)     REFERENCES wk_role     (role_id),
+  CONSTRAINT fk_role_resource_resource  FOREIGN KEY (resource_id) REFERENCES wk_resource (resource_id)
+) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8;
+
+
+INSERT INTO wk_role_resource(role_resource_id,role_id,resource_id) VALUES(1,1,1);
+INSERT INTO wk_role_resource(role_resource_id,role_id,resource_id) VALUES(2,1,2);
+INSERT INTO wk_role_resource(role_resource_id,role_id,resource_id) VALUES(3,2,1);
+

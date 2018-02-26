@@ -1,9 +1,9 @@
 package com.wukong.security.dao;
 
-import static com.wukong.security.dao.UsersDynamicSqlSupport.*;
+import static com.wukong.security.dao.RoleDynamicSqlSupport.*;
 import static org.mybatis.dynamic.sql.SqlBuilder.*;
 
-import com.wukong.security.model.Users;
+import com.wukong.security.model.Role;
 import java.util.List;
 import javax.annotation.Generated;
 import org.apache.ibatis.annotations.DeleteProvider;
@@ -12,6 +12,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.ResultMap;
 import org.apache.ibatis.annotations.Results;
+import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.UpdateProvider;
 import org.apache.ibatis.type.JdbcType;
@@ -31,7 +32,7 @@ import org.mybatis.dynamic.sql.update.render.UpdateStatementProvider;
 import org.mybatis.dynamic.sql.util.SqlProviderAdapter;
 
 @Mapper
-public interface UsersMapper {
+public interface RoleMapper {
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     long count(SelectStatementProvider selectStatement);
@@ -42,21 +43,23 @@ public interface UsersMapper {
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     @InsertProvider(type=SqlProviderAdapter.class, method="insert")
-    int insert(InsertStatementProvider<Users> insertStatement);
+    @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="record.roleId", before=false, resultType=Long.class)
+    int insert(InsertStatementProvider<Role> insertStatement);
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
-    @ResultMap("UsersResult")
-    Users selectOne(SelectStatementProvider selectStatement);
+    @ResultMap("RoleResult")
+    Role selectOne(SelectStatementProvider selectStatement);
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
-    @Results(id="UsersResult", value = {
-        @Result(column="username", property="username", jdbcType=JdbcType.VARCHAR, id=true),
-        @Result(column="password", property="password", jdbcType=JdbcType.VARCHAR),
-        @Result(column="enabled", property="enabled", jdbcType=JdbcType.BIT)
+    @Results(id="RoleResult", value = {
+        @Result(column="role_id", property="roleId", jdbcType=JdbcType.BIGINT, id=true),
+        @Result(column="rolename", property="rolename", jdbcType=JdbcType.VARCHAR),
+        @Result(column="description", property="description", jdbcType=JdbcType.VARCHAR),
+        @Result(column="sort", property="sort", jdbcType=JdbcType.INTEGER)
     })
-    List<Users> selectMany(SelectStatementProvider selectStatement);
+    List<Role> selectMany(SelectStatementProvider selectStatement);
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     @UpdateProvider(type=SqlProviderAdapter.class, method="update")
@@ -65,97 +68,99 @@ public interface UsersMapper {
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     default QueryExpressionDSL<MyBatis3SelectModelAdapter<Long>> countByExample() {
         return SelectDSL.selectWithMapper(this::count, SqlBuilder.count())
-                .from(users);
+                .from(role);
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     default DeleteDSL<MyBatis3DeleteModelAdapter<Integer>> deleteByExample() {
-        return DeleteDSL.deleteFromWithMapper(this::delete, users);
+        return DeleteDSL.deleteFromWithMapper(this::delete, role);
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    default int deleteByPrimaryKey(String username_) {
-        return DeleteDSL.deleteFromWithMapper(this::delete, users)
-                .where(username, isEqualTo(username_))
+    default int deleteByPrimaryKey(Long roleId_) {
+        return DeleteDSL.deleteFromWithMapper(this::delete, role)
+                .where(roleId, isEqualTo(roleId_))
                 .build()
                 .execute();
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    default int insert(Users record) {
+    default int insert(Role record) {
         return insert(SqlBuilder.insert(record)
-                .into(users)
-                .map(username).toProperty("username")
-                .map(password).toProperty("password")
-                .map(enabled).toProperty("enabled")
+                .into(role)
+                .map(rolename).toProperty("rolename")
+                .map(description).toProperty("description")
+                .map(sort).toProperty("sort")
                 .build()
                 .render(RenderingStrategy.MYBATIS3));
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    default int insertSelective(Users record) {
+    default int insertSelective(Role record) {
         return insert(SqlBuilder.insert(record)
-                .into(users)
-                .map(username).toPropertyWhenPresent("username", record::getUsername)
-                .map(password).toPropertyWhenPresent("password", record::getPassword)
-                .map(enabled).toPropertyWhenPresent("enabled", record::getEnabled)
+                .into(role)
+                .map(rolename).toPropertyWhenPresent("rolename", record::getRolename)
+                .map(description).toPropertyWhenPresent("description", record::getDescription)
+                .map(sort).toPropertyWhenPresent("sort", record::getSort)
                 .build()
                 .render(RenderingStrategy.MYBATIS3));
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    default QueryExpressionDSL<MyBatis3SelectModelAdapter<List<Users>>> selectByExample() {
-        return SelectDSL.selectWithMapper(this::selectMany, username, password, enabled)
-                .from(users);
+    default QueryExpressionDSL<MyBatis3SelectModelAdapter<List<Role>>> selectByExample() {
+        return SelectDSL.selectWithMapper(this::selectMany, roleId, rolename, description, sort)
+                .from(role);
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    default QueryExpressionDSL<MyBatis3SelectModelAdapter<List<Users>>> selectDistinctByExample() {
-        return SelectDSL.selectDistinctWithMapper(this::selectMany, username, password, enabled)
-                .from(users);
+    default QueryExpressionDSL<MyBatis3SelectModelAdapter<List<Role>>> selectDistinctByExample() {
+        return SelectDSL.selectDistinctWithMapper(this::selectMany, roleId, rolename, description, sort)
+                .from(role);
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    default Users selectByPrimaryKey(String username_) {
-        return SelectDSL.selectWithMapper(this::selectOne, username, password, enabled)
-                .from(users)
-                .where(username, isEqualTo(username_))
+    default Role selectByPrimaryKey(Long roleId_) {
+        return SelectDSL.selectWithMapper(this::selectOne, roleId, rolename, description, sort)
+                .from(role)
+                .where(roleId, isEqualTo(roleId_))
                 .build()
                 .execute();
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    default UpdateDSL<MyBatis3UpdateModelAdapter<Integer>> updateByExample(Users record) {
-        return UpdateDSL.updateWithMapper(this::update, users)
-                .set(username).equalTo(record::getUsername)
-                .set(password).equalTo(record::getPassword)
-                .set(enabled).equalTo(record::getEnabled);
+    default UpdateDSL<MyBatis3UpdateModelAdapter<Integer>> updateByExample(Role record) {
+        return UpdateDSL.updateWithMapper(this::update, role)
+                .set(rolename).equalTo(record::getRolename)
+                .set(description).equalTo(record::getDescription)
+                .set(sort).equalTo(record::getSort);
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    default UpdateDSL<MyBatis3UpdateModelAdapter<Integer>> updateByExampleSelective(Users record) {
-        return UpdateDSL.updateWithMapper(this::update, users)
-                .set(username).equalToWhenPresent(record::getUsername)
-                .set(password).equalToWhenPresent(record::getPassword)
-                .set(enabled).equalToWhenPresent(record::getEnabled);
+    default UpdateDSL<MyBatis3UpdateModelAdapter<Integer>> updateByExampleSelective(Role record) {
+        return UpdateDSL.updateWithMapper(this::update, role)
+                .set(rolename).equalToWhenPresent(record::getRolename)
+                .set(description).equalToWhenPresent(record::getDescription)
+                .set(sort).equalToWhenPresent(record::getSort);
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    default int updateByPrimaryKey(Users record) {
-        return UpdateDSL.updateWithMapper(this::update, users)
-                .set(password).equalTo(record::getPassword)
-                .set(enabled).equalTo(record::getEnabled)
-                .where(username, isEqualTo(record::getUsername))
+    default int updateByPrimaryKey(Role record) {
+        return UpdateDSL.updateWithMapper(this::update, role)
+                .set(rolename).equalTo(record::getRolename)
+                .set(description).equalTo(record::getDescription)
+                .set(sort).equalTo(record::getSort)
+                .where(roleId, isEqualTo(record::getRoleId))
                 .build()
                 .execute();
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    default int updateByPrimaryKeySelective(Users record) {
-        return UpdateDSL.updateWithMapper(this::update, users)
-                .set(password).equalToWhenPresent(record::getPassword)
-                .set(enabled).equalToWhenPresent(record::getEnabled)
-                .where(username, isEqualTo(record::getUsername))
+    default int updateByPrimaryKeySelective(Role record) {
+        return UpdateDSL.updateWithMapper(this::update, role)
+                .set(rolename).equalToWhenPresent(record::getRolename)
+                .set(description).equalToWhenPresent(record::getDescription)
+                .set(sort).equalToWhenPresent(record::getSort)
+                .where(roleId, isEqualTo(record::getRoleId))
                 .build()
                 .execute();
     }

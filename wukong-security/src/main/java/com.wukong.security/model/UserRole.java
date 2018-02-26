@@ -3,46 +3,46 @@ package com.wukong.security.model;
 import java.io.Serializable;
 import javax.annotation.Generated;
 
-public class Users implements Serializable {
+public class UserRole implements Serializable {
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    private String username;
+    private Long userRoleId;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    private String password;
+    private Long userId;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    private Boolean enabled;
+    private Long roleId;
 
     private static final long serialVersionUID = 1L;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public String getUsername() {
-        return username;
+    public Long getUserRoleId() {
+        return userRoleId;
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+    public void setUserRoleId(Long userRoleId) {
+        this.userRoleId = userRoleId;
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public String getPassword() {
-        return password;
+    public Long getUserId() {
+        return userId;
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public Boolean getEnabled() {
-        return enabled;
+    public Long getRoleId() {
+        return roleId;
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
+    public void setRoleId(Long roleId) {
+        this.roleId = roleId;
     }
 
     @Override
@@ -51,9 +51,9 @@ public class Users implements Serializable {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", username=").append(username);
-        sb.append(", password=").append(password);
-        sb.append(", enabled=").append(enabled);
+        sb.append(", userRoleId=").append(userRoleId);
+        sb.append(", userId=").append(userId);
+        sb.append(", roleId=").append(roleId);
         sb.append("]");
         return sb.toString();
     }
