@@ -11,20 +11,18 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication()
 public class DemoApplication implements CommandLineRunner {
 
-    @Autowired
+//    @SuppressWarnings("all")
+//    @Autowired
 //    private UserService userService;
 
 
     @Override
     public void run(String... args) throws Exception {
-//        System.out.println("count = [" + userService.count() + "]");
+//        System.out.println("user = [" + userService.selectByPrimaryKey(1) + "]");
     }
 
 
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
-
-
-
     }
 }

@@ -7,14 +7,25 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
 
+import java.util.List;
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class UserServiceTests extends AbstractTestNGSpringContextTests {
     @Autowired
     @SuppressWarnings("all")
     private UserService userService;
-//
-//
-//
+
+
+
+    @Test
+    public  void testSelectAll(){
+        List<User> list = userService.selectByExample(null);
+        list.forEach(System.out::println);
+    }
+
+
+
+
 //    @Test
 //    public void  testDeleteByPrimaryKey(){
 //        //delNum 删除的记录数量
@@ -114,11 +125,11 @@ public class UserServiceTests extends AbstractTestNGSpringContextTests {
 //     *  报错:MySQLSyntaxErrorException: Table 'wukong_read.User' doesn't exist
 //     *  @TODO 这个有错误  需要看 mysql 的官方的例子
 //     */
-    @Test
-    public  void testSelectById(){
-       User user=  userService.selectByPrimaryKey(1);
-        System.out.println("count===========:"+user.getUsername());
-    }
+//    @Test
+//    public  void testSelectById(){
+//       User user=  userService.selectByPrimaryKey(1);
+//        System.out.println("count===========:"+user.getUsername());
+//    }
 
 
 }
