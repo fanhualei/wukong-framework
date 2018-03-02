@@ -12,6 +12,8 @@
 
         <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+        <!-- This plugin adds the @Mapper annotation to generated mapper interfaces. This plugin should only be used in MyBatis3 environments.  -->
+        <plugin type="org.mybatis.generator.plugins.MapperAnnotationPlugin" />
         <plugin type="com.wukong.generator.mybatis.plugins.WukongPlugin"/>
 
         <commentGenerator>
