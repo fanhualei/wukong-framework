@@ -43,7 +43,7 @@ public interface UserMapper {
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     @InsertProvider(type=SqlProviderAdapter.class, method="insert")
-    @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="record.userId", before=false, resultType=Long.class)
+    @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="record.userId", before=false, resultType=Integer.class)
     int insert(InsertStatementProvider<User> insertStatement);
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
@@ -54,7 +54,7 @@ public interface UserMapper {
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     @SelectProvider(type=SqlProviderAdapter.class, method="select")
     @Results(id="UserResult", value = {
-        @Result(column="user_id", property="userId", jdbcType=JdbcType.BIGINT, id=true),
+        @Result(column="user_id", property="userId", jdbcType=JdbcType.INTEGER, id=true),
         @Result(column="username", property="username", jdbcType=JdbcType.VARCHAR),
         @Result(column="password", property="password", jdbcType=JdbcType.VARCHAR),
         @Result(column="enabled", property="enabled", jdbcType=JdbcType.BIT),
@@ -79,7 +79,7 @@ public interface UserMapper {
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    default int deleteByPrimaryKey(Long userId_) {
+    default int deleteByPrimaryKey(Integer userId_) {
         return DeleteDSL.deleteFromWithMapper(this::delete, user)
                 .where(userId, isEqualTo(userId_))
                 .build()
@@ -125,7 +125,7 @@ public interface UserMapper {
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    default User selectByPrimaryKey(Long userId_) {
+    default User selectByPrimaryKey(Integer userId_) {
         return SelectDSL.selectWithMapper(this::selectOne, userId, username, password, enabled, phone, email)
                 .from(user)
                 .where(userId, isEqualTo(userId_))
@@ -161,7 +161,7 @@ public interface UserMapper {
                 .set(enabled).equalTo(record::getEnabled)
                 .set(phone).equalTo(record::getPhone)
                 .set(email).equalTo(record::getEmail)
-                .where(userId, SqlBuilder.isEqualTo(record::getUserId))
+                .where(userId, isEqualTo(record::getUserId))
                 .build()
                 .execute();
     }
@@ -174,7 +174,7 @@ public interface UserMapper {
                 .set(enabled).equalToWhenPresent(record::getEnabled)
                 .set(phone).equalToWhenPresent(record::getPhone)
                 .set(email).equalToWhenPresent(record::getEmail)
-                .where(userId, SqlBuilder.isEqualTo(record::getUserId))
+                .where(userId, isEqualTo(record::getUserId))
                 .build()
                 .execute();
     }

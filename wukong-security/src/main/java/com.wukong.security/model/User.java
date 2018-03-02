@@ -5,7 +5,7 @@ import javax.annotation.Generated;
 
 public class User implements Serializable {
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    private Long userId;
+    private Integer userId;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
     private String username;
@@ -25,12 +25,12 @@ public class User implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public Long getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
     @Generated("org.mybatis.generator.api.MyBatisGenerator")
-    public void setUserId(Long userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 

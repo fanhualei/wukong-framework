@@ -18,7 +18,7 @@ public class UserService {
     private UserMapper userMapper;
 
     @Transactional
-    public int deleteByPrimaryKey(Long userId_) {
+    public int deleteByPrimaryKey(Integer userId_) {
         return userMapper.deleteByPrimaryKey(userId_);
     }
 
@@ -48,7 +48,7 @@ public class UserService {
     }
 
     @Transactional(readOnly=true)
-    public User selectByPrimaryKey(Long userId_) {
+    public User selectByPrimaryKey(Integer userId_) {
         return userMapper.selectByPrimaryKey(userId_);
     }
 

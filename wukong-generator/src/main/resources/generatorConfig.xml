@@ -35,22 +35,22 @@
         </javaTypeResolver>
 
         <!--model-->
-        <javaModelGenerator targetPackage="com.wukong.examples.model" targetProject="log">
+        <javaModelGenerator targetPackage="com.wukong.security.model" targetProject="log">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
 
         <!-- sql mapper xml-->
-        <sqlMapGenerator targetPackage="com.wukong.examples.mapper"  targetProject="log">
+        <sqlMapGenerator targetPackage="com.wukong.security.mapper"  targetProject="log">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
         <!--dao-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.wukong.examples.dao"  targetProject="log">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.wukong.security.dao"  targetProject="log">
             <property name="enableSubPackages" value="true" />
             <property name="prefix" value="wk_"/>
             <property name="ignores" value="groups,wk_order"/>
-            <property name="targetPackage" value="com.wukong.examples.service"/>
+            <property name="targetPackage" value="com.wukong.security.service"/>
             <property name="targetProject" value="log"/>
             <property name="runWukongRule" value="true"/>
         </javaClientGenerator>

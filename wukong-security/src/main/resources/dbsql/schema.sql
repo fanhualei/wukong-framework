@@ -10,7 +10,7 @@ DROP TABLE IF EXISTS wk_user_ex;
 DROP TABLE IF EXISTS wk_user;
 
 create table wk_user (
-  user_id    bigint(20)     NOT NULL AUTO_INCREMENT  COMMENT '用户id',
+  user_id   int            NOT NULL AUTO_INCREMENT  COMMENT '用户id',
   username  varchar(256)   NOT NULL                 COMMENT '用户名',
   password  varchar(256)   NOT NULL                 COMMENT '密码',
   enabled   boolean        DEFAULT TRUE             COMMENT '是否有效',
@@ -30,7 +30,7 @@ INSERT INTO wk_user(user_id,username,password,enabled) VALUES (2,'user1','user1'
 
 
 create table wk_user_ex (
-  user_id    bigint(20)     NOT NULL                 COMMENT '用户id',
+  user_id   int            NOT NULL                 COMMENT '用户id',
   nickname  varchar(255)   DEFAULT ''               COMMENT '昵称',
   signature varchar(255)   DEFAULT ''               COMMENT '个性签名',
   qq        varchar(50)    DEFAULT ''               COMMENT 'QQ号码',
@@ -46,7 +46,7 @@ create table wk_user_ex (
 
 
 CREATE TABLE wk_role (
-  role_id        bigint(20)     NOT NULL AUTO_INCREMENT  COMMENT '权限编号',
+  role_id       int            NOT NULL AUTO_INCREMENT  COMMENT '权限编号',
   rolename      varchar(255)   NOT NULL                 COMMENT '权限名称',
   description   varchar(255)                            COMMENT '中文描述',
   sort          int            DEFAULT 0                COMMENT '排序号，越大越靠前',
@@ -61,9 +61,9 @@ INSERT INTO wk_role(role_id,rolename,description) VALUES(2,"ROLE_USER"  ,"普通
 
 
 CREATE TABLE wk_user_role (
-  user_role_id        bigint(20) NOT NULL AUTO_INCREMENT,
-  user_id             bigint(20) NOT NULL,
-  role_id             bigint(20) NOT NULL,
+  user_role_id        int      NOT NULL AUTO_INCREMENT,
+  user_id             int      NOT NULL,
+  role_id             int      NOT NULL,
   PRIMARY KEY (user_role_id),
   CONSTRAINT fk_user_role_user FOREIGN KEY (user_id) REFERENCES wk_user (user_id),
   CONSTRAINT fk_user_role_role FOREIGN KEY (role_id) REFERENCES wk_role (role_id)
@@ -78,12 +78,12 @@ INSERT INTO wk_user_role(user_role_id, user_id, role_id) VALUES (2,2,2);
 
 
 CREATE TABLE wk_resource (
-  resource_id      bigint(20)   NOT NULL AUTO_INCREMENT,
+  resource_id      int          NOT NULL AUTO_INCREMENT,
   resource_name    varchar(255) NOT NULL                  COMMENT '权限名称',
   url              varchar(255) DEFAULT ''                COMMENT 'API RUL',
   description      varchar(255) DEFAULT ''                COMMENT '资源描述',
   sort             int          DEFAULT 0                 COMMENT '排序号，越大越靠前',
-  parent_id        bigint(20)   NOT NULL DEFAULT 0        COMMENT '父ID',
+  parent_id        int          NOT NULL DEFAULT 0        COMMENT '父ID',
   PRIMARY KEY (`resource_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8  COMMENT='资源（权限）表';
 
@@ -94,9 +94,9 @@ INSERT INTO wk_resource(resource_id, resource_name, url) VALUES (2,'Mybatis' ,'/
 
 
 CREATE TABLE wk_role_resource (
-  role_resource_id    bigint(20) NOT NULL AUTO_INCREMENT,
-  role_id             bigint(20) DEFAULT NULL,
-  resource_id         bigint(20) DEFAULT NULL,
+  role_resource_id    int NOT NULL AUTO_INCREMENT,
+  role_id             int DEFAULT NULL,
+  resource_id         int DEFAULT NULL,
   PRIMARY KEY (role_resource_id),
   CONSTRAINT fk_role_resource_role      FOREIGN KEY (role_id)     REFERENCES wk_role     (role_id),
   CONSTRAINT fk_role_resource_resource  FOREIGN KEY (resource_id) REFERENCES wk_resource (resource_id)
