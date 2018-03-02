@@ -22,6 +22,9 @@ public class MyUserMapperTests extends AbstractTestNGSpringContextTests {
     private UserMapper userMapper;
 
 
+    //lamdba 介绍
+    //http://www.jdon.com/idea/java/10-example-of-lambda-expressions-in-java8.html
+
     @Test
     public void testSelectDistinctByExample() {
         List<User> list = userMapper.selectDistinctByExample()
@@ -31,8 +34,7 @@ public class MyUserMapperTests extends AbstractTestNGSpringContextTests {
                 .execute();
 
 
-//        list.forEach(System.out::println);
-
+        list.forEach(System.out::println);
         list.forEach(n->assertThat(n.getUsername()).isEqualTo("admin"));
         
     }
