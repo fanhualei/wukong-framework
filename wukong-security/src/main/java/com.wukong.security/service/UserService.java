@@ -3,11 +3,14 @@ package com.wukong.security.service;
 import com.wukong.security.model.User;
 import com.wukong.security.dao.UserMapper;
 
+import org.mybatis.dynamic.sql.where.render.WhereClauseProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Service
@@ -56,5 +59,15 @@ public class UserService {
     public List<User> selectAll() {
         return userMapper.selectByExample().build().execute();
     }
+
+
+    @Transactional(readOnly=true)
+    public List<User> selectAllByMap(Map map) {
+
+        WhereClauseProvider whereClause;
+
+        return userMapper.selectByExample().build().execute();
+    }
+
 
 }
