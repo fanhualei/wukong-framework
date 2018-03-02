@@ -8,6 +8,7 @@ import com.wukong.generator.service.daoinfo.DynamicDaoBeanInfo;
 import com.wukong.generator.service.daoinfo.XmlDaoBeanInfo;
 import com.wukong.generator.service.serviceInfo.DynamicServiceInfo;
 import com.wukong.generator.service.serviceInfo.ServiceInfo;
+import com.wukong.generator.service.serviceInfo.XmlServiceInfo;
 import org.apache.commons.io.FileUtils;
 
 
@@ -53,7 +54,7 @@ public class ServiceGenerator {
             serviceInfo =new DynamicServiceInfo(daoBeanInfo,servicePackageName,servicePath);
         }else {
             daoBeanInfo=new XmlDaoBeanInfo(daoFile);
-            serviceInfo =new DynamicServiceInfo(daoBeanInfo,servicePackageName,servicePath);
+            serviceInfo =new XmlServiceInfo(daoBeanInfo,servicePackageName,servicePath);
         }
 
         creatJavaFile(serviceInfo);

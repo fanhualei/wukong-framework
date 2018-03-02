@@ -2,6 +2,9 @@
 参考的例子
 
 
+### 建议使用注解形式
+
+
 Mybatis Generator最完整配置详解
 http://blog.csdn.net/testcs_dn/article/details/77881776
 

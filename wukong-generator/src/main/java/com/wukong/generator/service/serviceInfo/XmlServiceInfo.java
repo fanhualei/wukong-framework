@@ -22,8 +22,10 @@ public class XmlServiceInfo extends ServiceInfo {
         }
         //生成Service专用的包
         sb.append("import "+daoBeanInfo.getPackageName()+"."+daoBeanInfo.getName()+";");
-        sb.append("\n");
-        sb.append("import "+daoBeanInfo.getPackageName()+"."+daoBeanInfo.getName()+"Example;");
+        sb.append("\n");sb.append("\n");
+
+
+        sb.append("import org.apache.ibatis.annotations.Param;");
         sb.append("\n");sb.append("\n");
 
         sb.append("import org.springframework.beans.factory.annotation.Autowired;");

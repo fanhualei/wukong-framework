@@ -39,7 +39,7 @@ public abstract class DaoBeanInfo {
         initMethods();
 
         cu.accept(new DaoBeanInfo.MethodVisitor(), null);
-        methods.put("count","long count()");//  dao has count method
+
    }
 
 
@@ -61,6 +61,11 @@ public abstract class DaoBeanInfo {
             String parametersStr= StringUtils.join(n.getParameters().toArray(),",");
             methodStr=typeStr + " " +nameStr+"("+parametersStr+")";
 
+
+            if(nameStr.equalsIgnoreCase("count")){
+                int i=0;
+            }
+
             //如果没有指定要生成的函数，就生成全部
             if(outPutMethods!=null && outPutMethods.length>0) {
                 for (String s : outPutMethods) {
@@ -70,6 +75,8 @@ public abstract class DaoBeanInfo {
             }else{
                 methods.put(nameStr, methodStr);
             }
+
+
 
             super.visit(n, arg);
         }
@@ -88,18 +95,6 @@ public abstract class DaoBeanInfo {
     }
 
     private String[] getOutPutMethods(){
-//        if(outPutMethods!=null&&outPutMethods.length>0){
-//            return outPutMethods; //表示有默认值
-//        }
-//
-//        outPutMethods =new String[methods.size()];
-//        for (Integer key : map.keySet()) {
-//
-//            System.out.println("Key = " + key);
-//
-//        }
-
-
         return outPutMethods;
     }
 
@@ -124,7 +119,8 @@ public abstract class DaoBeanInfo {
         for(ImportDeclaration e:list){
             String str =e.toString();
             if(str.lastIndexOf("."+getName()+";")!=-1
-                ||  str.lastIndexOf("."+getModelName()+";")!=-1 ){
+                ||  str.lastIndexOf("."+getModelName()+";")!=-1
+                ||  str.lastIndexOf("."+getModelName()+"Example;")!=-1 ){
                 tempImports.add(str);
             }
         }

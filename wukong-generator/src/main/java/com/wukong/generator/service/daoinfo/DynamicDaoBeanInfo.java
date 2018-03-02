@@ -9,6 +9,7 @@ public class DynamicDaoBeanInfo extends DaoBeanInfo{
 
     public DynamicDaoBeanInfo(File aDaoFile) throws Exception{
         super(aDaoFile);
+        methods.put("count","long count()");//  dao has count method
     }
 
 

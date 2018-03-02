@@ -175,10 +175,15 @@ public abstract class ServiceInfo {
         String[] paras=paraStr.split(",");
         String  variates= "";
         int i = paras.length;
+
+        if(i>1){
+            int b=1;
+        }
+
         for(String e:paras){
             if(e.length()>0) {
                 e = e.trim();
-                String temp = e.substring(e.indexOf(" "), e.length()).trim();
+                String temp = e.substring(e.lastIndexOf(" "), e.length()).trim();
                 variates = variates + temp;
                 i = i - 1;
                 if (i > 0) {
