@@ -1,6 +1,5 @@
 package com.wukong.security.controller;
 
-import com.wukong.security.model.Account;
 import com.wukong.security.util.JwtUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

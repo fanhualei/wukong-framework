@@ -4,11 +4,9 @@ import com.wukong.examples.entity.City;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -24,6 +22,18 @@ public class HelloControllerTestsByPara extends AbstractTestNGSpringContextTests
 
     @Autowired
     private TestRestTemplate restTemplate;
+
+    @BeforeMethod
+    public void getToken(){
+        String url="/author/jwt/login?username=admin&password=admin";
+        ResponseEntity<Map> entity = this.restTemplate.getForEntity(url, Map.class);
+        assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        Map<String, String> returnMap=entity.getBody();
+        String token=returnMap.get("token");
+        BasicJwtInterceptor basicJwtInterceptor= new BasicJwtInterceptor(token);
+        restTemplate.getRestTemplate().getInterceptors().add(basicJwtInterceptor);
+    }
+
 
 
     /**

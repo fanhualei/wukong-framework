@@ -16,6 +16,16 @@ wukong-framework(基于spring boot框架)
 - [ ] 部署文档
 
 
+#### 03-2  为了少写代码，我将SpringBoot的application提到com.wukong包下了
+
+    
+    SpringBoot有好处，也有坏处，坏处是你必须要按照他的规则把文件放在特定目录下，不然就出现错误
+    //@SpringBootApplication(scanBasePackages={"com.wukong.core","com.wukong.examples","com.wukong.security"})
+    @SpringBootApplication()
+
+
+
+
 #### 02-25 追加了security与redis部分
     
     1、把核心模块追加了

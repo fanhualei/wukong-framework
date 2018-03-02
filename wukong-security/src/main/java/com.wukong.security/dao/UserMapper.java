@@ -161,7 +161,7 @@ public interface UserMapper {
                 .set(enabled).equalTo(record::getEnabled)
                 .set(phone).equalTo(record::getPhone)
                 .set(email).equalTo(record::getEmail)
-                .where(userId, isEqualTo(record::getUserId))
+                .where(userId, SqlBuilder.isEqualTo(record::getUserId))
                 .build()
                 .execute();
     }
@@ -174,7 +174,7 @@ public interface UserMapper {
                 .set(enabled).equalToWhenPresent(record::getEnabled)
                 .set(phone).equalToWhenPresent(record::getPhone)
                 .set(email).equalToWhenPresent(record::getEmail)
-                .where(userId, isEqualTo(record::getUserId))
+                .where(userId, SqlBuilder.isEqualTo(record::getUserId))
                 .build()
                 .execute();
     }

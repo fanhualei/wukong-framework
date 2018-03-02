@@ -1,32 +1,40 @@
 package com.wukong.examples.dao;
 
-import com.wukong.examples.entity.User;
+import com.wukong.security.model.User;
+import com.wukong.security.dao.UserMapper;
+import jdk.nashorn.internal.ir.annotations.Ignore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-import org.springframework.transaction.annotation.Transactional;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static com.wukong.examples.dao.auto.UserDynamicSqlSupport.userName;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mybatis.dynamic.sql.SqlBuilder.isEqualTo;
 import static org.mybatis.dynamic.sql.SqlBuilder.isLike;
+import static com.wukong.security.dao.UserDynamicSqlSupport.*;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class MyUserMapperTests extends AbstractTestNGSpringContextTests {
     @Autowired
-    private MyUserMapper userMapper;
+    private UserMapper userMapper;
 
 
     @Test
     public void testSelectDistinctByExample() {
         List<User> list = userMapper.selectDistinctByExample()
-                .where(userName, isLike("%" + "aaa" + "%"))
+                .where(username, isLike("%" + "admin" + "%"))
+                .or(user.userId,isEqualTo(1L))
                 .build()
                 .execute();
-        int i=list.size();
+
+
+//        list.forEach(System.out::println);
+
+        list.forEach(n->assertThat(n.getUsername()).isEqualTo("admin"));
+        
     }
 
 
@@ -37,22 +45,6 @@ public class MyUserMapperTests extends AbstractTestNGSpringContextTests {
                 .execute();
         System.out.println(count);
     }
-
-
-//    long count(SelectStatementProvider selectStatement);
-//    int delete(DeleteStatementProvider deleteStatement);
-//    int insert(InsertStatementProvider<User> insertStatement);
-//    User selectOne(SelectStatementProvider selectStatement);
-//
-//
-//    List<User> selectMany(SelectStatementProvider selectStatement);
-//
-//
-//    int update(UpdateStatementProvider updateStatement);
-
-
-
-
 
 
 }
