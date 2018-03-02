@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class UserServiceTests extends AbstractTestNGSpringContextTests {
     @Autowired
+    @SuppressWarnings("all")
     private UserService userService;
 //
 //
@@ -115,7 +116,7 @@ public class UserServiceTests extends AbstractTestNGSpringContextTests {
 //     */
     @Test
     public  void testSelectById(){
-       User user=  userService.selectByPrimaryKey(1L);
+       User user=  userService.selectByPrimaryKey(1);
         System.out.println("count===========:"+user.getUsername());
     }
 

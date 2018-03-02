@@ -18,7 +18,10 @@ import static com.wukong.security.dao.UserDynamicSqlSupport.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class MyUserMapperTests extends AbstractTestNGSpringContextTests {
+
+
     @Autowired
+    @SuppressWarnings("all")
     private UserMapper userMapper;
 
 
@@ -29,7 +32,7 @@ public class MyUserMapperTests extends AbstractTestNGSpringContextTests {
     public void testSelectDistinctByExample() {
         List<User> list = userMapper.selectDistinctByExample()
                 .where(username, isLike("%" + "admin" + "%"))
-                .or(user.userId,isEqualTo(1L))
+                .or(user.userId,isEqualTo(1))
                 .build()
                 .execute();
 
