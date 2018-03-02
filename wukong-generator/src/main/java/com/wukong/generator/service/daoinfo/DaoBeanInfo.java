@@ -1,4 +1,4 @@
-package com.wukong.generator.service;
+package com.wukong.generator.service.daoinfo;
 
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ast.CompilationUnit;
@@ -22,44 +22,32 @@ import java.util.Map;
  * Created by fanhl on 2018/2/19.
  */
 @Slf4j
-public  class DaoBeanInfo {
+public abstract class DaoBeanInfo {
     private String className;
     private List<String> imports;
     private CompilationUnit cu;
     private String packageName;
-    private Map<String,String> methods = new LinkedHashMap<String,String>();
-    private String[] outPutMethods;
+    protected Map<String,String> methods = new LinkedHashMap<String,String>();
+    protected String[] outPutMethods;
 
     public DaoBeanInfo(File aDaoFile) throws Exception{
         cu = JavaParser.parse(aDaoFile);
         packageName=cu.getPackageDeclaration().get().getNameAsString();
         className=cu.getTypes().get(0).getNameAsString();
         imports=initImports();
-        // create 8 methods for service
-        outPutMethods=new String[]{
-                "deleteByPrimaryKey",
-                "insert",
-                "insertSelective",
-                "updateByPrimaryKey",
-                "updateByPrimaryKeySelective",
-                "count",/*not in dao*/
-                "selectByPrimaryKey",
-                "selectAll",/*not in dao */
-                };
 
-        for(String s:outPutMethods){
-            if(s.equals("count"))
-                methods.put("count","long count()");
-            else if(s.equals("selectAll"))
-                methods.put("selectAll","List<"+getModelName()+"> selectAll()");
-            else
-                methods.put(s,"");
-        }
+        initMethods();
 
         cu.accept(new DaoBeanInfo.MethodVisitor(), null);
         methods.put("count","long count()");//  dao has count method
-
    }
+
+
+    /**
+     * 动态sql 只生成一部分函数， 如果是xml或注解的，要生成全部的函数
+     */
+    protected abstract void initMethods();
+
 
     //init methods
     private  class MethodVisitor extends VoidVisitorAdapter<Void> {
@@ -72,33 +60,53 @@ public  class DaoBeanInfo {
             String nameStr=n.getNameAsString();
             String parametersStr= StringUtils.join(n.getParameters().toArray(),",");
             methodStr=typeStr + " " +nameStr+"("+parametersStr+")";
-            for(String s:outPutMethods){
-                if(s.equals(nameStr))
-                    methods.put(s,methodStr);
+
+            //如果没有指定要生成的函数，就生成全部
+            if(outPutMethods!=null && outPutMethods.length>0) {
+                for (String s : outPutMethods) {
+                    if (s.equals(nameStr))
+                        methods.put(s, methodStr);
+                }
+            }else{
+                methods.put(nameStr, methodStr);
             }
+
             super.visit(n, arg);
         }
     }
 
-    protected String getName(){
+    public String getName(){
         return className;
     }
 
-    protected List<String> getImports(){
+    public List<String> getImports(){
         return imports;
     }
 
-    protected Map<String,String> getMethods(){
+    public Map<String,String> getMethods(){
         return methods;
     }
 
-    protected String[] getOutPutMethods(){
+    private String[] getOutPutMethods(){
+//        if(outPutMethods!=null&&outPutMethods.length>0){
+//            return outPutMethods; //表示有默认值
+//        }
+//
+//        outPutMethods =new String[methods.size()];
+//        for (Integer key : map.keySet()) {
+//
+//            System.out.println("Key = " + key);
+//
+//        }
+
+
         return outPutMethods;
     }
 
     public String getPackageName(){
         return cu.getPackageDeclaration().get().getName().toString();
     }
+
 
     public String getModelName(){
         String str= getName();

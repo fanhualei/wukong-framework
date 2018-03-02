@@ -8,7 +8,7 @@
 
 
     <!--MyBatis3DynamicSql  MyBatis3-->
-    <context id="wukong-generator" targetRuntime="MyBatis3DynamicSql">
+    <context id="wukong-generator" targetRuntime="MyBatis3">
 
         <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
@@ -18,9 +18,6 @@
             <property name="suppressAllComments" value="true" />
             <property name="suppressDate" value="true" />
         </commentGenerator>
-
-
-
 
 
 
@@ -45,8 +42,11 @@
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
+
+
+        <!--ANNOTATEDMAPPER MIXEDMAPPER XMLMAPPER  -->
         <!--dao-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.wukong.security.dao"  targetProject="log">
+        <javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="com.wukong.security.dao"  targetProject="log">
             <property name="enableSubPackages" value="true" />
             <property name="prefix" value="wk_"/>
             <property name="ignores" value="groups,wk_order"/>

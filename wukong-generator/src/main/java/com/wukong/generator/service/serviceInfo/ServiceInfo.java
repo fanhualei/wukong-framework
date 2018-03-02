@@ -1,20 +1,21 @@
-package com.wukong.generator.service;
+package com.wukong.generator.service.serviceInfo;
 
 
+import com.wukong.generator.service.daoinfo.DaoBeanInfo;
 import com.wukong.generator.util.GeneratorUtil;
 import org.apache.commons.lang.StringUtils;
 
 /**
  * Created by fanhl on 2018/2/19.
  */
-public class ServiceImplInfo {
-    private DaoBeanInfo daoBeanInfo;
+public abstract class ServiceInfo {
+    protected DaoBeanInfo daoBeanInfo;
     private String packageName;
     private String path;
 
 
-    public ServiceImplInfo(DaoBeanInfo aDaoBeanInfo,String aPackageName
-            ,String aPath){
+    public ServiceInfo(DaoBeanInfo aDaoBeanInfo, String aPackageName
+            , String aPath){
         daoBeanInfo=aDaoBeanInfo;
         packageName=aPackageName;
         path=aPath;
@@ -60,28 +61,7 @@ public class ServiceImplInfo {
      * 得到import语句
      * @return
      */
-    private  String getImportStr(){
-        StringBuffer sb= new StringBuffer();
-        for(String e:this.daoBeanInfo.getImports()){
-            sb.append(e);
-        }
-        //生成Service专用的包
-        sb.append("import "+daoBeanInfo.getPackageName()+"."+daoBeanInfo.getName()+";");
-        sb.append("\n");sb.append("\n");
-
-        sb.append("import org.springframework.beans.factory.annotation.Autowired;");
-        sb.append("\n");
-        sb.append("import org.springframework.stereotype.Service;");
-        sb.append("\n");
-        sb.append("import org.springframework.transaction.annotation.Transactional;");
-        sb.append("\n");sb.append("\n");
-
-        sb.append("import java.util.List;");
-        sb.append("\n");
-        sb.append("import lombok.extern.slf4j.Slf4j;");
-        sb.append("\n\n");
-        return sb.toString();
-    }
+    protected abstract   String getImportStr();
 
     /**
      * 得到Class的定义
@@ -130,9 +110,7 @@ public class ServiceImplInfo {
 
         String s= GeneratorUtil.getIndent();
         StringBuffer sb= new StringBuffer();
-        for(String methodName:this.daoBeanInfo.getOutPutMethods()){
-
-
+        for (String methodName : this.daoBeanInfo.getMethods().keySet()) {
             String e=this.daoBeanInfo.getMethods().get(methodName);
             if(e!=null && e.length()>0) {
                 //sb.append(getMethodComment());  //函数注释
@@ -145,6 +123,7 @@ public class ServiceImplInfo {
                 sb.append(s).append("}").append("\n").append("\n");
             }
         }
+
         return sb.toString();
     }
 
@@ -215,17 +194,19 @@ public class ServiceImplInfo {
                           + "("+variates+")"
                           +";";
 
-        if(funName.equals("count")){
-            daoFunstr="return "+ StringUtils.uncapitalize(this.daoBeanInfo.getName())
-                    + ".countByExample().build().execute();";
-        }else if(funName.equals("selectAll")){
-            daoFunstr="return "+ StringUtils.uncapitalize(this.daoBeanInfo.getName())
-                    + ".selectByExample().build().execute();";
+
+        if(getCustomizeFunstr(funName)!=null){
+            daoFunstr=getCustomizeFunstr(funName);
         }
+
 
 
         return daoFunstr;
     }
+
+    //自定义的一些函数，这些函数不是mybatis自动生成的，而是自己想生成的
+    //如果没有，就返回null，这个函数就不起效果了
+    protected abstract String getCustomizeFunstr(String funName);
 
 
     /**

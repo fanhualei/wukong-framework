@@ -60,7 +60,7 @@ public class WukongGenerator {
                 if( file.getFileName().lastIndexOf("Mapper.java")!=-1){
                     File daoDirFile=  generatorUtil.getDirectory(file.getTargetProject(),file.getTargetPackage());
                     File daoFile=new File(daoDirFile,file.getFileName());
-                    ServiceGenerator serviceGenerator=new ServiceGenerator();
+                    ServiceGenerator serviceGenerator=new ServiceGenerator(serviceConfig.isDynamicService());
 
                     File serviceDirFile=generatorUtil.getDirectory(serviceConfig.getTargetProject(),serviceConfig.getTargetPackage());
                     serviceGenerator.run(daoFile.getAbsolutePath(),serviceDirFile.getAbsolutePath(),serviceConfig.getTargetPackage());
@@ -75,6 +75,9 @@ public class WukongGenerator {
         Context context=config.getContexts().get(0);
         Properties javaClientProperties=  context.getJavaClientGeneratorConfiguration().getProperties();
         ServiceConfig serviceConfig=new ServiceConfig();
+
+
+        serviceConfig.setTargetRuntime(context.getTargetRuntime());
 
         for(Object key:javaClientProperties.keySet()) {
             String value=(String) javaClientProperties.get(key);

@@ -21,6 +21,18 @@ public class ServiceConfig {
 
     boolean runWukongRule;
 
+    //context的属性，通过这个来判断生成service的属性if
+    String targetRuntime;
+
+
+    public boolean isDynamicService(){
+        if(targetRuntime!=null
+                &&targetRuntime.equalsIgnoreCase("MyBatis3DynamicSql")){
+            return true;
+        }
+        return false;
+    }
+
 
 
 }
