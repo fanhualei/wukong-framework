@@ -18,13 +18,23 @@ wukong-framework(基于spring boot框架)
 
 #### 03-2  为了少写代码，我将SpringBoot的application提到com.wukong包下了
 
+> 不用自动检索
     
     SpringBoot有好处，也有坏处，坏处是你必须要按照他的规则把文件放在特定目录下，不然就出现错误
     //@SpringBootApplication(scanBasePackages={"com.wukong.core","com.wukong.examples","com.wukong.security"})
     @SpringBootApplication()
 
 
+> 使用了注解的样式，删除了动态sql
 
+    <!--<dependency>-->
+        <!--<groupId>org.mybatis.dynamic-sql</groupId>-->
+        <!--<artifactId>mybatis-dynamic-sql</artifactId>-->
+        <!--<version>1.0.0</version>-->
+    <!--</dependency>-->
+
+
+> TODO 看看怎么启用Mybatis的一级缓存，同时集成分页插件
 
 #### 02-25 追加了security与redis部分
     
