@@ -4,6 +4,17 @@
 基础概念
 ---
 
+
+### 要做的事情
+
+- [ ] 修改dao，完成selectUserByName,selectRolesByUserId查询
+- [ ] 生成UserDetail来进行测试
+- [ ] 在拦截器中，拦截相应的URL
+- [ ] 部署文档
+
+
+
+
 ### autor2概念
 
     grant_type=password&username=johndoe&password=A3ddj3w
