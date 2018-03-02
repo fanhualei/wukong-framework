@@ -12,12 +12,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class DemoApplication implements CommandLineRunner {
 
     @Autowired
-    private UserService userService;
+//    private UserService userService;
 
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("count = [" + userService.count() + "]");
+//        System.out.println("count = [" + userService.count() + "]");
     }
 
 
