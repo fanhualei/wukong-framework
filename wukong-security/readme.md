@@ -25,6 +25,7 @@
     *为了初始化脚本中的数据，我写了一个MyEncoder类得到BCrypt密码
             
 <br>
+
 > CustomUserDetailsService 实现
 
 ```Java
@@ -57,6 +58,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 ```
 <br>
+
 > WebSecurityConfig 实现
 
 ```Java
@@ -107,14 +109,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 >> 代码中实现 WebSecurityConfig类中
 
 `antMatchers 一定要紧跟在authorizeRequests()后边`
-
-<br>
-
 `hasAnyRole 可以使用多个`
-
-
-<br>
-
 `("ADMIN") 与controller不同，不能写成ROLE_ADMIN`
 
 
