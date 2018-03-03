@@ -18,6 +18,8 @@ import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.annotations.UpdateProvider;
 import org.apache.ibatis.type.JdbcType;
 
+import javax.validation.constraints.NotNull;
+
 @Mapper
 public interface UserMapper {
     @SelectProvider(type=UserSqlProvider.class, method="countByExample")
@@ -91,4 +93,19 @@ public interface UserMapper {
         "where user_id = #{userId,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(User record);
+
+
+    /**
+     * 得到一个用户
+     * @param account，可以是用户名，邮箱，电话 不能为空
+     * @return
+     */
+    @Select({
+            "select",
+            "*",
+            "from wk_user",
+            "where username = #{account} or phone=#{account} or email=#{account}"
+    })
+    User selectUserByAccount( String account);
+
 }

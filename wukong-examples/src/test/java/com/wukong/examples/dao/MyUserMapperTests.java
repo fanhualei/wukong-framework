@@ -1,6 +1,8 @@
 package com.wukong.examples.dao;
 
+import com.wukong.security.dao.RoleMapper;
 import com.wukong.security.dao.UserMapper;
+import com.wukong.security.model.Role;
 import com.wukong.security.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,6 +11,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.assertThat;
 
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -42,6 +45,22 @@ public class MyUserMapperTests extends AbstractTestNGSpringContextTests {
 //        list.forEach(n->assertThat(n.getUsername()).isEqualTo("admin"));
     }
 
+
+    @Test
+    public void testSelectUserByAccount(){
+        User user =userMapper.selectUserByAccount("admin");
+        assertThat(user.getUsername()).isEqualTo("admin");
+
+    }
+
+    @Autowired
+    @SuppressWarnings("all")
+    RoleMapper roleMapper;
+    @Test
+    public void testSelectRolesByUserid(){
+        List<Role> list=roleMapper.selectRolesByUserid(1);
+        list.forEach(System.out::println);
+    }
 
 
 

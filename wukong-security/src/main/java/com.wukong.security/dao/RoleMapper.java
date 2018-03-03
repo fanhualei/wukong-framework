@@ -85,4 +85,20 @@ public interface RoleMapper {
         "where role_id = #{roleId,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Role record);
+
+    @Select({
+            "select",
+            "wk_role.*",
+            "from wk_role",
+            "join wk_user_role on wk_user_role.role_id=wk_role.role_id",
+            "where wk_user_role.user_id = #{userid,jdbcType=INTEGER}",
+            "order by sort"
+    })
+    @Results({
+            @Result(column="role_id", property="roleId", jdbcType=JdbcType.INTEGER, id=true),
+            @Result(column="rolename", property="rolename", jdbcType=JdbcType.VARCHAR),
+            @Result(column="description", property="description", jdbcType=JdbcType.VARCHAR),
+            @Result(column="sort", property="sort", jdbcType=JdbcType.INTEGER)
+    })
+    List<Role> selectRolesByUserid(Integer userid);
 }

@@ -16,6 +16,41 @@ wukong-framework(基于spring boot框架)
 - [ ] 部署文档
 
 
+### 03-3 添加了两个Dao检索函数
+
+> UserMapper->selectUserByAccount
+
+```Java
+    @Select({
+            "select",
+            "*",
+            "from wk_user",
+            "where username = #{account} or phone=#{account} or email=#{account}"
+    })
+    User selectUserByAccount( String account);
+```
+
+> RoleMapper->selectRolesByUserid
+
+```Java
+    @Select({
+            "select",
+            "wk_role.*",
+            "from wk_role",
+            "join wk_user_role on wk_user_role.role_id=wk_role.role_id",
+            "where wk_user_role.user_id = #{userid,jdbcType=INTEGER}",
+            "order by sort"
+    })
+    @Results({
+            @Result(column="role_id", property="roleId", jdbcType=JdbcType.INTEGER, id=true),
+            @Result(column="rolename", property="rolename", jdbcType=JdbcType.VARCHAR),
+            @Result(column="description", property="description", jdbcType=JdbcType.VARCHAR),
+            @Result(column="sort", property="sort", jdbcType=JdbcType.INTEGER)
+    })
+    List<Role> selectRolesByUserid(Integer userid);
+```
+
+
 #### 03-2  为了少写代码，我将SpringBoot的application提到com.wukong包下了
 
 > 不用自动检索
