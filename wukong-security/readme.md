@@ -12,6 +12,7 @@
 - [x] 实现UserDetailsService，读取自己的表结构
 - [x] 实现WebSecurityConfigurerAdapter，进行配置
 - [ ] 多种加密方法，springboot默认就是，今后谁去Todo
+- [x] 不同ROLE的控制方法，注解或程序中写。 TODO外部配置文件
 
 <br>
 
@@ -87,7 +88,47 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 }
 ```
 
+<br>
 
+> ROLE权限控制
+
+>> controller 注解
+
+```Java
+
+    @RequestMapping
+    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')  ")
+    public String hello() {
+        return "Hello World";
+    }
+    
+```
+
+>> 代码中实现 WebSecurityConfig类中
+
+`antMatchers 一定要紧跟在authorizeRequests()后边`
+
+<br>
+
+`hasAnyRole 可以使用多个`
+
+
+<br>
+
+`("ADMIN") 与controller不同，不能写成ROLE_ADMIN`
+
+
+```Java
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers("/hello/json").hasAnyRole("ADMIN")
+                .anyRequest().authenticated()
+                .and().formLogin().defaultSuccessUrl("/hello").permitAll()//设置默认登录成功跳转页面
+                ;
+    }
+
+```
 
 <br>
 

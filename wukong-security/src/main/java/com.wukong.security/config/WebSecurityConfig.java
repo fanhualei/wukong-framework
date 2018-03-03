@@ -38,10 +38,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                //.antMatchers("/hello/json").hasAnyRole("ADMIN")
                 .anyRequest().authenticated()
-                .and().formLogin()
-                //设置默认登录成功跳转页面
-                .defaultSuccessUrl("/hello").permitAll();
+                .and().formLogin().defaultSuccessUrl("/hello").permitAll()//设置默认登录成功跳转页面
+                ;
     }
 
 }
