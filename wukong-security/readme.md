@@ -1,16 +1,19 @@
 
 
 
-安全框架基础概念
+#安全框架基础概念
 ---
 
+<br>
 
 ## SpringBoot 安全实现
 `撰写两个类就行了`
 
 - [x] 实现UserDetailsService，读取自己的表结构
 - [x] 实现WebSecurityConfigurerAdapter，进行配置
-- []  多种加密方法，springboot默认就是，今后谁去Todo
+- [ ] 多种加密方法，springboot默认就是，今后谁去Todo
+
+<br>
 
 >说明
 
@@ -20,7 +23,7 @@
             http://wiselyman.iteye.com/blog/2410052
     *为了初始化脚本中的数据，我写了一个MyEncoder类得到BCrypt密码
             
-
+<br>
 > CustomUserDetailsService 实现
 
 ```Java
@@ -52,7 +55,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 }
 
 ```
-
+<br>
 > WebSecurityConfig 实现
 
 ```Java
@@ -86,11 +89,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 
+<br>
 
 ## JWT 整合
 
+<br>
 
 ## 其他
+
+<br>
 
 ### 参考网页
 
@@ -98,6 +105,8 @@ http://blog.csdn.net/linzhiqiang0316/article/details/78358907
 
 纯的security的讲解
 http://blog.csdn.net/u012702547/article/details/54319508
+
+<br>
 
 ### 要做的事情
 
@@ -107,7 +116,7 @@ http://blog.csdn.net/u012702547/article/details/54319508
 - [ ] 部署文档
 
 
-
+<br>
 
 
 ### autor2概念
@@ -115,6 +124,8 @@ http://blog.csdn.net/u012702547/article/details/54319508
     grant_type=password&username=johndoe&password=A3ddj3w
     grant_type=client_credentials
     grant_type=refresh_token
+
+<br>
     
 ### 访问路径
 
@@ -124,11 +135,14 @@ http://blog.csdn.net/u012702547/article/details/54319508
     
     /oauth/jwt/login       
 
+<br>
 
 ### 参考文件
 
     http://blog.csdn.net/u012373815/article/details/54633046
     http://wiki.jikexueyuan.com/project/spring-security/first-experience.html
+
+<br>
     
 ### 撰写思路
 
