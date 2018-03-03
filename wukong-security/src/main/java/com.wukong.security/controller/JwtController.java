@@ -1,6 +1,10 @@
 package com.wukong.security.controller;
 
+import com.wukong.security.model.User;
+import com.wukong.security.service.UserService;
 import com.wukong.security.util.JwtUtil;
+import com.wukong.security.util.MyEncoder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,31 +17,26 @@ import java.util.HashMap;
 @RequestMapping("/author/jwt")
 public class JwtController {
 
+    @Autowired
+    private UserService userService;
 
     @RequestMapping("/login")
     public Object login(HttpServletResponse response,
                         @RequestParam String username,@RequestParam String password) throws IOException {
-        if(isValidPassword(username,password)) {
-            String jwt = JwtUtil.generateToken(username);
-            response.setHeader("dddd",jwt);
+
+        User user=userService.selectUserByAccount(username);
+
+        if(user!=null && MyEncoder.matches(password,user.getPassword())) {
+
+            String jwt = JwtUtil.generateToken(user.getUserId());
+
+            response.setHeader("re_token",jwt);
             return new HashMap<String,String>(){{
                 put("token", jwt);
+//                put("userid",user.getUserId().toString());
             }};
         }else {
             return new ResponseEntity(HttpStatus.UNAUTHORIZED);
         }
     }
-
-
-
-    private boolean isValidPassword(String username,String password) {
-        //we just have 2 hardcoded user
-        if ("admin".equals(username) && "admin".equals(password)
-                || "user".equals(username) && "user".equals(password)) {
-            return true;
-        }
-        return false;
-    }
-
-
 }

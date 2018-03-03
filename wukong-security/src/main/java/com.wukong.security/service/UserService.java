@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.StringUtils;
 
 @Service
 @Slf4j
@@ -74,5 +75,15 @@ public class UserService {
     public int updateByPrimaryKey(User record) {
         return userMapper.updateByPrimaryKey(record);
     }
+
+
+    public User selectUserByAccount( String account){
+        if(StringUtils.isEmpty(account)){
+            return null;
+        }
+        return userMapper.selectUserByAccount(account);
+    }
+
+
 
 }

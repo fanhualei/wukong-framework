@@ -75,4 +75,9 @@ public class RoleService {
         return roleMapper.updateByPrimaryKey(record);
     }
 
+
+    public List<Role> selectRolesByUserid(Integer userid){
+        return roleMapper.selectRolesByUserid(userid);
+    }
+
 }

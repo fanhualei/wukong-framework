@@ -23,10 +23,23 @@ create table wk_user (
 ) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 
+--- 用 BCrypt 进行加密 ,admin密码=admin  user1密码=user1
 
-INSERT INTO wk_user(user_id,username,password,enabled) VALUES (1,'admin','admin',true);
-INSERT INTO wk_user(user_id,username,password,enabled) VALUES (2,'user1','user1',true);
+INSERT INTO wk_user(user_id,username,password,enabled) VALUES (1,'admin','$2a$10$iWIebpXWvbLyu4jYaDthdOfGcuQ99IgQBTkizHvVn6YwO94qjN9vq',true);
+INSERT INTO wk_user(user_id,username,password,enabled) VALUES (2,'user1','$2a$10$OVNco4o7D4PEnsSpGSxvUOMCLdb2FfEli26ccaGI7XDbK/OOx2h5q',true);
 
+
+
+UPDATE  wk_user SET password='$2a$10$iWIebpXWvbLyu4jYaDthdOfGcuQ99IgQBTkizHvVn6YwO94qjN9vq' WHERE user_id=1 ;
+UPDATE  wk_user SET password='$2a$10$OVNco4o7D4PEnsSpGSxvUOMCLdb2FfEli26ccaGI7XDbK/OOx2h5q' WHERE user_id=2 ;
+
+-- UPDATE  wk_user SET password='{noop}admin' WHERE user_id=1 ;
+-- UPDATE  wk_user SET password='{noop}user1' WHERE user_id=2 ;
+
+--- {noop}
+
+
+select * from wk_user;
 
 
 create table wk_user_ex (

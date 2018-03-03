@@ -106,6 +106,14 @@ public interface UserMapper {
             "from wk_user",
             "where username = #{account} or phone=#{account} or email=#{account}"
     })
+    @Results({
+            @Result(column="user_id", property="userId", jdbcType=JdbcType.INTEGER, id=true),
+            @Result(column="username", property="username", jdbcType=JdbcType.VARCHAR),
+            @Result(column="password", property="password", jdbcType=JdbcType.VARCHAR),
+            @Result(column="enabled", property="enabled", jdbcType=JdbcType.BIT),
+            @Result(column="phone", property="phone", jdbcType=JdbcType.VARCHAR),
+            @Result(column="email", property="email", jdbcType=JdbcType.VARCHAR)
+    })
     User selectUserByAccount( String account);
 
 }

@@ -16,12 +16,12 @@ public class JwtUtil {
     public static final String SECRET = "ThisIsASecret";
     public static final String TOKEN_PREFIX = "Bearer";
     public static final String HEADER_STRING = "Authorization";
-    public static final String ROLE = "ROLE";
+    public static final String USERID = "userid";
 
-    public static String generateToken(String userRole) {
+    public static String generateToken(Integer userid) {
         //you can put any data in the map
         HashMap<String, Object> map = new HashMap<>();
-        map.put(ROLE, userRole);
+        map.put(USERID, userid);
 
         String jwt = Jwts.builder()
                 .setClaims(map)
