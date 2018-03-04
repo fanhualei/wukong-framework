@@ -29,7 +29,7 @@ public class HelloController  {
      */
     @ApiOperation(value="欢迎", notes="")
     @RequestMapping
-//    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')  ")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String hello() {
         return "Hello World";
     }
@@ -42,6 +42,7 @@ public class HelloController  {
      * 显示：{"name":"张三"}
      */
     @ApiOperation(value="得到名称", notes="")
+    //    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')  ")
     @ApiImplicitParam(name = "name", value = "用户名称", required = true, dataType = "String")
     @RequestMapping("/info")
     public Map<String, String> getInfo(@RequestParam String name) {
