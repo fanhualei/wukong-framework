@@ -286,6 +286,17 @@ ublic class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 ```
 
 
+## 修改记录
+
+
+### 2018-3-4
+
+    
+    实现了userDetail， CustomUserDetailsService去掉了 下面的代码，直接返回了user
+    //        return new org.springframework.security.core.userdetails.User(user.getUsername(),
+    //                user.getPassword(), authorities);
+
+
 
 <br>
 

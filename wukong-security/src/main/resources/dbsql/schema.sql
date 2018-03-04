@@ -10,12 +10,14 @@ DROP TABLE IF EXISTS wk_user_ex;
 DROP TABLE IF EXISTS wk_user;
 
 create table wk_user (
-  user_id   int            NOT NULL AUTO_INCREMENT  COMMENT '用户id',
-  username  varchar(256)   NOT NULL                 COMMENT '用户名',
-  password  varchar(256)   NOT NULL                 COMMENT '密码',
-  enabled   boolean        DEFAULT TRUE             COMMENT '是否有效',
-  phone     varchar(255)                            COMMENT '手机号码',
-  email     varchar(255)                            COMMENT '邮箱地址',
+  user_id     int            NOT NULL AUTO_INCREMENT    COMMENT '用户id',
+  username    varchar(256)   NOT NULL                   COMMENT '用户名',
+  password    varchar(256)   NOT NULL                   COMMENT '密码',
+  enabled     boolean        DEFAULT TRUE               COMMENT '是否有效',
+  phone       varchar(255)                              COMMENT '手机号码',
+  email       varchar(255)                              COMMENT '邮箱地址',
+  pwResetDate DATETIME       DEFAULT CURRENT_TIMESTAMP  COMMENT '最后修改密码的时间',
+
   PRIMARY KEY (user_id),
   UNIQUE KEY `uq_user_username` (`username`),
   UNIQUE KEY `uq_user_phone`    (`phone`),
@@ -23,7 +25,7 @@ create table wk_user (
 ) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 
---- 用 BCrypt 进行加密 ,admin密码=admin  user1密码=user1
+-- 用 BCrypt 进行加密 ,admin密码=admin  user1密码=user1
 
 INSERT INTO wk_user(user_id,username,password,enabled) VALUES (1,'admin','$2a$10$iWIebpXWvbLyu4jYaDthdOfGcuQ99IgQBTkizHvVn6YwO94qjN9vq',true);
 INSERT INTO wk_user(user_id,username,password,enabled) VALUES (2,'user1','$2a$10$OVNco4o7D4PEnsSpGSxvUOMCLdb2FfEli26ccaGI7XDbK/OOx2h5q',true);
@@ -36,10 +38,7 @@ UPDATE  wk_user SET password='$2a$10$OVNco4o7D4PEnsSpGSxvUOMCLdb2FfEli26ccaGI7XD
 -- UPDATE  wk_user SET password='{noop}admin' WHERE user_id=1 ;
 -- UPDATE  wk_user SET password='{noop}user1' WHERE user_id=2 ;
 
---- {noop}
-
-
-select * from wk_user;
+# select * from wk_user;
 
 
 create table wk_user_ex (

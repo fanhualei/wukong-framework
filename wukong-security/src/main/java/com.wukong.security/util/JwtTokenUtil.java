@@ -1,5 +1,6 @@
 package com.wukong.security.util;
 
+import com.wukong.security.CustomUserDetails;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -150,26 +151,17 @@ public class JwtTokenUtil implements Serializable {
         return refreshedToken;
     }
 
+
+    // @TODO 不能访问一次就查询数据库一次，不能只凭借用户名进行验证，应该把token放入到redis中
     //判断token是否有限，有很多方法，我可以把生成的token放入到缓存进行判断
     public Boolean validateToken(String token, UserDetails userDetails) {
-          return true;
-//        SysUser user = (SysUser) userDetails;
-//        final String username = getUsernameFromToken(token);
-//        final Date created = getCreatedDateFromToken(token);
-////        final Date expiration = getExpirationDateFromToken(token);
-//        return (
-//                username.equals(user.getUsername())
-//                        && !isTokenExpired(token)
-//                        && !isCreatedBeforeLastPasswordReset(created, user.getLastPasswordResetDate()));
+        CustomUserDetails user = (CustomUserDetails) userDetails;
+        final String username = getUsernameFromToken(token);
+        final Date created = getCreatedDateFromToken(token);
+        return (
+                username.equals(user.getUsername())
+                        && !isTokenExpired(token)
+                        && !isCreatedBeforeLastPasswordReset(created, user.getPwresetdate()));
     }
-
-
-    public static void main(String[] args) {
-        JwtTokenUtil jwtTokenUtil=new JwtTokenUtil();
-        String token =  jwtTokenUtil.generateToken("username1",8);
-
-
-    }
-
 
 }

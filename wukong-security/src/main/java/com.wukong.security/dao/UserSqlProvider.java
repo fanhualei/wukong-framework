@@ -48,6 +48,10 @@ public class UserSqlProvider {
             sql.VALUES("email", "#{email,jdbcType=VARCHAR}");
         }
         
+        if (record.getPwresetdate() != null) {
+            sql.VALUES("pwResetDate", "#{pwresetdate,jdbcType=TIMESTAMP}");
+        }
+        
         return sql.toString();
     }
 
@@ -63,6 +67,7 @@ public class UserSqlProvider {
         sql.SELECT("enabled");
         sql.SELECT("phone");
         sql.SELECT("email");
+        sql.SELECT("pwResetDate");
         sql.FROM("wk_user");
         applyWhere(sql, example, false);
         
@@ -104,6 +109,10 @@ public class UserSqlProvider {
             sql.SET("email = #{record.email,jdbcType=VARCHAR}");
         }
         
+        if (record.getPwresetdate() != null) {
+            sql.SET("pwResetDate = #{record.pwresetdate,jdbcType=TIMESTAMP}");
+        }
+        
         applyWhere(sql, example, true);
         return sql.toString();
     }
@@ -118,6 +127,7 @@ public class UserSqlProvider {
         sql.SET("enabled = #{record.enabled,jdbcType=BIT}");
         sql.SET("phone = #{record.phone,jdbcType=VARCHAR}");
         sql.SET("email = #{record.email,jdbcType=VARCHAR}");
+        sql.SET("pwResetDate = #{record.pwresetdate,jdbcType=TIMESTAMP}");
         
         UserExample example = (UserExample) parameter.get("example");
         applyWhere(sql, example, true);
@@ -146,6 +156,10 @@ public class UserSqlProvider {
         
         if (record.getEmail() != null) {
             sql.SET("email = #{email,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getPwresetdate() != null) {
+            sql.SET("pwResetDate = #{pwresetdate,jdbcType=TIMESTAMP}");
         }
         
         sql.WHERE("user_id = #{userId,jdbcType=INTEGER}");

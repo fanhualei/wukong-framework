@@ -1,6 +1,7 @@
 package com.wukong.security.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class User implements Serializable {
     private Integer userId;
@@ -14,6 +15,8 @@ public class User implements Serializable {
     private String phone;
 
     private String email;
+
+    private Date pwresetdate;
 
     private static final long serialVersionUID = 1L;
 
@@ -65,6 +68,14 @@ public class User implements Serializable {
         this.email = email == null ? null : email.trim();
     }
 
+    public Date getPwresetdate() {
+        return pwresetdate;
+    }
+
+    public void setPwresetdate(Date pwresetdate) {
+        this.pwresetdate = pwresetdate;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -77,6 +88,7 @@ public class User implements Serializable {
         sb.append(", enabled=").append(enabled);
         sb.append(", phone=").append(phone);
         sb.append(", email=").append(email);
+        sb.append(", pwresetdate=").append(pwresetdate);
         sb.append("]");
         return sb.toString();
     }

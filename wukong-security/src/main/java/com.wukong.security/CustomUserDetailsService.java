@@ -32,8 +32,8 @@ public class CustomUserDetailsService implements UserDetailsService {
         }
 
         List<SimpleGrantedAuthority> authorities = loadGrantedAuthorityByUserid(user.getUserId());
-        return new org.springframework.security.core.userdetails.User(user.getUsername(),
-                user.getPassword(), authorities);
+        //以前调用了org.springframework.security.core.userdetails.User
+        return new CustomUserDetails(user,authorities);
     }
 
     //得到用户的权限 这个是我自己做的

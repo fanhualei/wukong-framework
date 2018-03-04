@@ -18,8 +18,6 @@ import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.annotations.UpdateProvider;
 import org.apache.ibatis.type.JdbcType;
 
-import javax.validation.constraints.NotNull;
-
 @Mapper
 public interface UserMapper {
     @SelectProvider(type=UserSqlProvider.class, method="countByExample")
@@ -36,9 +34,11 @@ public interface UserMapper {
 
     @Insert({
         "insert into wk_user (username, password, ",
-        "enabled, phone, email)",
+        "enabled, phone, email, ",
+        "pwResetDate)",
         "values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, ",
-        "#{enabled,jdbcType=BIT}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR})"
+        "#{enabled,jdbcType=BIT}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, ",
+        "#{pwresetdate,jdbcType=TIMESTAMP})"
     })
     @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="userId", before=false, resultType=Integer.class)
     int insert(User record);
@@ -54,13 +54,14 @@ public interface UserMapper {
         @Result(column="password", property="password", jdbcType=JdbcType.VARCHAR),
         @Result(column="enabled", property="enabled", jdbcType=JdbcType.BIT),
         @Result(column="phone", property="phone", jdbcType=JdbcType.VARCHAR),
-        @Result(column="email", property="email", jdbcType=JdbcType.VARCHAR)
+        @Result(column="email", property="email", jdbcType=JdbcType.VARCHAR),
+        @Result(column="pwResetDate", property="pwresetdate", jdbcType=JdbcType.TIMESTAMP)
     })
     List<User> selectByExample(UserExample example);
 
     @Select({
         "select",
-        "user_id, username, password, enabled, phone, email",
+        "user_id, username, password, enabled, phone, email, pwResetDate",
         "from wk_user",
         "where user_id = #{userId,jdbcType=INTEGER}"
     })
@@ -70,7 +71,8 @@ public interface UserMapper {
         @Result(column="password", property="password", jdbcType=JdbcType.VARCHAR),
         @Result(column="enabled", property="enabled", jdbcType=JdbcType.BIT),
         @Result(column="phone", property="phone", jdbcType=JdbcType.VARCHAR),
-        @Result(column="email", property="email", jdbcType=JdbcType.VARCHAR)
+        @Result(column="email", property="email", jdbcType=JdbcType.VARCHAR),
+        @Result(column="pwResetDate", property="pwresetdate", jdbcType=JdbcType.TIMESTAMP)
     })
     User selectByPrimaryKey(Integer userId);
 
@@ -89,7 +91,8 @@ public interface UserMapper {
           "password = #{password,jdbcType=VARCHAR},",
           "enabled = #{enabled,jdbcType=BIT},",
           "phone = #{phone,jdbcType=VARCHAR},",
-          "email = #{email,jdbcType=VARCHAR}",
+          "email = #{email,jdbcType=VARCHAR},",
+          "pwResetDate = #{pwresetdate,jdbcType=TIMESTAMP}",
         "where user_id = #{userId,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(User record);
@@ -112,7 +115,8 @@ public interface UserMapper {
             @Result(column="password", property="password", jdbcType=JdbcType.VARCHAR),
             @Result(column="enabled", property="enabled", jdbcType=JdbcType.BIT),
             @Result(column="phone", property="phone", jdbcType=JdbcType.VARCHAR),
-            @Result(column="email", property="email", jdbcType=JdbcType.VARCHAR)
+            @Result(column="email", property="email", jdbcType=JdbcType.VARCHAR),
+            @Result(column="pwResetDate", property="pwresetdate", jdbcType=JdbcType.TIMESTAMP)
     })
     User selectUserByAccount( String account);
 
