@@ -8,7 +8,7 @@ wukong-framework
 
 >快速启动
 
-[1:环境配置](reference/readme.md "开打环境配置文档")
+    [1:环境配置](reference/readme.md "开打环境配置文档")
 
 
 <br>
