@@ -11,8 +11,8 @@ DROP TABLE IF EXISTS wk_user;
 
 create table wk_user (
   user_id     int            NOT NULL AUTO_INCREMENT    COMMENT '用户id',
-  username    varchar(256)   NOT NULL                   COMMENT '用户名',
-  password    varchar(256)   NOT NULL                   COMMENT '密码',
+  username    varchar(255)   NOT NULL                   COMMENT '用户名',
+  password    varchar(255)   NOT NULL                   COMMENT '密码',
   enabled     boolean        DEFAULT TRUE               COMMENT '是否有效',
   phone       varchar(255)                              COMMENT '手机号码',
   email       varchar(255)                              COMMENT '邮箱地址',

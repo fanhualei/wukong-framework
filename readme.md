@@ -4,6 +4,14 @@ wukong-framework(基于spring boot框架)
 
 组件：`springboot` `springsecurity` `testng`  `mybatis` `jwt` `https` `redis`
 
+<br>
+
+>快速启动
+
+[1:环境配置](reference/readme.md "开打环境配置文档")
+
+<br>
+
 
 ### 完成情况
 - [x] 主从数据库
