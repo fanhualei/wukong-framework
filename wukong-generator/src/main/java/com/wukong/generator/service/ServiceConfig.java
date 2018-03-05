@@ -19,6 +19,8 @@ public class ServiceConfig {
     String targetPackage;
     String targetProject;
 
+    String effects;
+
     boolean runWukongRule;
 
     //context的属性，通过这个来判断生成service的属性if

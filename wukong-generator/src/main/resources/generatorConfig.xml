@@ -51,6 +51,8 @@
         <javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="com.wukong.security.dao"  targetProject="log">
             <property name="enableSubPackages" value="true" />
             <property name="prefix" value="wk_"/>
+            <!--effects 计划生成的Table，如果为空，就生成全部的-->
+            <property name="effects" value="wk_user"/>
             <property name="ignores" value="groups,wk_order"/>
             <property name="targetPackage" value="com.wukong.security.service"/>
             <property name="targetProject" value="log"/>
@@ -62,6 +64,7 @@
             <generatedKey column="order_id" sqlStatement="Mysql" identity="true"/>
             <domainObjectRenamingRule searchString="^wk_" />
         </table>
+
 
     </context>
 </generatorConfiguration>

@@ -89,6 +89,8 @@ public class WukongGenerator {
                 serviceConfig.setTargetPackage(value);
             else if("targetProject".equals(key))
                 serviceConfig.setTargetProject(value);
+            else if("effects".equals(key))
+                serviceConfig.setEffects(value);
             else if("runWukongRule".equals(key)) {
                 if(value.equalsIgnoreCase("true"))
                     serviceConfig.setRunWukongRule(true);

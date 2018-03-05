@@ -5,6 +5,7 @@ import lombok.Getter;
 import org.apache.commons.lang.ArrayUtils;
 import org.mybatis.generator.config.Context;
 import org.mybatis.generator.internal.util.JavaBeansUtil;
+import org.springframework.util.StringUtils;
 
 import java.util.*;
 
@@ -19,6 +20,7 @@ public class TablesInDatabase {
 
     private String prefix;//表的前缀
     private String[] ignores; //忽略的表
+    private String   effectsStr;//要生成的表名例如:  " and table_name in('columns','collations')"
     private String tableSchema;
 
     @Getter
@@ -32,6 +34,9 @@ public class TablesInDatabase {
         userid=a_context.getJdbcConnectionConfiguration().getUserId();
         password=a_context.getJdbcConnectionConfiguration().getPassword();
         prefix=serviceConfig.getPrefix();
+
+        initEffectsStr(serviceConfig);
+
         String strIgnores=serviceConfig.getIgnores();
         if( strIgnores!=null){
             ignores=strIgnores.split(",");
@@ -42,6 +47,33 @@ public class TablesInDatabase {
         }catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+    private void initEffectsStr(ServiceConfig serviceConfig){
+
+        String str=serviceConfig.getEffects();
+        if(StringUtils.isEmpty(str)){
+            effectsStr="";
+        }else{
+
+            StringBuffer strb=new StringBuffer();
+            strb.append(" and  table_name in(");
+            String[] strs=str.split(",");
+            int i=0;
+            for (String s : strs) {
+                i=i+1;
+                if(i>1) strb.append(",");
+                strb.append("'"+s+"'");
+            }
+
+            strb.append(")");
+
+            effectsStr=strb.toString();
+        }
+
+
+
+
     }
 
 
@@ -73,6 +105,12 @@ public class TablesInDatabase {
             Statement statement = connection.createStatement();
 
             String getTableNameSql = "select distinct  table_name  from information_schema.`COLUMNS`  where table_schema='"+tableSchema+"'";
+
+
+            if(effectsStr.length()>5){
+                getTableNameSql=getTableNameSql+ " " + effectsStr;
+            }
+
             ResultSet tableRt = statement.executeQuery(getTableNameSql);
             while (tableRt.next()) {
                 String tabelName = tableRt.getString("table_name");
