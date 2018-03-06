@@ -33,7 +33,7 @@
                   
 ### 2: 在代码中使用redis
 
-例如：JwtTokenUtil.java 直接使用spring RedisTemplate进行操作
+>例如：JwtTokenUtil.java 直接使用spring RedisTemplate进行操作
 
 ```java
     @Autowired
@@ -58,7 +58,7 @@
     }
 
 ```
-[>>>token设计说明](reference/token.md)<br>
+[token设计说明](token.md)<br>
 
 <br>
 

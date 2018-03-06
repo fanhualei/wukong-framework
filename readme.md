@@ -15,7 +15,7 @@ wukong-framework
 5:如何配置权限<br>
 6:如何编写TestNG测试<br>
 7:如何使用PostMan测试rest接口<br>
-[8:如何使用Redis缓存](reference/readme.md)<br>
+[8:如何使用Redis缓存](reference/redis.md)<br>
 
 
 <br>
