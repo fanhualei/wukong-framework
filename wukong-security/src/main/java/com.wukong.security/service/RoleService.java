@@ -7,14 +7,18 @@ import com.wukong.security.dao.RoleMapper;
 import org.apache.ibatis.annotations.Param;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import lombok.extern.slf4j.Slf4j;
 
+// 本类内方法指定使用缓存时，默认的名称就是userCache
 @Service
 @Slf4j
+@CacheConfig(cacheNames="wukong:role")
 public class RoleService {
     //利用SpingIOC注入DAO变量
     @Autowired
@@ -75,7 +79,8 @@ public class RoleService {
         return roleMapper.updateByPrimaryKey(record);
     }
 
-
+    // @Cacheable 会先查询缓存，如果缓存中存在，则不执行方法
+    @Cacheable(key="#p0")
     public List<Role> selectRolesByUserid(Integer userid){
         return roleMapper.selectRolesByUserid(userid);
     }
