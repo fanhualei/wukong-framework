@@ -15,8 +15,7 @@ wukong-framework
 5:如何配置权限<br>
 6:如何编写TestNG测试<br>
 7:如何使用PostMan测试rest接口<br>
-8:如何使用Mybatis缓存<br>
-9:如何使用Redis缓存<br>
+[8:如何使用Redis缓存](reference/readme.md)<br>
 
 
 <br>
@@ -29,7 +28,7 @@ wukong-framework
 [3:security库说明](wukong-security/readme.md )<br>
 [4:examples项目说明](wukong-examples/readme.md )<br>
 [5:代码生成器说明](wukong-generator/readme.md )<br>
-
+[6:SpringBoot使用小技巧](reference/tip.md)<br>
 
 <br>
 

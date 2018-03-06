@@ -20,12 +20,15 @@ public class JwtAuthenController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
+
+
     @RequestMapping("/login")
     public Object login(HttpServletResponse response,
                         @RequestParam String username,@RequestParam String password) throws IOException {
         User user=userService.selectUserByAccount(username);
         if(user!=null && MyEncoder.matches(password,user.getPassword())) {
-            JwtTokenUtil jwtTokenUtil=new JwtTokenUtil();
             String jwt = jwtTokenUtil.generateToken(username,user.getUserId());
             response.setHeader("re_token",jwt);
             return new HashMap<String,String>(){{

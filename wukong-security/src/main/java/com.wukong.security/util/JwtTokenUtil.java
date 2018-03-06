@@ -4,19 +4,22 @@ import com.wukong.security.CustomUserDetails;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
-import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-@Component
-public class JwtTokenUtil implements Serializable {
 
-    private static final long serialVersionUID = -3301605591108950415L;
+
+@Component
+public class JwtTokenUtil {
+
 
     public static final String SECRET = "ThisIsASecret";
     public static final String TOKEN_PREFIX = "Bearer";
@@ -106,15 +109,52 @@ public class JwtTokenUtil implements Serializable {
         return (lastPasswordReset != null && created.before(lastPasswordReset));
     }
 
+
+    @Autowired
+    private StringRedisTemplate template;
+    private final static String REDIS_TOKEN="wukong:security:token:";
+    //将数据设置到缓存中
+    private void setTokenToReddis(Integer userid,String token,Date createDate){
+        ValueOperations<String, String> ops = template.opsForValue();
+        String key=REDIS_TOKEN+userid+":"+getDateStr(createDate);
+        ops.set(key,token);
+    }
+
+    //从缓存中得到token
+    private String getTokenFromRedis(Integer userid,Date createDate){
+        //判断如果有缓存，就返回缓存
+        ValueOperations<String, String> ops = template.opsForValue();
+        String key=REDIS_TOKEN+userid+":"+getDateStr(createDate);
+        if(template.hasKey(key)){
+            return ops.get(key);
+        }
+        return "";
+    }
+
+    //得到秒一级的字符串
+    private String getDateStr(Date createDate){
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyyMMddHHmmss");
+        String str=sdf.format(createDate);
+        return str;
+    }
+
     //生成Token
     public String generateToken(String userAccount,Integer userid) {
+
         Map<String, Object> claims = new HashMap<>();
         claims.put(USERNAME, userAccount);
-        claims.put(CREATED, new Date());
+        Date createDate=new Date();
+        claims.put(CREATED, createDate);
         claims.put(USERID,userid);
+        String token =generateToken(claims);
 
-        return generateToken(claims);
+        //这个是登录函数，只要登录，就设置缓存
+        setTokenToReddis(userid,token,createDate);
+
+        return token;
     }
+
+
 
     private String generateToken(Map<String, Object> claims){
         String jwtStr =Jwts.builder()
@@ -139,12 +179,19 @@ public class JwtTokenUtil implements Serializable {
                 && !isTokenExpired(token);
     }
 
+    //@todo 要重新设置缓存
     public String refreshToken(String token) {
         String refreshedToken;
         try {
             final Claims claims = getClaimsFromToken(token);
             claims.put(CREATED, new Date());
             refreshedToken = generateToken(claims);
+
+            //这个是登录函数，只要登录，就设置缓存
+            Integer userid =(Integer)claims.get(USERID);
+            Date createDate=(Date)claims.get(CREATED);
+            setTokenToReddis(userid,refreshedToken,createDate);
+
         } catch (Exception e) {
             refreshedToken = null;
         }
@@ -156,12 +203,29 @@ public class JwtTokenUtil implements Serializable {
     //判断token是否有限，有很多方法，我可以把生成的token放入到缓存进行判断
     public Boolean validateToken(String token, UserDetails userDetails) {
         CustomUserDetails user = (CustomUserDetails) userDetails;
-        final String username = getUsernameFromToken(token);
+
+
         final Date created = getCreatedDateFromToken(token);
-        return (
-                username.equals(user.getUsername())
-                        && !isTokenExpired(token)
-                        && !isCreatedBeforeLastPasswordReset(created, user.getPwresetdate()));
+
+        String tokenFromRedis=getTokenFromRedis(user.getUserId(),created);
+        if(!token.equals(tokenFromRedis)){
+            return false;//与服务中存储的不一致,token被修改
+        }
+
+        if(isTokenExpired(token)){
+            return false; //token 过期
+        }
+
+
+        if(isCreatedBeforeLastPasswordReset(created, user.getPwresetdate())){
+            return false; //用户修改过密码，需要重新登录
+        }
+
+        if(!user.isEnabled()){
+            return false; //用户的账户被停用
+        }
+
+        return true;
     }
 
 }

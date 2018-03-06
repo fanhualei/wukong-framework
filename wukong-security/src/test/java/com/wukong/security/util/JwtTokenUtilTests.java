@@ -13,6 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class JwtTokenUtilTests {
 
+    //@todo 这个地方可能出现自动装载的错误
     private JwtTokenUtil jwtTokenUtil=new JwtTokenUtil();
 
     private String username="fanhl";
@@ -21,14 +22,14 @@ public class JwtTokenUtilTests {
 
     private  SimpleDateFormat myFmt=new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
 
-    @BeforeMethod
+//    @BeforeMethod
     public void getToken(){
         token=jwtTokenUtil.generateToken(username,userid);
         System.out.println("token = " + token);
     }
 
 
-    @Test
+//    @Test
     //测试是否可以提取出数据
     public void testAnalysisToken(){
         Date createDate_=jwtTokenUtil.getCreatedDateFromToken(token);
@@ -50,6 +51,23 @@ public class JwtTokenUtilTests {
 //        jwtTokenUtil.canTokenBeRefreshed()
     }
 
+
+    @Test
+    public void testDate(){
+        Date date=new Date();
+        System.out.println(date.toString());
+
+        long time =date.getTime();
+
+        System.out.println(time);
+
+
+        Date date1=new Date(time);
+
+        System.out.println(date1);
+
+
+    }
 
 
 

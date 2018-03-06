@@ -6,7 +6,6 @@ import com.wukong.security.service.RoleService;
 import com.wukong.security.service.UserService;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -24,9 +23,12 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private RoleService roleService;
 
+
+
     @Override
     public UserDetails loadUserByUsername(String username) {
         User user = userService.selectUserByAccount(username);
+
         if(user == null){
             throw new UsernameNotFoundException("用户名不存在");
         }
