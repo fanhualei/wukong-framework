@@ -45,17 +45,17 @@
    
 ### 关闭多数据源
 
->3.1 maven中<font color="red">注释</font>掉druid依赖
+>1 maven中注释掉druid依赖
 
 ```xml
-<dependency>
-    <groupId>com.alibaba</groupId>
-    <artifactId>druid-spring-boot-starter</artifactId>
-    <version>1.1.6</version>
-</dependency>
+<!--<dependency>-->
+    <!--<groupId>com.alibaba</groupId>-->
+    <!--<artifactId>druid-spring-boot-starter</artifactId>-->
+    <!--<version>1.1.6</version>-->
+<!--</dependency>-->
 ```
         
->3.2 修改application.properties，选择单一数据源
+>2 修改application.properties，选择单一数据源
 
 ```properties
 #启用单一数据源
@@ -65,10 +65,59 @@ spring.profiles.active=sdb
 #spring.profiles.active=mdb
 ```
 
->3.3 将com.wukong.core.datasource.druid类注释掉
+>3 将com.wukong.core.datasource.druid类注释掉
 
     除了DataSourceKey类
     其他类，打开，ctrl+A,ctrl+/  
 
+<br>
 
 ### 关闭security认证
+
+>1 注释掉security 依赖
+
+```xml
+<!--安全方面-->
+<!--<dependency>-->
+    <!--<groupId>io.jsonwebtoken</groupId>-->
+    <!--<artifactId>jjwt</artifactId>-->
+    <!--<version>0.7.0</version>-->
+<!--</dependency>-->
+<!--<dependency>-->
+    <!--<groupId>org.springframework.boot</groupId>-->
+    <!--<artifactId>spring-boot-starter-security</artifactId>-->
+<!--</dependency>-->
+```
+
+>2 注释掉wukong security 依赖
+
+```xml
+
+<!--<dependency>-->
+    <!--<groupId>com.runzhichina.wukong</groupId>-->
+    <!--<artifactId>wukong-security</artifactId>-->
+    <!--<version>1.1.RELEASE</version>-->
+<!--</dependency>-->
+
+```
+
+
+>3 编译工程，看有没有报错
+
+引用security依赖的地方会报错，理论讲应该是弱耦合
+例如@PreAuthorize
+
+```java
+    @ApiOperation(value="得到名称", notes="")
+    //    @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')  ")
+    @ApiImplicitParam(name = "name", value = "用户名称", required = true, dataType = "String")
+    @RequestMapping("/info")
+    public Map<String, String> getInfo(@RequestParam String name) {
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("name", name);
+        return map;
+    }
+
+```
+
+
