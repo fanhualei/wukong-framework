@@ -6,6 +6,7 @@
         <artifactId>wukong-parent</artifactId>
         <groupId>com.runzhichina.wukong</groupId>
         <version>1.1.RELEASE</version>
+        <relativePath>../wukong-parent</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
