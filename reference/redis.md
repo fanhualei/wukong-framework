@@ -124,5 +124,6 @@ public List<Role> selectRolesByUserid(Integer userid){
         增加一条数字记录  set key2 1
         让数字自增       INCR key2
         删除一个        del key1   
+        删除所有数据     flushall
         
 [redis使用说明](https://www.cnblogs.com/zongfa/p/7808807.html  "打开网页")        

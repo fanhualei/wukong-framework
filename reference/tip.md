@@ -14,6 +14,7 @@
 * [多module引用关系](#多module引用关系)  <br>
 * [module单独测试](#module单独测试)  <br>
 * [yml文件编辑技巧](#yml文件编辑技巧)<bt>
+* [分页插件的使用](#分页插件的使用)<br>
     
 
 
@@ -214,3 +215,26 @@ bat:
   ceo: { yanhongli:李彦宏,huatengma:麻花疼,yunma:马云}  
 ```
     
+<br>
+
+### 分页插件的使用
+
+> maven引用
+
+```xml
+<!--分页-->
+<dependency>
+    <groupId>com.github.pagehelper</groupId>
+    <artifactId>pagehelper-spring-boot-starter</artifactId>
+    <version>1.2.3</version>
+</dependency>
+```
+
+> 使用
+
+    代码中：PageHelper.startPage(1,1);
+    
+> 技巧
+
+    可以把上面的代码放到controler中，但是要保证service第一个查询就是想要的。
+    在配置文件配置：pagehelper.reasonable=true 表示-1页，成不不包错误

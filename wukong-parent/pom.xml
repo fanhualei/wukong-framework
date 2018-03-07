@@ -115,16 +115,12 @@
         </dependency>
 
         <!--分页-->
-        <!--
-        MyBatis提供了拦截器接口，我们可以实现自己的拦截器，
-        将其作为一个plugin装入到SqlSessionFactory中。
-        Github项目地址： https://github.com/pagehelper/Mybatis-PageHelper
-        -->
-        <!--<dependency>-->
-        <!--<groupId>com.github.pagehelper</groupId>-->
-        <!--<artifactId>pagehelper</artifactId>-->
-        <!--<version>4.1.0</version>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+
 
 
 
