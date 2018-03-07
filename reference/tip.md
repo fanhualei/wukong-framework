@@ -13,6 +13,7 @@
 * [升级到SpringBoot2注意事项](#升级到SpringBoot2注意事项)  <br>
 * [多module引用关系](#多module引用关系)  <br>
 * [module单独测试](#module单独测试)  <br>
+* [yml文件编辑技巧](#yml文件编辑技巧)<bt>
     
 
 
@@ -184,3 +185,32 @@ spring.profiles.active=sdb
 
     1:在test下建立一个TestApplication的主程序
     2:在test resources建立一个application.properties文件，并配置相关信息
+    
+    
+<br>
+
+### yml文件编辑技巧
+
+当前不建议使用，因为添加注释不方便
+
+> [在线properties转yml](https://www.bejson.com/devtools/properties2yaml/)
+
+
+> 使用技巧 [更多](http://blog.csdn.net/zhengxiangwen/article/details/70042514)
+
+    * 在yaml里，用#做注释
+    * yaml不支持制表符tab缩进，请使用空格缩进
+    * 如果参数是以空格开始或结束的字符串，应使用单引号把他包进来。
+    * 如果一个字符串参数包含特殊字符，也要用单引号包起来。
+    * 每个冒号后面一定要有一个空格
+    * yaml中，空值可以用null或~表示
+    * 数组用“[]”包括起来，hash用“{}”来包括
+      
+> 例子
+
+```yaml
+bat:    
+  website: {baidu: http://www.baidu.com,qq: http://www.qq.com,ali: [http://www.taobao.com, http://www.tmall.com]}  
+  ceo: { yanhongli:李彦宏,huatengma:麻花疼,yunma:马云}  
+```
+    

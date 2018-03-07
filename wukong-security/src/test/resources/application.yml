@@ -1,0 +1,12 @@
+
+#单一数据源的配置文件
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/wukong_write?useSSL=false
+    username: root
+    password: rootmysql
+    max-idle: 8
+    min-idle: 8
+    max-active: 20
+    initial-size: 10
