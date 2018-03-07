@@ -9,7 +9,7 @@ wukong-framework
 >快速掌握
 
 [1:环境配置](reference/readme.md "开打环境配置文档")<br>
-2:关闭与开启安全<br>
+[2:关闭与开启security认证](reference/tip.md) `见·关闭security认证·小节`   <br>
 3:如何撰写API接口<br>
 4:如何撰写数据库操作<br>
 5:如何配置权限<br>
