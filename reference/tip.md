@@ -15,6 +15,7 @@
 * [module单独测试](#module单独测试)  <br>
 * [yml文件编辑技巧](#yml文件编辑技巧)<bt>
 * [分页插件的使用](#分页插件的使用)<br>
+* [maven自动部署到远程服务器](maven自动部署到远程服务器)<br>
     
 
 
@@ -238,3 +239,13 @@ bat:
 
     可以把上面的代码放到controler中，但是要保证service第一个查询就是想要的。
     在配置文件配置：pagehelper.reasonable=true 表示-1页，成不不包错误
+
+
+### maven自动部署到远程服务器
+
+> 需要有人去做一下
+
+[参考资料1](https://www.cnblogs.com/xyb930826/p/5725340.html) <br>
+
+[参考资料2](https://www.cnblogs.com/Mercurial/p/8007358.html) <br>
+
