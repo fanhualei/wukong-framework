@@ -10,7 +10,10 @@
 * [多module无法引用](#多module无法引用)  <br>
 * [关闭多数据源](#关闭多数据源) <br>
 * [关闭security认证](#关闭security认证)  <br>
+* [升级到SpringBoot2注意事项](#升级到SpringBoot2注意事项)  <br>
     
+
+http://blog.csdn.net/yalishadaa/article/details/79400916
 
 <br>    
     
@@ -119,5 +122,20 @@ spring.profiles.active=sdb
     }
 
 ```
+
+<br>
+
+### 升级到SpringBoot2注意事项
+
+
+>遇到问题
+
+    1:原先的Http转Https功能不能用了。
+      因为EmbeddedServletContainer被重新定义成WebServer
+
+
+>参考网址
+
+[Spring Boot 2.0 新特性和发展方向](http://blog.csdn.net/yalishadaa/article/details/79400916)
 
 

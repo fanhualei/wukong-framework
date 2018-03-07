@@ -1,4 +1,4 @@
-package com.wukong.examples.dao;
+package com.wukong.security.dao;
 
 import com.wukong.security.dao.RoleMapper;
 import com.wukong.security.dao.UserMapper;

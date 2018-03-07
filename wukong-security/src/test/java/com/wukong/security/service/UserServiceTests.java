@@ -1,4 +1,4 @@
-package com.wukong.examples.service;
+package com.wukong.security.service;
 
 import com.wukong.security.model.User;
 import com.wukong.security.service.UserService;

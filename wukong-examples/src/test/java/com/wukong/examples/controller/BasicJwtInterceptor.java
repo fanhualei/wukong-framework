@@ -5,7 +5,6 @@ import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.util.Assert;
-import org.springframework.util.Base64Utils;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
