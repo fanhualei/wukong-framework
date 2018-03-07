@@ -38,16 +38,16 @@ public class HelloControllerTests extends AbstractTestNGSpringContextTests {
     @Autowired
     private TestRestTemplate restTemplate;
 
-    @BeforeMethod
-    public void getToken(){
-        String url="/author/jwt/login?username=admin&password=admin";
-        ResponseEntity<Map> entity = this.restTemplate.getForEntity(url, Map.class);
-        assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        Map<String, String> returnMap=entity.getBody();
-        String token=returnMap.get("token");
-        BasicJwtInterceptor basicJwtInterceptor= new BasicJwtInterceptor(token);
-        restTemplate.getRestTemplate().getInterceptors().add(basicJwtInterceptor);
-    }
+//    @BeforeMethod
+//    public void getToken(){
+//        String url="/author/jwt/login?username=admin&password=admin";
+//        ResponseEntity<Map> entity = this.restTemplate.getForEntity(url, Map.class);
+//        assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
+//        Map<String, String> returnMap=entity.getBody();
+//        String token=returnMap.get("token");
+//        BasicJwtInterceptor basicJwtInterceptor= new BasicJwtInterceptor(token);
+//        restTemplate.getRestTemplate().getInterceptors().add(basicJwtInterceptor);
+//    }
 
 
     @Test

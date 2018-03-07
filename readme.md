@@ -17,6 +17,7 @@ wukong-framework
 7:如何使用PostMan测试rest接口<br>
 [8:如何使用Redis缓存](reference/redis.md)<br>
 [9:如何记录log](reference/uselog.md)<br>
+[10:SpringBoot使用小技巧](reference/tip.md)<br>
 
 <br>
 <br>
@@ -28,7 +29,7 @@ wukong-framework
 [3:security库说明](wukong-security/readme.md )<br>
 [4:examples项目说明](wukong-examples/readme.md )<br>
 [5:代码生成器说明](wukong-generator/readme.md )<br>
-[6:SpringBoot使用小技巧](reference/tip.md)<br>
+
 
 <br>
 
