@@ -1,4 +1,4 @@
-## 开发技巧技巧
+## 开发技巧
 
 
 <br>
@@ -11,9 +11,11 @@
 * [关闭多数据源](#关闭多数据源) <br>
 * [关闭security认证](#关闭security认证)  <br>
 * [升级到SpringBoot2注意事项](#升级到SpringBoot2注意事项)  <br>
+* [多module引用关系](#多module引用关系)  <br>
+* [module单独测试](#module单独测试)  <br>
     
 
-http://blog.csdn.net/yalishadaa/article/details/79400916
+
 
 <br>    
     
@@ -139,3 +141,46 @@ spring.profiles.active=sdb
 [Spring Boot 2.0 新特性和发展方向](http://blog.csdn.net/yalishadaa/article/details/79400916)
 
 
+<br>
+
+
+### 多module引用关系
+
+
+* wukong-framework( parent=null modules=All dependencies=null)
+    * wukong-parent 引用了项目使用中常用的包           
+        * parent=spring-boot
+        * modules=null
+        * dependencies=工程用到的大部分功能
+    * wukong-core   实现了数据库链接，https等功能
+        * parent=wukong-parent
+        * modules=null
+        * dependencies=null
+    * wukong-security 实现用户登录 jwt例子
+        * parent=wukong-parent
+        * modules=null
+        * dependencies=wukong-core
+    * wukong-examples 一个例子引用了core与security
+        * parent=wukong-parent
+        * modules=null
+        * dependencies=wukong-core,wukong-security
+    * wukong-generator 代码生成器
+        * parent=spring-boot
+        * modules=null
+        * dependencies=null
+    
+    
+<br>
+
+### module单独测试
+
+> 问题描述
+
+    由于core与security是基础模块，没有自己的Spring主程序，
+    以前只能放到examples中测试security的dao代码，这样代码耦合性不高
+    
+    
+> 解决方法
+
+    1:在test下建立一个TestApplication的主程序
+    2:在test resources建立一个application.properties文件，并配置相关信息
