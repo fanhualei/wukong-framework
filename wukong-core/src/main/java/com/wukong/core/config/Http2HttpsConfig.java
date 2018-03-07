@@ -6,8 +6,8 @@ import org.apache.catalina.connector.Connector;
 import org.apache.tomcat.util.descriptor.web.SecurityCollection;
 import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
-import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -24,9 +24,10 @@ public class Http2HttpsConfig  {
     @Value("${wukong.web.http2https:true}") //true:不重定向  false:重定向
     private boolean http2https;
 
+    //Srping2.0的转换代码
     @Bean
-    public EmbeddedServletContainerFactory servletContainer() {
-        TomcatEmbeddedServletContainerFactory tomcat = new TomcatEmbeddedServletContainerFactory() {
+    public ServletWebServerFactory serletContainer(){
+        TomcatServletWebServerFactory tomcat=new TomcatServletWebServerFactory(){
             @Override
             protected void postProcessContext(Context context) {
                 SecurityConstraint constraint = new SecurityConstraint();
@@ -41,6 +42,7 @@ public class Http2HttpsConfig  {
         return tomcat;
     }
 
+
     @Bean
     public Connector httpConnector() {
         Connector connector = new Connector("org.apache.coyote.http11.Http11NioProtocol");
@@ -52,4 +54,25 @@ public class Http2HttpsConfig  {
         connector.setRedirectPort(httpsPort);
         return connector;
     }
+
+
+//    //Srping1.5的转换代码
+//    @Bean
+//    public EmbeddedServletContainerFactory servletContainer() {
+//        TomcatEmbeddedServletContainerFactory tomcat = new TomcatEmbeddedServletContainerFactory() {
+//            @Override
+//            protected void postProcessContext(Context context) {
+//                SecurityConstraint constraint = new SecurityConstraint();
+//                constraint.setUserConstraint("CONFIDENTIAL");
+//                SecurityCollection collection = new SecurityCollection();
+//                collection.addPattern("/*");
+//                constraint.addCollection(collection);
+//                context.addConstraint(constraint);
+//
+//            }
+//        };
+//        tomcat.addAdditionalTomcatConnectors(httpConnector());
+//        return tomcat;
+//    }
+
 }
