@@ -3,18 +3,20 @@
 
 <br>
 
-> 关键点
+> 目录
 
-    1: @Autowired 无法装载
-    2: 多module无法引用
-    3: 关闭多数据源，启动单一数据源(适用小项目)
-    4: 关闭security安全认证(为了测试用)
+
+* [无法自动装载](#无法自动装载) <br>
+* [多module无法引用](#多module无法引用)  <br>
+* [关闭多数据源](#关闭多数据源) <br>
+* [关闭security认证](#关闭security认证)  <br>
     
 
 <br>    
     
-###  1: @Autowired 无法装载
+###  无法自动装载
 
+`@Autowired`
 
 >原因1(使用new来生成对象)
 
@@ -28,7 +30,7 @@
         
 <br>    
     
-### 2: 多module无法引用
+### 多module无法引用
 
 
 > 解决方案
@@ -41,7 +43,7 @@
 
 <br>
    
-### 3: 关闭多数据源，启动单一数据源
+### 关闭多数据源
 
 >3.1 maven中<font color="red">注释</font>掉druid依赖
 
@@ -67,3 +69,6 @@ spring.profiles.active=sdb
 
     除了DataSourceKey类
     其他类，打开，ctrl+A,ctrl+/  
+
+
+### 关闭security认证
