@@ -151,14 +151,12 @@ cellphone | 手机号码 |
 
 #### 通过手机短信登录
 
->调用方法
+>调用方法 `get` `post`  [https://localhost:8443/author/jwt/loginByPhoneMsg](#)
 
-`get` `post`
-
-类型  | 说明|
+参数  | 说明|
 --------- | --------|
-地址 | /author/jwt/loginByPhoneMsg |
-参数  | cellphone,verifycode|
+cellphone| 电话号码|
+verifycode|验证码|
 
 
 ```json
@@ -185,6 +183,36 @@ cellphone | 手机号码 |
     * 2.3: 判断手机号是否已经注册
         * 2.3.1: 手机号存在 ,查询出用户,并生成token
         * 2.3.1: 手机用户不存在,返回错误信息
+
+
+
+#### 判断用户名邮箱电话是否存在
+
+> 这是三个函数
+>> 调用方法 `get` `post`  [https://localhost:8443/author/jwt/phoneExist](#)
+>> 调用方法 `get` `post`  [https://localhost:8443/author/jwt/emailExist](#)
+>> 调用方法 `get` `post`  [https://localhost:8443/author/jwt/usernameExist](#)
+
+参数  | 说明|
+--------- | --------|
+cellphone| 电话号码|
+email|邮箱|
+username|用户名|
+
+```json
+//success
+{
+    "code": 0,
+    "msg": "success",
+    "data":{
+      "phoneExist":true,  // true表示存在 
+      "emailExist":true,
+      "usernameExist":true
+    }
+}
+```
+`上面的代码是实例文件,实际上只会返回一个`
+
 
 
 <br>
