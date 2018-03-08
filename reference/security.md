@@ -25,6 +25,7 @@
     * [防止重复提交](#防止重复提交)
     * [限制同一ip访问频率](#限制同一ip访问频率)
     * [防御csrf攻击](#防御csrf攻击)
+    * [黑名单策略](#黑名单策略)
 
     
 <br>
@@ -343,7 +344,23 @@ username|用户名|
 
 ### 限制同一ip访问频率
 
+> 示例:@RequestLimit(count=10,time=5000)   
 
+`其中count指的是规定时间内的访问次数，time指的就是规定时间，单位为毫秒`
+
+```java
+@Controller  
+public class URLController {  
+    @RequestLimit(count=10,time=5000)  
+    @RequestMapping("/urltest")  
+    @ResponseBody  
+    public String test(HttpServletRequest request, ModelMap modelMap) {  
+        return "aaa";  
+    }  
+}  
+```
+
+`参考` [实现方法](http://blog.csdn.net/gebitan505/article/details/55517574)
 
 <br>
 
@@ -355,6 +372,15 @@ username|用户名|
 * [如何通过JWT防御CSRF](https://segmentfault.com/a/1190000003716037)
 * [讲真，别再使用JWT了！](https://www.jianshu.com/p/af8360b83a9f)
 
+<br>
+
+### 黑名单策略
+
+>黑名单,不仅限于ip地址,还应该包含用户浏览器的cookie <br>
+>黑名单,应该是一个智能的,系统自动判断异常,进行防御操作
+>用户访问的ip地址(或地域)经常变更,那么可能存在异常
+>应该记录下用户的登录日志
 
 
-[找练API文档](https://www.kancloud.cn/zldev/apidoc/70857)
+
+###### API参考 [找练API文档](https://www.kancloud.cn/zldev/apidoc/70857)
