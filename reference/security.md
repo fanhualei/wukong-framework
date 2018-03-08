@@ -189,8 +189,8 @@ verifycode|验证码|
 #### 判断用户名邮箱电话是否存在
 
 > 这是三个函数
->> 调用方法 `get` `post`  [https://localhost:8443/author/jwt/phoneExist](#)
->> 调用方法 `get` `post`  [https://localhost:8443/author/jwt/emailExist](#)
+>> 调用方法 `get` `post`  [https://localhost:8443/author/jwt/phoneExist](#) <br>
+>> 调用方法 `get` `post`  [https://localhost:8443/author/jwt/emailExist](#) <br>
 >> 调用方法 `get` `post`  [https://localhost:8443/author/jwt/usernameExist](#)
 
 参数  | 说明|
@@ -205,12 +205,13 @@ username|用户名|
     "code": 0,
     "msg": "success",
     "data":{
-      "phoneExist":true,  // true表示存在 
+      "phoneExist":true,  
       "emailExist":true,
       "usernameExist":true
     }
 }
 ```
+`true:表示存在`<br>
 `上面的代码是实例文件,实际上只会返回一个`
 
 
