@@ -2,7 +2,7 @@
 
 `prtoken` : 是prevent repeat tonken简称
 
-<br>
+
 
 >目录
 
@@ -56,4 +56,6 @@ String token=returnMap.get("prtoken");
     * 4.1:如果相同，就从redis中删除这个值，并继续请求
     * 4.2:如果不同，就给客户端返回一个错误信息
 
+
+<br>
 
