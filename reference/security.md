@@ -36,7 +36,7 @@ ___
 
 #### 登录
 
->调用方法 `get` `post`  [https:8443//author/jwt/login](https:8443//author/jwt/login)
+>调用方法 `get` `post`  [https://localhost:8443/author/jwt/login](#)
 
 
 参数  | 说明|
@@ -64,7 +64,7 @@ password | 密码 |
 * 2:用户输入验证码登录时，与redis中的内容进行验证
 
 
->调用方法 `get` `post`  [https:8443///author/jwt/getVerifyCode](https:8443///author/jwt/getVerifyCode)
+>调用方法 `get` `post`  [https://localhost:8443/author/jwt/getVerifyCode](#)
 
 参数  | 说明|
 --------- | --------|
@@ -115,7 +115,7 @@ cellphone | 手机号码 |
 
 `(phone){cellphone}=(phone)13800138000 今后用户名中有(phone)开头的,都是手机注册的`
 
->调用方法 `get` `post`  [https:8443//author/jwt/regist](https:8443//author/jwt/regist)
+>调用方法 `get` `post`  [https://localhost:8443/author/jwt/regist](#)
 
 
 参数  | 说明|
