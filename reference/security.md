@@ -184,14 +184,50 @@ verifycode|验证码|
         * 2.3.1: 手机号存在 ,查询出用户,并生成token
         * 2.3.1: 手机用户不存在,返回错误信息
 
+<br>
 
+
+### 通过第三方登录
+
+'这个函数还需要仔细想想'
+
+> 调用方法 `post`  [https://localhost:8443/author/jwt/thirdPartyLogin](#) <br> 
+
+参数  | 说明|
+--------- | --------|
+type| 用户是否先用微博或微信登陆，（2：代表微博登陆，1：代表微信登陆）|
+openId|微博或微信的openId|
+timeStamp|时间戳|
+summary|加密字段,加密方法（Key+type+openId+timeStamp 顺序进行MD5加密，Key的值为wech_app2015_en）|
+
+```json
+//success
+{
+    "code": 0,
+    "msg": "success",
+    "data": {
+        "userid": 123,
+        "nickName": "",
+        "token": "",
+        "age": 0,
+        "sex": "",
+        "credential": "",
+        "cellphone": "",
+        "headImageUrl":"路径"
+    }
+}
+```
+
+
+
+<br>
 
 ### 判断用户名邮箱电话是否存在
 
 > 这是三个函数
->> 调用方法 `get` `post`  [https://localhost:8443/author/jwt/phoneExist](#) <br>
->> 调用方法 `get` `post`  [https://localhost:8443/author/jwt/emailExist](#) <br>
->> 调用方法 `get` `post`  [https://localhost:8443/author/jwt/usernameExist](#)
+>> 电话号码 `get` `post`  [https://localhost:8443/author/jwt/phoneExist](#) <br>
+>> 邮箱 `get` `post`  [https://localhost:8443/author/jwt/emailExist](#) <br>
+>> 用户名 `get` `post`  [https://localhost:8443/author/jwt/usernameExist](#)
 
 参数  | 说明|
 --------- | --------|
