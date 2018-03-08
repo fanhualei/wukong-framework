@@ -36,16 +36,22 @@ ___
 
 #### 登录
 
->调用方法
+>调用方法 `get` `post`  /author/jwt/login
 
-`get`
 
-类型  | 说明|
+参数  | 说明|
 --------- | --------|
-地址 | /author/jwt/login |
-参数  | username,password |
-成功  | json {token:dkdkdl} |
-错误  |  |
+username | 用户名|
+password | 密码 |
+
+
+```json
+//success
+{"token":"服务器生成的token"}
+
+```
+
+
 
 <br>
 
