@@ -6,17 +6,17 @@
 
 >目录
 
-* [在程序中使用](# 在程序中使用)
-    * [通过注解标记要拦截的Api函数](#通过注解标记要拦截的Api函数)
+* [在程序中使用](#在程序中使用)
+    * [通过注解标记要拦截函数](#通过注解标记要拦截函数)
     * [提交前获得prtoken](#提交前获得prtoken)
     
 * [实现说明](#实现说明)
     
 <br>
     
-###  在程序中使用  
+### 在程序中使用  
 
-####  通过注解标记要拦截的Api函数
+#### 通过注解标记要拦截函数
 
 > 添加@PreventRepeat()，会检查request中是否含有prtoken,并与redis中的进行校验。
 
@@ -31,7 +31,7 @@ public Map<String, String> getInfo(@RequestParam String name) {
 
 ```
 
-####  提交前获得prtoken
+#### 提交前获得prtoken
 
 > 客户端在提交请求前，需要获得一个prtoken，并放入到request
 
@@ -45,7 +45,7 @@ String token=returnMap.get("prtoken");
 
 <br>
 
-###  实现说明 
+### 实现说明 
 
 >在redis中定义wukong+security+{userid}+{create}+{prtoken}的key,用来存储prtoken
 
