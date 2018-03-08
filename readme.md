@@ -19,6 +19,7 @@ wukong-framework
 [9:如何记录log](reference/uselog.md)<br>
 [10:SpringBoot使用小技巧](reference/tip.md)<br>
 [11:防止重复提交](reference/preventrepeat.md)<br>
+[12:security功能说明](reference/security.md)<br>
 
 <br>
 <br>
