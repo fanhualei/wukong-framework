@@ -68,8 +68,8 @@ ___
 参数  | cellphone |
 
 
-`success`
 ```json
+//success
 {
     "code": 0,
     "msg": "success",
@@ -80,8 +80,9 @@ ___
 
 ```
 
-`error`
+
 ```json
+//error
 {
     "code": 1,
     "msg": "错误信息"
@@ -122,12 +123,12 @@ ___
 
 类型  | 说明|
 --------- | --------|
-地址 | /author/jwt/getVerifyCode |
-参数  | cellphone |
+地址 | /author/jwt/regist |
+参数  | cellphone,password |
 
 
-`success`
 ```json
+//success
 {
     "code": 0,
     "msg": "success",
@@ -138,8 +139,8 @@ ___
 
 ```
 
-`error`
 ```json
+//error
 {
     "code": 1,
     "msg": "错误信息"
@@ -163,6 +164,28 @@ ___
         * 2.3.1: 手机号存在 ,查询出用户,并生成token
         * 2.3.1: 手机用户不存在,返回错误信息
 
+
+>调用方法
+
+`get` `post`
+
+类型  | 说明|
+--------- | --------|
+地址 | /author/jwt/loginByPhoneMsg |
+参数  | cellphone,verifycode|
+
+
+```json
+//success
+{
+    "code": 0,
+    "msg": "success",
+    "data":{
+      "token":"服务器生成的token数值"
+    }
+}
+
+```
 
 
 
