@@ -1,4 +1,4 @@
-## security模式使用说明
+# security模式使用说明
 
 >参考
 
@@ -29,12 +29,12 @@
     
 <br>
     
-### 不要身份验证
+## 不要身份验证
 ___
 
 ###### 不要身份验证接口，可加上[限制同一IP访问频率](#限制同一IP访问频率)功能
 
-#### 登录
+### 登录
 
 >调用方法 `get` `post`  [https://localhost:8443/author/jwt/login](#)
 
@@ -56,7 +56,7 @@ password | 密码 |
 <br>
 
 
-#### 发送验证码
+### 发送验证码
 
 >调用方法 `get` `post`  [https://localhost:8443/author/jwt/getVerifyCode](#)
 
@@ -94,7 +94,7 @@ cellphone | 手机号码 |
 <br>
 
 
-#### 注册
+### 注册
 
 `当前只实现用手机号码注册`
 
@@ -149,7 +149,7 @@ cellphone | 手机号码 |
 <br>
 
 
-#### 通过手机短信登录
+### 通过手机短信登录
 
 >调用方法 `get` `post`  [https://localhost:8443/author/jwt/loginByPhoneMsg](#)
 
@@ -186,7 +186,7 @@ verifycode|验证码|
 
 
 
-#### 判断用户名邮箱电话是否存在
+### 判断用户名邮箱电话是否存在
 
 > 这是三个函数
 >> 调用方法 `get` `post`  [https://localhost:8443/author/jwt/phoneExist](#) <br>
@@ -218,7 +218,7 @@ username|用户名|
 
 <br>
 
-### 要身份验证
+## 要身份验证
 
 ___
 
@@ -227,11 +227,11 @@ ___
 
 <br>
 
-### 附加功能
+## 附加功能
 ___
 
 
-#### 防御CSRF攻击
+### 防御CSRF攻击
 
 待完善
 
