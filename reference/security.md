@@ -36,7 +36,7 @@ ___
 
 #### 登录
 
->调用方法 `get` `post`  ***/author/jwt/login***
+>调用方法 `get` `post`  **/author/jwt/login**
 
 
 参数  | 说明|
