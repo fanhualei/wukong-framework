@@ -18,6 +18,7 @@ wukong-framework
 [8:如何使用Redis缓存](reference/redis.md)<br>
 [9:如何记录log](reference/uselog.md)<br>
 [10:SpringBoot使用小技巧](reference/tip.md)<br>
+[11:防止重复提交](reference/preventrepeat.md)<br>
 
 <br>
 <br>
