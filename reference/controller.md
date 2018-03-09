@@ -1,6 +1,6 @@
-# 如何撰写API接口
+# 如何撰写API接口  
 
-###### 通过三行代码,就可以写一个用http可以访问的接口了
+###### 通过三行代码,就可以写一个用http可以访问的接口了 [例子代码](../wukong-examples/src/main/java/com/wukong/examples/controller/HelloController.java)
 
  
 > 目录
