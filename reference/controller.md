@@ -14,15 +14,16 @@
     * [上传一个或多个文件](#上传一个或多个文件)
     * [下载一个文件](#下载一个文件)
     
-* 实际开发
-    * [默认规范](#)
-    * [统一的返回格式](#)
-    * [配置访问权限](#)
+* [实际开发](#实际开发)
+    * [默认规范](#默认规范)
+    * [返回格式要统一](#返回格式要统一)
+    * [配置访问权限](#配置访问权限)
+    * [撰写swagger注释](#撰写swagger注释)
 
     
 * 接口测试
-    * [PostMan](#postman.md)
-    * [swagger2](#swagger2)
+    * [PostMan](postman.md)
+    * [swagger2](swagger2.md)
     * [TestNg](testng.md)   
     
     
@@ -185,3 +186,55 @@ public String downLoad(HttpServletResponse response)throws Exception{
     //代码略
 }
 ```
+
+<br>
+
+## 实际开发
+
+
+### 默认规范
+
+* 除了安全模块,所以接口都以 /api开头, 例如user下 /api/user/getUser;/api/user/delUser
+
+
+<br>
+### 返回格式要统一
+
+
+<br>
+
+### 配置访问权限
+
+> 配置了info接口,可以被拥有admin或user角色的对象访问
+
+```java
+@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')  ")
+@RequestMapping("/info")
+public Map<String, String> getInfo(@RequestParam String name) {
+    //代码略
+}
+```
+
+<br>
+
+### 撰写swagger注释
+
+`不建议使用`
+
+> @ApiOperation  @ApiImplicitParam 分别是swagger的注解
+
+
+```java
+@ApiOperation(value="得到名称", notes="")
+@ApiImplicitParam(name = "name", value = "用户名称", required = true, dataType = "String")
+@RequestMapping("/info")
+public Map<String, String> getInfo(@RequestParam String name) {
+    //代码略
+}
+```
+
+
+<br>
+
+
+
