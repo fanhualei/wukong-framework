@@ -1,4 +1,4 @@
-## 开发技巧
+# 开发技巧
 
 
 <br>
@@ -22,7 +22,7 @@
 
 <br>    
     
-###  无法自动装载
+##  无法自动装载
 
 `@Autowired`
 
@@ -38,7 +38,7 @@
         
 <br>    
     
-### 多module无法引用
+## 多module无法引用
 
 
 > 解决方案
@@ -51,7 +51,7 @@
 
 <br>
    
-### 关闭多数据源
+## 关闭多数据源
 
 >1 maven中注释掉druid依赖
 
@@ -80,7 +80,7 @@ spring.profiles.active=sdb
 
 <br>
 
-### 关闭security认证
+## 关闭security认证
 
 >1 注释掉security 依赖
 
@@ -130,7 +130,7 @@ spring.profiles.active=sdb
 
 <br>
 
-### 升级到SpringBoot2注意事项
+## 升级到SpringBoot2注意事项
 
 
 >遇到问题
@@ -147,7 +147,7 @@ spring.profiles.active=sdb
 <br>
 
 
-### 多module引用关系
+## 多module引用关系
 
 
 * wukong-framework( parent=null modules=All dependencies=null)
@@ -175,7 +175,7 @@ spring.profiles.active=sdb
     
 <br>
 
-### module单独测试
+## module单独测试
 
 > 问题描述
 
@@ -191,7 +191,7 @@ spring.profiles.active=sdb
     
 <br>
 
-### yml文件编辑技巧
+## yml文件编辑技巧
 
 当前不建议使用，因为添加注释不方便
 
@@ -218,7 +218,7 @@ bat:
     
 <br>
 
-### 分页插件的使用
+## 分页插件的使用
 
 > maven引用
 
@@ -241,7 +241,7 @@ bat:
     在配置文件配置：pagehelper.reasonable=true 表示-1页，成不不包错误
 
 
-### maven自动部署到远程服务器
+## maven自动部署到远程服务器
 
 > 需要有人去做一下
 

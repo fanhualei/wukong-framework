@@ -1,4 +1,4 @@
-## redis的使用
+# redis的使用
 
 > 关键点
 
@@ -9,7 +9,7 @@
     
 <br>   
     
-### 1: redis key 命名规范
+## 1: redis key 命名规范
 
 > 非DB key命名规范
 
@@ -31,7 +31,7 @@
        
 <br>             
                   
-### 2: 在代码中使用redis
+## 2: 在代码中使用redis
 
 >例如：JwtTokenUtil.java 直接使用spring RedisTemplate进行操作
 
@@ -62,7 +62,7 @@
 
 <br>
 
-###  3: spring注解使用redis
+##  3: spring注解使用redis
 
 
 
@@ -108,7 +108,7 @@ public List<Role> selectRolesByUserid(Integer userid){
 
 <br>
 
-### 4: redis安装
+## 4: redis安装
 
     安装
         sudo apt-get install redis-server

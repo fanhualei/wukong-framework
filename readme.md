@@ -4,7 +4,6 @@ wukong-framework
 
 `springboot2.0` `springsecurity` `testng`  `mybatis` `jwt` `https` `redis`
 
-<br>
 
 ## 快速掌握
 
@@ -29,6 +28,8 @@ wukong-framework
     * [如何使用Redis缓存](reference/redis.md)
     * [SpringBoot使用小技巧](reference/tip.md)
 
+
+<br><br>
 
 
 ## 设计参考

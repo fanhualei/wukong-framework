@@ -1,21 +1,19 @@
-## jwt Token 的实现技巧
+# jwt Token 的实现技巧
 
+> 目录
 
-<br>
-
-> 关键点
-
-    1: Token的命名规则与redis存储技巧
-    2: Token校验规则
-    3: Token往redis追加与清空的规则
-    4: redis存储技巧
+* [token的命名规则](#token的命名规则)
+* [token校验规则](#token校验规则)
+* [token往redis追加与清空规则](#token往redis追加与清空规则)
+* [redis存储技巧](#redis存储技巧)
+    
     
     
 
 <br>
 
 
-### Token的命名规则
+## token的命名规则
 
     例如：wukong:security:token:1:dkdsdsds
     wukong+security+{userid}+{create}
@@ -26,7 +24,7 @@
     坏处：token比较多(解决方案，今后可以做个定时清空)
 
 
-### Token校验规则
+## token校验规则
 
     +与redis中的对比
         1:与redis存储的是否一致
@@ -35,7 +33,7 @@
         1:当前用户是否禁用
         2:当前用户是否修改了密码
 
-### Token往redis追加与清空的规则
+## token往redis追加与清空规则
 
     1:用户Login成功后，会新产生一个Token，并添加到redis
     2:用户拿着老的Token，来请求新Token时，需要更新redis中的token
@@ -45,7 +43,7 @@
     3:用户修改密码，可以清空这个用户下的redis Token(也可以不清空)
     
 
-### redis存储技巧
+## redis存储技巧
     
     得到一个token: get wukong+security+{userid}+{sign} 
     刷新一个token: put wukong+security+{userid}+{sign} , newvalue
