@@ -69,7 +69,7 @@ cellphone | 手机号码 |
 //success
 {
     "code": 0,
-    "msg": "success",
+    "message": "success",
     "data":{
       "verifycode":"1234"
     }
@@ -80,7 +80,7 @@ cellphone | 手机号码 |
 //error
 {
     "code": 1,
-    "msg": "错误信息"
+    "message": "错误信息"
 }
 ```
 
@@ -112,7 +112,7 @@ cellphone | 手机号码 |
 //success
 {
     "code": 0,
-    "msg": "success",
+    "message": "success",
     "data":{
       "token":"服务器生成的token数值"
     }
@@ -123,7 +123,7 @@ cellphone | 手机号码 |
 //error
 {
     "code": 1,
-    "msg": "错误信息"
+    "message": "错误信息"
 }
 ```
 
@@ -149,7 +149,7 @@ cellphone | 手机号码 |
 
 ### 通过手机短信登录
 
->调用方法 `get` `post`  [https://localhost:8443/author/jwt/loginByPhoneMsg](#)
+>调用方法 `get` `post`  [https://localhost:8443/author/jwt/loginByPhonemessage](#)
 
 参数  | 说明|
 --------- | --------|
@@ -161,7 +161,7 @@ verifycode|验证码|
 //success
 {
     "code": 0,
-    "msg": "success",
+    "message": "success",
     "data":{
       "token":"服务器生成的token数值"
     }
@@ -201,7 +201,7 @@ summary|加密字段,加密方法（Key+type+openId+timeStamp 顺序进行MD5加
 //success
 {
     "code": 0,
-    "msg": "success",
+    "message": "success",
     "data": {
         "userid": 123,
         "nickName": "",
@@ -236,7 +236,7 @@ username|用户名|
 //success
 {
     "code": 0,
-    "msg": "success",
+    "message": "success",
     "data":{
       "phoneExist":true,  
       "emailExist":true,
@@ -270,7 +270,7 @@ username|用户名|
 //success
 {
     "code": 0,
-    "msg": "success",
+    "message": "success",
     "data":{
       "token":"服务器生成的token数值"
     }
@@ -291,7 +291,7 @@ username|用户名|
 //success
 {
     "code": 0,
-    "msg": "success",
+    "message": "success",
     "data":{
       "prtoken":"prtoken"
     }
@@ -318,7 +318,7 @@ username|用户名|
 //success
 {
     "code": 0,
-    "msg": "success",
+    "message": "success",
     "data":{
       "token":"服务器生成的token数值"
     }
