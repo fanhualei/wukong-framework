@@ -13,7 +13,7 @@ wukong-framework
     * 部署到服务器上
 
 * 基础开发
-    * [如何撰写API接口](#reference/controller.md)
+    * [如何撰写API接口](reference/controller.md)
     * 如何撰写数据库操作
  
 * 单元测试
