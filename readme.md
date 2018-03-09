@@ -7,13 +7,16 @@ wukong-framework
 
 ## 快速掌握
 
-* [环境配置](reference/readme.md "开打环境配置文档")
+* 环境配置
+    * [开发环境配置](reference/readme.md "开打环境配置文档")
+    * 服务器环境配置
+    * 部署到服务器上
 
-* 基本开发
-    * 如何撰写API接口
+* 基础开发
+    * [如何撰写API接口](#reference/controller.md)
     * 如何撰写数据库操作
  
-* 测试
+* 单元测试
     * 如何使用TestNG测试
     * 如何使用postMan测试
 
