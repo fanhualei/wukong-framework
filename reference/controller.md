@@ -2,8 +2,7 @@
 
 ###### 通过三行代码,就可以写一个用http可以访问的接口了
 
-为了快速测试,可以使用 [PostMan](#postman.md) [TestNg](testng.md) [swagger2](#swagger2)
-
+ 
 > 目录
 
 * [基础概念](#基础概念)
@@ -16,9 +15,16 @@
     * [下载一个文件](#下载一个文件)
     
 * 实际开发
+    * [默认规范](#)
     * [统一的返回格式](#)
     * [配置访问权限](#)
-    * [swagger应用](#)
+
+    
+* 接口测试
+    * [PostMan](#postman.md)
+    * [swagger2](#swagger2)
+    * [TestNg](testng.md)   
+    
     
 <br>    
     
