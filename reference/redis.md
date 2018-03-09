@@ -1,22 +1,22 @@
 # redis的使用
 
-> 关键点
+> 目录
 
-    1: redis使用规范
-    2: 在代码中使用redis
-    3：通过注解使用redis
-    4:redis安装
+* [redis-key命名规范](#redis-key命名规范)
+* [在代码中使用redis](#在代码中使用redis)
+* [通过注解使用redis](#通过注解使用redis)
+* [redis安装](#redis安装)
     
 <br>   
     
-## 1: redis key 命名规范
+## redis-key命名规范
 
-> 非DB key命名规范
+### 非DB key命名规范
 
     key = wukong:模块名称:缓存名字:主键
         例如tonken缓存的命名 key = wukong:security:token:{userid}
         
-> DB层查询key命名规范
+### DB层查询key命名规范
 
     1:保存对象
         key= 表名:主键值  value=对象
@@ -31,7 +31,7 @@
        
 <br>             
                   
-## 2: 在代码中使用redis
+## 在代码中使用redis
 
 >例如：JwtTokenUtil.java 直接使用spring RedisTemplate进行操作
 
@@ -62,11 +62,11 @@
 
 <br>
 
-##  3: spring注解使用redis
+##  通过注解使用redis
 
 
 
->3.1:工程追加注解 @EnableCaching
+### 工程追加注解 @EnableCaching
 
 ```java
 @SpringBootApplication()
@@ -77,7 +77,7 @@ public class DemoApplication implements CommandLineRunner {
 ```
 <br>
 
->3.2:类 追加 @CacheConfig
+### 类 追加 @CacheConfig
 
 ```java
 @Service
@@ -89,7 +89,7 @@ public class RoleService {
 ```
 <br>
 
->3.3:方法上 追加 @Cacheable
+### 方法上 追加 @Cacheable
 
 ```java
 // @Cacheable 会先查询缓存，如果缓存中存在，则不执行方法
@@ -100,7 +100,7 @@ public List<Role> selectRolesByUserid(Integer userid){
 ```
 <br>
 
->3.4:其他
+### 其他
 
         Mybatis中使用redis        
         http://blog.csdn.net/dream_broken/article/details/72602218 
@@ -108,7 +108,7 @@ public List<Role> selectRolesByUserid(Integer userid){
 
 <br>
 
-## 4: redis安装
+## redis安装
 
     安装
         sudo apt-get install redis-server
@@ -126,4 +126,7 @@ public List<Role> selectRolesByUserid(Integer userid){
         删除一个        del key1   
         删除所有数据     flushall
         
-[redis使用说明](https://www.cnblogs.com/zongfa/p/7808807.html  "打开网页")        
+
+> 参考文献:
+        
+* [redis使用说明](https://www.cnblogs.com/zongfa/p/7808807.html  "打开网页")        
