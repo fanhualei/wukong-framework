@@ -1,14 +1,14 @@
-## 如何使用log
+# 如何使用log
 
-> 关键点
+> 目录
 
-    1: 代码中加入log
-    2: 配置log输出
+* [代码中加入log](#代码中加入log)
+* [配置log输出](#配置log输出)
 
 <br>
 
 
-### 1: 代码中加入log
+## 代码中加入log
 
 >使用lombok，一定要用@Slf4j
 
@@ -25,4 +25,13 @@ public class UserService {
 
 <br>
 
-### 2: 配置log输出
+## 配置log输出
+
+```properties
+#日志
+#输出dao
+logging.level.com.wukong.security.dao=DEBUG
+
+#springframework.web下所有的输出
+logging.level.org.springframework.web=DEBUG 
+```
