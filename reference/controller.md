@@ -198,6 +198,7 @@ public String downLoad(HttpServletResponse response)throws Exception{
 
 
 <br>
+
 ### 返回格式要统一
 
 
@@ -205,7 +206,7 @@ public String downLoad(HttpServletResponse response)throws Exception{
 
 ### 配置访问权限
 
-> 配置了info接口,可以被拥有admin或user角色的对象访问
+> @PreAuthorize , info可以被拥有admin或user角色的用户访问
 
 ```java
 @PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')  ")
@@ -219,7 +220,7 @@ public Map<String, String> getInfo(@RequestParam String name) {
 
 ### 撰写swagger注释
 
-`不建议使用`
+`不建议使用,因为这些内容可以在代码外写`
 
 > @ApiOperation  @ApiImplicitParam 分别是swagger的注解
 
