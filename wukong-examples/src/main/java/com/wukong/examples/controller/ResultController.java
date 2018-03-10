@@ -2,22 +2,19 @@ package com.wukong.examples.controller;
 
 
 import com.wukong.examples.entity.City;
-import org.hibernate.validator.constraints.Length;
 
 
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.validation.constraints.Email;
 
 @RestController
 @RequestMapping("/result")
-@Validated
 public class ResultController {
 
 
+    /**
+     * 一个对象的自动包裹
+     */
 
     @RequestMapping("/success")
     public City success() {
@@ -25,12 +22,16 @@ public class ResultController {
         return city;
     }
 
-
+    /**
+     * 异常的自动包裹
+     */
     @RequestMapping("/fail")
-    public String fail(@RequestParam @Length(min = 6,max = 50) String name
-                ,@RequestParam @Email  String email
-                ,@RequestParam  String cellPhone) {
-        return name+"ok";
+    public String fail(Integer code) {
+
+        if(code!=0){
+            throw new RuntimeException("故意抛出的错误");
+        }
+        return "ok";
     }
 
 }
