@@ -1,5 +1,6 @@
-package com.wukong.core.result;
+package com.wukong.core.handler;
 
+import com.wukong.core.result.*;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -32,12 +33,12 @@ public class ResponseResultHandler implements ResponseBodyAdvice<Object> {
 
         if (resultClazz.isAssignableFrom(PlatformResult.class)) {
             if (body instanceof DefaultErrorResult) {
-//                DefaultErrorResult defaultErrorResult = (DefaultErrorResult) body;
-//                return PlatformResult.builder()
-//                        .code(Integer.valueOf(defaultErrorResult.getCode()))
-//                        .msg(defaultErrorResult.getMessage())
-//                        .data(defaultErrorResult.getErrors())
-//                        .build();
+                DefaultErrorResult defaultErrorResult = (DefaultErrorResult) body;
+                return PlatformResult.builder()
+                        .code(Integer.valueOf(defaultErrorResult.getCode()))
+                        .msg(defaultErrorResult.getMessage())
+                        .data(defaultErrorResult.getErrors())
+                        .build();
             }
 
             return PlatformResult.success(body);

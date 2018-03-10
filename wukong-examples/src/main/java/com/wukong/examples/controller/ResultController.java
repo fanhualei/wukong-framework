@@ -39,8 +39,18 @@ public class ResultController {
      * 异常的自动包裹
      * http://localhost:8080/result/fail?code=1
      */
-    @RequestMapping("/fail")
-    public String fail(Integer code) {
+    @RequestMapping("/fail1")
+    public String fail1(Integer code) {
+
+        if(code!=null & code!=0){
+            throw new RuntimeException("my throws error");
+        }
+        return "ok";
+    }
+
+    @RequestMapping("/fail2")
+    @ResponseResult
+    public String fail2(Integer code) {
 
         if(code!=null & code!=0){
             throw new RuntimeException("my throws error");

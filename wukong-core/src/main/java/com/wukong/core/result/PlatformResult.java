@@ -1,6 +1,7 @@
 package com.wukong.core.result;
 
 
+import com.wukong.core.enums.ResultCode;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -54,14 +55,14 @@ public class PlatformResult implements Result {
 
     public static PlatformResult failure(String message) {
         PlatformResult result = new PlatformResult();
-        result.setCode(ResultCode.PARAM_IS_INVALID.getCode());
+        result.setCode(ResultCode.PARAM_IS_INVALID.code());
         result.setMsg(message);
         return result;
     }
 
     private void setResultCode(ResultCode code) {
-        this.code = code.getCode();
-        this.msg = code.getMessage();
+        this.code = code.code();
+        this.msg = code.message();
     }
 
 }
