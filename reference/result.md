@@ -9,7 +9,7 @@
 
 ## API返回格式
 
-> 通过注解@ResponseResult实现方法,[代码](../wukong-examples/src/main/java/com/wukong/examples/controller/ResultController.java) 
+> 添加注解就可以返回统一的格式
 
 ```java
 @RequestMapping("/success1")
@@ -25,6 +25,10 @@ public City success2() {
     return city;
 }
 ```
+
+[详细代码](../wukong-examples/src/main/java/com/wukong/examples/controller/ResultController.java) 
+
+<br>
 
 > 不加注解:https://localhost:8443/result/success1
 
