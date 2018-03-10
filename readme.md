@@ -7,24 +7,27 @@ wukong-framework
 
 ## 快速掌握
 
-* 环境配置
+* [环境配置](reference/readme.md "开打环境配置文档")
     * [开发环境配置](reference/readme.md "开打环境配置文档")
-    * 服务器环境配置
-    * 部署到服务器上
+    * [服务器环境配置](reference/readme.md "开打环境配置文档")
+    * [部署到服务器上](reference/readme.md "开打环境配置文档")
 
 * 基础开发
     * [如何撰写API接口](reference/controller.md)
-    * 如何撰写数据库操作
+    * [如何撰写数据库操作](reference/database.md)
  
 * 单元测试
-    * 如何使用TestNG测试
-    * 如何使用postMan测试
+    * [如何使用TestNG测试](reference/testng.md)
+    * [如何使用postMan测试](reference/postman.md)
+    * [如何使用swagger进行测试](reference/swagger2.md)
 
 * 安全
     * [security功能说明](reference/security.md)
-    * [关闭与开启security认证](reference/tip.md) `见·关闭security认证·小节`
+    * [如何配置权限](reference/security-config.md)
     * [防止重复提交](reference/preventrepeat.md)
-    * 如何配置权限
+    * [关闭与开启security认证](reference/tip.md) `见·关闭security认证·小节`
+    
+
 
 * 其他
     * [如何记录log](reference/uselog.md)

@@ -5,15 +5,7 @@
  
 > 目录
 
-* [基础概念](#基础概念)
-    * [返回一个字符串](#返回一个字符串)
-    * [返回一个map对象](#返回一个map对象)
-    * [返回一个list包含map对象](#返回一个list包含map对象)
-    * [返回一个list包含city对象](#返回一个list包含city对象)
-    * [request参数是city对象](#request参数是city对象)
-    * [上传一个或多个文件](#上传一个或多个文件)
-    * [下载一个文件](#下载一个文件)
-    
+
 * [实际开发](#实际开发)
     * [默认规范](#默认规范)
     * [返回格式要统一](#返回格式要统一)
@@ -25,9 +17,77 @@
     * [PostMan](postman.md)
     * [swagger2](swagger2.md)
     * [TestNg](testng.md)   
+
+* [基础概念](#基础概念)
+    * [返回一个字符串](#返回一个字符串)
+    * [返回一个map对象](#返回一个map对象)
+    * [返回一个list包含map对象](#返回一个list包含map对象)
+    * [返回一个list包含city对象](#返回一个list包含city对象)
+    * [request参数是city对象](#request参数是city对象)
+    * [上传一个或多个文件](#上传一个或多个文件)
+    * [下载一个文件](#下载一个文件)
     
+   
     
 <br>    
+
+
+## 实际开发
+
+
+### 默认规范
+
+* 除了安全模块,所以接口都以 /api开头, 例如user下 /api/user/getUser;/api/user/delUser
+
+
+<br>
+
+### 返回格式要统一
+
+> 用code msg data形式返回
+
+    {"code":0,"msg":"success","data":{"id":1,"name":"city1","code":"001"}}
+
+
+详情见:[添加注解就可以返回统一的格式](result.md)
+
+
+<br>
+
+### 配置访问权限
+
+> @PreAuthorize , info可以被拥有admin或user角色的用户访问
+
+```java
+@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')  ")
+@RequestMapping("/info")
+public Map<String, String> getInfo(@RequestParam String name) {
+    //代码略
+}
+```
+
+<br>
+
+### 撰写swagger注释
+
+`不建议使用,因为这些内容可以在代码外写`
+
+> @ApiOperation  @ApiImplicitParam 分别是swagger的注解
+
+
+```java
+@ApiOperation(value="得到名称", notes="")
+@ApiImplicitParam(name = "name", value = "用户名称", required = true, dataType = "String")
+@RequestMapping("/info")
+public Map<String, String> getInfo(@RequestParam String name) {
+    //代码略
+}
+```
+
+
+<br>
+
+
     
 ## 基础概念
 
@@ -188,54 +248,5 @@ public String downLoad(HttpServletResponse response)throws Exception{
 ```
 
 <br>
-
-## 实际开发
-
-
-### 默认规范
-
-* 除了安全模块,所以接口都以 /api开头, 例如user下 /api/user/getUser;/api/user/delUser
-
-
-<br>
-
-### 返回格式要统一
-
-
-<br>
-
-### 配置访问权限
-
-> @PreAuthorize , info可以被拥有admin或user角色的用户访问
-
-```java
-@PreAuthorize("hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')  ")
-@RequestMapping("/info")
-public Map<String, String> getInfo(@RequestParam String name) {
-    //代码略
-}
-```
-
-<br>
-
-### 撰写swagger注释
-
-`不建议使用,因为这些内容可以在代码外写`
-
-> @ApiOperation  @ApiImplicitParam 分别是swagger的注解
-
-
-```java
-@ApiOperation(value="得到名称", notes="")
-@ApiImplicitParam(name = "name", value = "用户名称", required = true, dataType = "String")
-@RequestMapping("/info")
-public Map<String, String> getInfo(@RequestParam String name) {
-    //代码略
-}
-```
-
-
-<br>
-
 
 
