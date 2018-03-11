@@ -23,7 +23,7 @@ public class PlatformResult implements Result {
 
     private Integer code;
 
-    private String msg;
+    private String message;
 
     private Object data;
 
@@ -56,13 +56,13 @@ public class PlatformResult implements Result {
     public static PlatformResult failure(String message) {
         PlatformResult result = new PlatformResult();
         result.setCode(ResultCode.PARAM_IS_INVALID.code());
-        result.setMsg(message);
+        result.setMessage(message);
         return result;
     }
 
     private void setResultCode(ResultCode code) {
         this.code = code.code();
-        this.msg = code.message();
+        this.message = code.message();
     }
 
 }

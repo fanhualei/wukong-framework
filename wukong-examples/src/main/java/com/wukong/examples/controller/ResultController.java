@@ -1,6 +1,7 @@
 package com.wukong.examples.controller;
 
 
+import com.wukong.core.exceptions.UserNotLoginException;
 import com.wukong.core.result.ResponseResult;
 import com.wukong.examples.entity.City;
 
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Email;
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping("/result")
@@ -64,6 +65,48 @@ public class ResultController {
     }
 
 
+    /**
+     * 测试返回类型
+     */
+
+    @RequestMapping("/type1")
+    public Object type1(@RequestParam Integer code)
+    {
+        return type(code);
+    }
+
+    @RequestMapping("/type2")
+    @ResponseResult
+    public Object type2(@RequestParam Integer code)
+    {
+        return type(code);
+    }
+
+    private Object type(Integer code){
+        if(code==1){
+            return new String("测试返回的函数");
+        }else if(code==2) {
+            return 1;
+        }else if(code==3){
+            return null;
+        }else if(code==4){
+            Map<String,String> ren=new HashMap<>();
+            ren.put("key1","value1");
+            ren.put("key2","value2");
+            return ren;
+        }else if(code==5){
+            List<String> list = new ArrayList<>();
+            list.add("user1");
+            list.add("user2");
+            return list;
+        }else if(code==6){
+            return new Date();
+        }else if(code==7){
+            return new Exception("dddd");
+        }
+        return null;
+    }
+
 
 
     /**
@@ -82,8 +125,14 @@ public class ResultController {
     }
     //通过不同的code 得到错误信息
     private String exception(Integer code){
-        if(code!=null & code!=0){
+        if(code==1){
             throw new RuntimeException("my throws error");
+        }else if(code==2){
+            throw new NullPointerException();
+        }else if(code==3){
+            throw new NumberFormatException();
+        }else if(code==4){
+            throw new UserNotLoginException();
         }
         return "ok";
     }

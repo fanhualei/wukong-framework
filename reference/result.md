@@ -1,16 +1,34 @@
 # API返回格式与全局异常捕获
 
+
+
+
+
 > 目录
 
+* [注意事项](#注意事项)
 * [API返回格式](#api返回格式)
 * [全局异常捕获](#全局异常捕获)
-    * [系统异常](#系统异常)
-        * [参数校验异常](#参数校验异常)
-        * [安全校验异常](#安全校验异常)
-        * [空指针异常](#空指针异常)
+    * [参数校验异常](#参数校验异常)
+    * [其他系统错误](#其他系统错误)
     * [自定义异常](#自定义异常)
 
 <br>
+
+## 注意事项
+
+以下信息十分重要
+
+> @ResponseResult 的适用范围
+* 不建议添加到Class上
+* 添加到函数上,不能返回String类型
+
+> 不完善的地方
+* 当参数不完整的情况下,返回成功状态 code=1
+
+
+
+
 
 ## API返回格式
 
@@ -54,11 +72,143 @@ public City success2() {
 
 <br>
 
+### 参数校验异常
+
+通过下面地址访问:http://localhost:8080/result/para1?name=12&email=189.cn&cellPhone=123
+
+> 例子代码
+
+```java
+/**
+ * 测试参数异常
+ */
+@RequestMapping("/para1")
+public String para1(@RequestParam @Valid @Length(min = 6,max = 50)  String name
+        ,@RequestParam @Valid @Email String email
+        ,@RequestParam String cellPhone
+) {
+    return "name:"+name+";"+"email:"+email+";"+"cellPhone:"+cellPhone+";";
+}
+
+@RequestMapping("/para2")
+@ResponseResult
+public String para2(@RequestParam @Valid @Length(min = 6,max = 50) String name
+        ,@RequestParam  @Valid @Email String email
+        ,@RequestParam  String cellPhone
+) {
+    return "name:"+name+";"+"email:"+email+";"+"cellPhone:"+cellPhone+";";
+}
+```
 
 
 
+> 没有添加@ResponseResult的返回结果
+
+```json
+{
+    "status": 400,
+    "error": "Bad Request",
+    "message": "参数无效",
+    "code": 10001,
+    "path": "/result/para1",
+    "exception": "javax.validation.ConstraintViolationException",
+    "errors": [
+        {
+            "fieldName": "email",
+            "message": "不是一个合法的电子邮件地址"
+        },
+        {
+            "fieldName": "name",
+            "message": "长度需要在6和50之间"
+        }
+    ],
+    "timestamp": "2018-03-11T13:34:30.611+0000"
+}
+```
 
 
+> 添加@ResponseResult的返回结果
+
+```json
+{
+    "code": 10001,
+    "message": "参数无效",
+    "data": [
+        {
+            "fieldName": "email",
+            "message": "不是一个合法的电子邮件地址"
+        },
+        {
+            "fieldName": "name",
+            "message": "长度需要在6和50之间"
+        }
+    ]
+}
+```
+
+<br>
+
+###  其他系统错误
+
+> 没有添加@ResponseResult的返回结果
+
+```json
+{
+    "status": 500,
+    "error": "Internal Server Error",
+    "message": "系统繁忙，请稍后重试",
+    "code": 40001,
+    "path": "/result/exception1",
+    "exception": "java.lang.RuntimeException",
+    "errors": null,
+    "timestamp": "2018-03-11T13:46:48.246+0000"
+}
+```
+
+
+> 添加@ResponseResult的返回结果
+
+```json
+{
+    "code": 40001,
+    "message": "系统繁忙，请稍后重试",
+    "data": null
+}
+```
+
+<br>
+
+### 自定义异常
+
+
+
+> 没有添加@ResponseResult的返回结果
+
+```json
+{
+    "status": 401,
+    "error": "Unauthorized",
+    "message": "用户未登录",
+    "code": 20001,
+    "path": "/result/exception1",
+    "exception": "com.wukong.core.exceptions.UserNotLoginException",
+    "errors": null,
+    "timestamp": "2018-03-11T13:51:11.305+0000"
+}
+```
+
+
+> 添加@ResponseResult的返回结果
+
+```json
+{
+    "code": 20001,
+    "message": "用户未登录",
+    "data": null
+}
+```
+
+<br>
 
 
 
