@@ -4,12 +4,17 @@
 
 * [API返回格式](#api返回格式)
 * [全局异常捕获](#全局异常捕获)
+    * [系统异常](#系统异常)
+        * [参数校验异常](#参数校验异常)
+        * [安全校验异常](#安全校验异常)
+        * [空指针异常](#空指针异常)
+    * [自定义异常](#自定义异常)
 
 <br>
 
 ## API返回格式
 
-> 添加注解就可以返回统一的格式
+> 添加`@ResponseResult`注解,统一返回格式
 
 ```java
 @RequestMapping("/success1")
@@ -30,13 +35,16 @@ public City success2() {
 
 <br>
 
+> 添加注解:https://localhost:8443/result/success2
+
+    {"code":0,"msg":"success","data":{"id":1,"name":"city1","code":"001"}}
+
+
 > 不加注解:https://localhost:8443/result/success1
 
     {"id":1,"name":"city1","code":"001"}
 
-> 添加注解:https://localhost:8443/result/success2
 
-    {"code":0,"msg":"success","data":{"id":1,"name":"city1","code":"001"}}
 
 
 <br>

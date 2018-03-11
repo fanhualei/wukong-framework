@@ -5,11 +5,13 @@ import com.wukong.core.result.ResponseResult;
 import com.wukong.examples.entity.City;
 
 
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/result")
+@Validated
 public class ResultController {
 
 
@@ -57,5 +59,9 @@ public class ResultController {
         }
         return "ok";
     }
+
+
+
+
 
 }
