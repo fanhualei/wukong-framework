@@ -1,18 +1,21 @@
 # Validator数据校验的使用
 
 >目录
-* [基本用法](#基本用法)
-    * [在controller类上校验参数](#在controller类上校验参数)
-    * [在model类上检验属性](#在model类上检验属性)
-    * [常用的validator](#常用的validator)
+* 基本用法
+    * [controller上加校验](#controller上加校验)
+    * [bean上加校验](#bean上加校验)
+    * [在函数内部进行校验](#在函数内部进行校验)
+
 * [自定义Validator](#自定义validator)
-* [提示国际化](#提示国际化)
+* 其他参考
+    * [常用的validator](#常用的validator)    
+    * [提示国际化](#提示国际化)
 
 <br>
 
 ##基本用法
 
-### 在controller类上校验参数
+### controller上加校验
 
 >使用方法
 * Class添加@Validated
@@ -23,25 +26,44 @@
 
 ```java
 @RestController
-@RequestMapping("/result")
+@RequestMapping("/validator")
 @Validated
-public class ResultController {
-    @RequestMapping("/fail")
-    public String fail(@RequestParam @Length(min = 6,max = 50) String name
-                ,@RequestParam @Email  String email
-                ,@RequestParam  String cellPhone) {
-        return name+"ok";
+public class ValidatorController {
+
+    @RequestMapping("/para1")
+    public Map para1(@RequestParam @Valid @Length(min = 6,max = 50)  String name
+            ,@RequestParam @Valid @Email String email
+            ,@RequestParam String cellPhone
+    ) {
+
+        return para(name,email,cellPhone);
     }
-}
+
+    @RequestMapping("/para2")
+    @ResponseResult
+    public Map para2(@RequestParam @Valid @Length(min = 6,max = 50) String name
+            ,@RequestParam  @Valid @Email String email
+            ,@RequestParam  String cellPhone
+    ) {
+        return para(name,email,cellPhone);
+    }
+
+    private Map para(String name,String email,String cellPhone){
+        String str= "name:"+name+";"+"email:"+email+";"+"cellPhone:"+cellPhone+";";
+        return new HashMap<String,String>(){{
+            put("para", str);
+        }};
+    }
+}    
 ```
 
 <br>
 
->测试 访问 /result/fail?name=11&email=email&cellPhone=3333 
+>测试 访问 /validator/para1?name=11&email=email&cellPhone=3333 
 
-由于添加了安全模块,需要用TestNg进行测试,见ResultControllerTests代码
 
->测试结果
+
+>测试结果(没有加全局错误处理)
 
 ```youtrack
 2018-03-10 12:26:37.656 ERROR 6524 --- [o-auto-1-exec-7] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is javax.validation.ConstraintViolationException: fail.name: 长度需要在6和50之间, fail.email: 不是一个合法的电子邮件地址] with root cause
@@ -50,6 +72,49 @@ javax.validation.ConstraintViolationException: fail.name: 长度需要在6和50�
 ```
 
 
+
+
+<br>
+
+### bean上加校验
+
+> bean添加校验代码
+
+```java
+@Data
+public class City {
+    @Range(min = 1, max = 20, message = "id只能从1-20")
+    private int id;
+    @Length(min = 6,max = 50)
+    private String name;
+    private String code;
+}
+```
+
+
+
+
+
+
+<br>
+
+### 在函数内部进行校验
+
+
+<br>
+
+
+
+
+
+<br>
+
+## 自定义Validator
+
+<br>
+
+
+## 其他参考
 
 
 ### 常用的validator
@@ -94,15 +159,9 @@ javax.validation.ConstraintViolationException: fail.name: 长度需要在6和50�
 
 
 
-<br>
+### 提示国际化
 
-## 自定义Validator
-
-<br>
-
-## 提示国际化
-
-### class目录添加两个文件
+#### class目录添加两个文件
 
 > 必须用ValidationMessages开头
 

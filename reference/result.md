@@ -225,6 +225,7 @@ public String para2(@RequestParam @Valid @Length(min = 6,max = 50) String name
     
     
 * Exception统一处理
+    * [企业实战之spring增强器实现《全局异常处理器》](http://blog.csdn.net/aiyaya_/article/details/78725755)
 
 * 不正确的解决方法
     * [Java 接口返回类](https://www.jianshu.com/p/d8f2939d6a36)
