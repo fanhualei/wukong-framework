@@ -48,3 +48,12 @@
 
 ## 可以下载的postman脚本
 
+
+
+
+***
+
+> 参考资料
+
+* [postman的使用方法详解！最全面的教程](https://www.cnblogs.com/Skyyj/p/6856728.html)
+* [讲解了可以从cvs中获取](https://www.jianshu.com/p/dd0db1b13cfc)
