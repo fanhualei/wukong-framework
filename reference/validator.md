@@ -91,23 +91,70 @@ public class City {
 }
 ```
 
+> controller代码,必须添加@Valid才有作用
 
+```java
+@RequestMapping("/bean2")
+public City bean2(@RequestBody @Valid City city) {
+    return bean(city);
+}
+```
 
+> postman中制造错误信息
 
-
+```json
+{
+    "status": 400,
+    "error": "Bad Request",
+    "message": "参数无效",
+    "code": 10001,
+    "path": "/validator/bean2",
+    "exception": "org.springframework.web.bind.MethodArgumentNotValidException",
+    "errors": [
+        {
+            "fieldName": "id",
+            "message": "id只能从1-20"
+        },
+        {
+            "fieldName": "name",
+            "message": "长度需要在6和50之间"
+        }
+    ],
+    "timestamp": "2018-03-12T03:34:09.653+0000"
+}
+```
 
 <br>
 
 ### 在函数内部进行校验
 
+在接口处@Validated添加BindingResult,可以在函数体内得到错误信息
+
+> 测试代码
+
+```java
+@RequestMapping("/method2")
+public String method2(@RequestBody @Validated  City city
+        ,BindingResult result
+) {
+
+    if(result.hasErrors()) {
+        List<ObjectError> list = result.getAllErrors();
+        for (ObjectError error : list) {
+            System.out.println(error.getCode() + "---" + error.getArguments() + "---" + error.getDefaultMessage());
+        }
+    }
+    return city.getName()+"ok";
+}
+```
+
+> @Validated与@Valid是有区别的,建议用@Valid直接抛出异常
+
+
 
 <br>
 
 
-
-
-
-<br>
 
 ## 自定义Validator
 

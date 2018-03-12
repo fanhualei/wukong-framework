@@ -21,9 +21,9 @@ public class City implements Serializable {
 
     private static final long serialVersionUID = 3221700752972709820L;
 
-//    @Range(min = 1, max = 20, message = "id只能从1-20")
+    @Range(min = 1, max = 20, message = "id只能从1-20")
     private int id;
-//    @Length(min = 6,max = 50)
+    @Length(min = 6,max = 50)
     private String name;
     private String code;
 }

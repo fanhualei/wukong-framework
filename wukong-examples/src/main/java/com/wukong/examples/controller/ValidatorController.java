@@ -49,6 +49,11 @@ public class ValidatorController {
         }};
     }
 
+    @RequestMapping("/bean0")
+    public City bean0(City city) {
+        return bean(city);
+    }
+
 
     @RequestMapping("/bean1")
     public City bean1(@RequestBody City city) {
@@ -91,7 +96,7 @@ public class ValidatorController {
     }
 
     @RequestMapping("/method2")
-    public String method2(@RequestParam @Valid City city
+    public Object method2(@RequestBody @Validated  City city
             ,BindingResult result
     ) {
 
@@ -100,8 +105,25 @@ public class ValidatorController {
             for (ObjectError error : list) {
                 System.out.println(error.getCode() + "---" + error.getArguments() + "---" + error.getDefaultMessage());
             }
+//            return result;
         }
         return city.getName()+"ok";
     }
+
+    @RequestMapping("/method3")
+    public Object method3(@RequestBody @Valid  City city
+            ,BindingResult result
+    ) {
+
+        if(result.hasErrors()) {
+            List<ObjectError> list = result.getAllErrors();
+            for (ObjectError error : list) {
+                System.out.println(error.getCode() + "---" + error.getArguments() + "---" + error.getDefaultMessage());
+            }
+//            return result;
+        }
+        return city.getName()+"ok";
+    }
+
 
 }
