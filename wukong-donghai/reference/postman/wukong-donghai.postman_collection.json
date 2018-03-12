@@ -1,0 +1,140 @@
+{
+	"info": {
+		"name": "wukong-donghai",
+		"_postman_id": "16d2dca2-7e82-8783-425d-6708682b1634",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "security",
+			"description": "",
+			"item": [
+				{
+					"name": "/author/jwt/login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "09de5611-0ec8-49c9-a58b-30d025284626",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code is 200\"] = responseCode.code === 200;",
+									"tests[\"body contains no authenticated\"] = !responseBody.has(\"authenticated\");",
+									"",
+									"",
+									"try {",
+									"    var data = JSON.parse(responseBody);",
+									"    ",
+									"    console.log(data.token);",
+									"    ",
+									"    postman.setGlobalVariable('token', data.token);",
+									"",
+									"}",
+									"catch(e) {",
+									"    console.log('Cannot parse response,probably not a JSON');",
+									"}",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "username",
+									"value": "admin",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "admin",
+									"description": "",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/author/jwt/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"author",
+								"jwt",
+								"login"
+							]
+						},
+						"description": ""
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "hello",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "f6dd87fb-52e0-4529-b658-6e23198ddcde",
+						"type": "text/javascript",
+						"exec": [
+							"console.log(\"================run hello======================\");",
+							"",
+							"",
+							"console.log(postman.getGlobalVariable('token'));"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "9e97912e-1b9e-4bf2-9088-fbe9118a1f1b",
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"response code is 200\"] = responseCode.code === 200;",
+							"tests[\"返回正确结果\"] = responseBody === \"Hello World\";"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}"
+					}
+				],
+				"body": {},
+				"url": {
+					"raw": "http://127.0.0.1:8080/hello",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"hello"
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

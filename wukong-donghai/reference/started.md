@@ -13,6 +13,7 @@
     * [设置authorization](#设置authorization)
     * [设置调试代码](#设置调试代码)
     * [撰写测试用例](#撰写测试用例)
+* [PostMan脚本](postman/wukong-donghai.postman_collection.json)    
         
 <br>
 
