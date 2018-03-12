@@ -29,6 +29,7 @@
         <module>wukong-generator</module>
         <module>wukong-security</module>
         <module>wukong-parent</module>
+        <module>wukong-donghai</module>
     </modules>
 
 
