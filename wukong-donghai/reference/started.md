@@ -1,16 +1,14 @@
 # 快速开始
 
 
-本节只介绍,利用postman快速测试一个被安全防护的hello接口
-
-`问题描述` <br>
-直接访问 http://127.0.0.1:8080/hello,会出错.
+`待解决问题` <br>
+未登录时直接访问会出错,例如: http://127.0.0.1:8080/hello
 
 > 目录
 
 * [login](#login)
     * [配置login用户名密码](#配置login用户名密码)
-    * [将token放入全局变量中](将token放入全局变量中)
+    * [将token放入全局变量中](#将token放入全局变量中)
 * [HelloWorld](#helloworld)
     * [设置authorization](#设置authorization)
     * [设置调试代码](#设置调试代码)
