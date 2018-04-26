@@ -16,6 +16,9 @@
         <relativePath>../wukong-parent</relativePath>
     </parent>
 
+
+
+
     <packaging>war</packaging>
 
     <dependencies>
@@ -29,20 +32,42 @@
 
 
         <!--安全方面-->
+        <!--<dependency>-->
+            <!--<groupId>io.jsonwebtoken</groupId>-->
+            <!--<artifactId>jjwt</artifactId>-->
+            <!--<version>0.7.0</version>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.boot</groupId>-->
+            <!--<artifactId>spring-boot-starter-security</artifactId>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>com.runzhichina.wukong</groupId>-->
+            <!--<artifactId>wukong-security</artifactId>-->
+            <!--<version>1.1.RELEASE</version>-->
+        <!--</dependency>-->
+
+
+        <!--微信小程序-->
         <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt</artifactId>
-            <version>0.7.0</version>
+            <groupId>com.github.binarywang</groupId>
+            <artifactId>weixin-java-miniapp</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.3.2</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.runzhichina.wukong</groupId>
-            <artifactId>wukong-security</artifactId>
-            <version>1.1.RELEASE</version>
-        </dependency>
+
+
+
+
+
 
 
         <!-- Test -->
@@ -67,11 +92,11 @@
             <artifactId>assertj-core</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.apache.httpcomponents</groupId>
-            <artifactId>httpclient</artifactId>
-            <scope>test</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.apache.httpcomponents</groupId>-->
+            <!--<artifactId>httpclient</artifactId>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
 
     </dependencies>
 
