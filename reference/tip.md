@@ -16,6 +16,7 @@
 * [yml文件编辑技巧](#yml文件编辑技巧)<bt>
 * [分页插件的使用](#分页插件的使用)<br>
 * [maven自动部署到远程服务器](#maven自动部署到远程服务器)<br>
+* [部署Tomcat的注意事项](#部署tomcat的注意事项)
     
 
 
@@ -249,3 +250,31 @@ bat:
 
 [参考资料2](https://www.cnblogs.com/Mercurial/p/8007358.html) <br>
 
+
+## 部署Tomcat的注意事项
+
+### 修改wukong-parent pom.xml文件
+
+> 将spring-boot-starter-tomcat设置成provided
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-tomcat</artifactId>
+    <scope>provided</scope>
+</dependency>
+```
+
+### 修改application
+
+> 继承 SpringBootServletInitializer
+
+```java
+public class DonghaiApplication extends SpringBootServletInitializer {
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+        // 设置启动类,用于独立tomcat运行的入口
+        return builder.sources(DonghaiApplication.class);
+    }
+}
+```
