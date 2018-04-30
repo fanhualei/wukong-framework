@@ -255,19 +255,29 @@ bat:
 
 ### 修改wukong-parent pom.xml文件
 
-> 将spring-boot-starter-tomcat设置成provided
+> tomcat依赖中写入exclusion
+
+不采用这个方法 <!--<scope>provided</scope>-->
 
 ```xml
 <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-tomcat</artifactId>
-    <scope>provided</scope>
+
+    <exclusions>
+        <exclusion>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+        </exclusion>
+    </exclusions>
 </dependency>
 ```
 
 ### 修改application
 
 > 继承 SpringBootServletInitializer
+
+需要注视到调试的代码
 
 ```java
 public class DonghaiApplication extends SpringBootServletInitializer {
@@ -278,3 +288,41 @@ public class DonghaiApplication extends SpringBootServletInitializer {
     }
 }
 ```
+
+
+### 修改comcat中的server.xml
+
+sudo gedit server.xml  <br>
+
+添加了<Context >标签
+
+```xml
+<Host name="localhost"  appBase="webapps"
+            unpackWARs="true" autoDeploy="true">
+
+    <!-- SingleSignOn valve, share authentication between web applications
+         Documentation at: /docs/config/valve.html -->
+    <!--
+    <Valve className="org.apache.catalina.authenticator.SingleSignOn" />
+    -->
+
+    <!-- Access log processes all example.
+         Documentation at: /docs/config/valve.html
+         Note: The pattern used is equivalent to using pattern="common" -->
+    <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs"
+           prefix="localhost_access_log" suffix=".txt"
+           pattern="%h %l %u %t &quot;%r&quot; %s %b" />
+    
+    <Context path="" docBase="/home/fan/tomcat/apache-tomcat-9.0.2/webapps/wk" debug="0" reloadable="true"/>
+
+</Host>
+
+```
+
+
+
+
+### 参考网址
+
+[这个不一定对,但是可以参考](https://www.cnblogs.com/icewee/articles/7698455.html)
+
