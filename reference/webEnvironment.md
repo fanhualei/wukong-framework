@@ -219,7 +219,46 @@ ff02::2 ip6-allrouters
    * wk.conf 悟空的配置文件,在apache下做ln
  * 这样做的目的是,今后好维护
  
- 
+ > 操作步骤
+ * /opt下建立wk目录
+    * sudo mkdir wk
+ * 将tomcat 复制到wk目录下
+    * sudo cp -r apache-tomcat-9.0.2/ /opt/wk/
+ * 配置新的tomcat
+    * 删除这个tomcat下无用webapp
+    * 修改tomcat的默认端口
+        * 端口记录在conf/server.xml
+        * tomcat默认的端口是8080，还会占用8005，8009和8443端口
+        * 修改/conf/server.xml
+        * 端口修改成 20180 20105 20109 20143 
+        * 今后以开头201,202,202增加(不能超过65536) 
+        * TODO自动写一个变量,今后不用修改server.xml文件就好了.
+    * 将工程指向webapp
+        * <Context path="" docBase="../../webapp" debug="0" reloadable="true"/>    
+        * 在webapp建立一个index.html,用来做测试.
+    * 启动Tomcat,测试是否成功
+        * http://127.0.0.1:20180/ 是否显示出相关页面
+ * 配置Apache的反向代理
+    * 在/opt/wk下,建立Apache的配置文件wk.conf
+    ```xml
+    <VirtualHost *:80>
+    	ServerName www.wk.com
+    	ProxyPass / http://127.0.0.1:20180/
+    	ProxyPassReverse / http://127.0.0.1:20180/
+    
+    	ServerAdmin webmaster@localhost
+    	DocumentRoot /var/www/html
+    
+    	ErrorLog ${APACHE_LOG_DIR}/wk_error.log
+    	CustomLog ${APACHE_LOG_DIR}/wk_access.log combined
+    </VirtualHost>
+    
+    ```
+    * 在Apache中做ln链接,并启动Apache           
+        * cd /etc/apache2/sites-enabled
+        * sudo ln -s /opt/wk/wk.conf ./
+        * sudo service apache2 restart
+        * http://www.wk.com/ is result
  
  
  
