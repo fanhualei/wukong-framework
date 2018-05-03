@@ -4,7 +4,7 @@
 
 
 * [软件安装](#软件安装)
-    * [安装系统](#安装系统)
+    * [安装Ubuntu系统](#安装ubuntu系统)
     * [安装JDK](#安装jdk)
     * [安装Tomcat](#安装tomcat)
     * [设置Host文件](#设置host文件)
@@ -30,11 +30,14 @@
  
   <br>
   
- ### 安装系统
+ ### 安装Ubuntu系统
  
  * 开发环境,推荐安装Ubuntu18. 
  * 服务器环境,推荐安装Ubuntu 16.04 
  [安装教程](https://jingyan.baidu.com/article/3c48dd348bc005e10be358eb.html)
+ * 安全很重要
+    * root的弱口令,很快被攻破,成为挖矿机
+    * 需要有人去研究,如何加固Ubuntu.(王老师)
  
  <br>
  
@@ -157,6 +160,8 @@ ff02::2 ip6-allrouters
   /usr/local/sbin/apachectl graceful
 
  
+ <br>
+ 
  ### Apache反向代理Tomcat
  
  有时候80端口被Apache占用,服务器上还有很多其他服务,例如tomcat node等.<br>
@@ -195,9 +200,37 @@ ff02::2 ip6-allrouters
   * 重启 apache2 service httpd2 restart
   * 可以通过命令 netstat -ant  查看步骤5中运行时系统监听的端口号状况
  
+ <br>
+ 
+ 
+ ### 安装第二个Tomcat
+ 
+ > 目的
+ * 让Apache反向代理两个tomcat
+ * 输入wx.wk.com被apache代理到第一个tomcat
+ * 输入www.wk.com被apache代理到第二个tomcat
+ 
+ > 目录规划
+ * /opt下建立wk目录
+ * wk目录下防止如下信息
+   * wk.sql  数据库脚本
+   * tomcat  悟空的web服务器
+   * webapp  悟空的应用程序
+   * wk.conf 悟空的配置文件,在apache下做ln
+ * 这样做的目的是,今后好维护
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
  
  ## 部署程序
+ 
+ * 使用ssh登录:ssh [-l login_name] [-p port] [user@]hostname
+    * 例如:ssh -l root -p 1422  47.95.11.138
  
  
  

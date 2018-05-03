@@ -13,7 +13,7 @@ wukong-framework
 * [环境配置](reference/readme.md "开打环境配置文档")
     * [开发环境配置](reference/readme.md "开打环境配置文档")
     * [服务器环境配置](reference/webEnvironment.md "开打环境配置文档")
-    * [部署到服务器上](reference/readme.md "开打环境配置文档")
+    * [部署到服务器上](reference/ci.md "部署到服务器上")
 
 * 基础开发
     * [如何撰写API接口](reference/controller.md)
