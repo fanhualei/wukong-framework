@@ -200,6 +200,44 @@ ff02::2 ip6-allrouters
   * 重启 apache2 service httpd2 restart
   * 可以通过命令 netstat -ant  查看步骤5中运行时系统监听的端口号状况
  
+ > Apache的启动脚本
+ 
+ * 做一些脚本放到/opt好操作
+ 
+ * 启动脚本,友好的提示代理的tomcat
+ ```youtrack
+    #! /bin/bash
+    echo 'start apache! '
+    /etc/init.d/apache2 start
+    echo 'http://www.wk.com proxy http://127.0.0.1:20180'
+    echo 'http://wx.wk.com  proxy http://127.0.0.1:8080'
+    echo 'http://127.0.0.1'
+```
+ 
+ * 检测apache的状态脚本
+
+```youtrack
+    #!/bin/bash
+     
+    # 判断apache是否启动
+    # Author:James 2016-10-14
+     
+    # apache所在机器的IP(默认apache端口为80)
+    ipport=127.0.0.1
+     
+    # 获取apache是否启动状态(通过-w全量匹配tcp的80端口)
+    isopen=$(nmap $ipport| grep -w 80/tcp | grep http | awk '{print $2}')
+     
+    if [ "$isopen" == "open" ]
+       then
+            echo "Apache is runing..... $(date)   " 
+       else
+            echo "Apache is stop        $(date)   " 
+    fi
+``` 
+ 
+ 
+ 
  <br>
  
  
@@ -212,7 +250,7 @@ ff02::2 ip6-allrouters
  
  > 目录规划
  * /opt下建立wk目录
- * wk目录下防止如下信息
+ * wk目录与文件信息
    * wk.sql  数据库脚本
    * tomcat  悟空的web服务器
    * webapp  悟空的应用程序
@@ -260,7 +298,17 @@ ff02::2 ip6-allrouters
         * sudo service apache2 restart
         * http://www.wk.com/ is result
  
- 
+ * 配置Tomcat的Shell脚本
+    * 在/opt目录下建立,这样操作方便
+    * /opt/tomcat-startup.sh 与 /opt/tomcat-shutdown.sh
+```youtrack
+    #! /bin/bash
+    echo 'start 2  tomcat! '
+    '/opt/wk/apache-tomcat-9.0.2/bin/startup.sh'
+    '/home/fan/tomcat/apache-tomcat-9.0.2/bin/startup.sh'
+    echo 'http://127.0.0.1:20180'
+    echo 'http://127.0.0.1:8080'
+```
  
  
  
@@ -269,7 +317,7 @@ ff02::2 ip6-allrouters
  ## 部署程序
  
  * 使用ssh登录:ssh [-l login_name] [-p port] [user@]hostname
-    * 例如:ssh -l root -p 1422  47.95.11.138
+    * 例如:ssh -l root -p 22  47.95.33.158
  
  
  
