@@ -14,7 +14,10 @@
 * 到Idea代码生成目录,将代码复制到webapp中
     * 例如:/IdeaProjects/wukong-framework/wukong-examples/target/wukong-examples-1.1.RELEASE
 ```youtrack
-sudo cp -ar ./*  /opt/wk/webapp/
+sudo chown fan /opt/wk/webapp
+cd /opt/wk/webapp
+jar -xvf /home/fan/IdeaProjects/wukong-framework/wukong-examples/target/wukong-examples-1.1.RELEASE.war
+
 ```
 
 * 启动Tomcat与Apache
