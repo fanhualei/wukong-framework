@@ -35,7 +35,7 @@ wukong-framework
 * 其他
     * [如何记录log](reference/uselog.md)
     * [如何使用Redis缓存](reference/redis.md)
-    * [如何使用ActiveMq](reference/activemq.md)
+    * [消息队列使用](reference/mq.md)
     * [如何使用elasticsearch](reference/elasticsearch.md)
     * [SpringBoot使用小技巧](reference/tip.md)
     * [bugs一些错误](reference/bugs.md)
