@@ -31,7 +31,7 @@
         * sudo rabbitmq-plugins enable rabbitmq_mqtt 官网上多了一个web
     
 * Java安装    
-    * [springboot(八)：RabbitMQ详解](#https://www.cnblogs.com/ityouknow/p/6120544.html)
+    * [springboot(八)：RabbitMQ详解](https://www.cnblogs.com/ityouknow/p/6120544.html)
     * [springboot2.0 连接rabbitmq处理消息](https://www.2cto.com/kf/201804/738015.html)
     * [使用rabbitmq做为mqtt服务器，整合spring做推送后台](https://my.oschina.net/u/1047640/blog/819418)
 
@@ -44,20 +44,26 @@
 
 * 常见命令
     * 访问路径:http://localhost:15672/
+    
     * 启动 RabbitMQ 服务
         * sudo systemctl enable rabbitmq-server
         * sudo systemctl start rabbitmq-server
+        
     * 查看状态
         * sudo systemctl status rabbitmq-server
+        
     * 重新启动
         * sudo systemctl restart rabbitmq-server
         
     * 查看 RabbitMQ 版本
         * sudo rabbitmqctl status | grep rabbit
+        
     * 查看可用插件及已安装插件
         * sudo rabbitmq-plugins list
+        
     * 查看用户
         * sudo rabbitmqctl list_users
+        
     * 添加管理用户
         * sudo rabbitmqctl add_user admin yourpassword
         * sudo rabbitmqctl set_user_tags admin administrator        
