@@ -30,6 +30,7 @@
         <module>wukong-security</module>
         <module>wukong-parent</module>
         <module>wukong-donghai</module>
+        <module>wukong-rabbitmq</module>
     </modules>
 
 
