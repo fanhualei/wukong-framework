@@ -67,4 +67,14 @@
     * 添加管理用户
         * sudo rabbitmqctl add_user admin yourpassword
         * sudo rabbitmqctl set_user_tags admin administrator        
+    
+> 基本功能
+
+* 1对1
+* 1对n
+* 发送对象与接收对象
+* Topic Exchange
+* Fanout Exchange 广播模式或者订阅模式
+* [参考网址](https://www.cnblogs.com/ityouknow/p/6120544.html)
+* [例子代码](https://github.com/ityouknow/spring-boot-examples/tree/master/spring-boot-rabbitmq/src/main)
                       
