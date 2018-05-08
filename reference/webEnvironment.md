@@ -12,7 +12,7 @@
     * [Apache反向代理Tomcat](#apache反向代理tomcat)
     * [安装第二个Tomcat](#安装第二个tomcat)
 * [关键点](#关键点)
-    * [Web环境配置](#Web环境配置)
+    * [Https配置](#https配置)
     * [负载均衡配置](#负载均衡配置)
     * [模块二级域名分配](#模块二级域名分配)
     * [安全设置](#安全设置)
@@ -314,10 +314,32 @@ ff02::2 ip6-allrouters
  
  
  
+ 
+ 
+ 
  ## 部署程序
  
  * 使用ssh登录:ssh [-l login_name] [-p port] [user@]hostname
     * 例如:ssh -l root -p 22  47.95.33.158
+ 
+ 
+ 
+ ## 关键点
+ 
+ ### Https配置
+ 
+ > 注意事项
+ 
+ * [参照网址-包含如何申请](https://blog.csdn.net/gary_yan/article/details/77981303)
+ 
+ * https://blog.csdn.net/tiercel2008/article/details/7726302
+ 
+ * https://www.cnblogs.com/xuliangwei/p/8626139.html
+ 
+ ```xml
+
+```
+ 
  
  
  

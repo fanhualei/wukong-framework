@@ -1,5 +1,21 @@
 # security模块使用说明
 
+
+> TODO 安全模块代码的修改
+
+* JwtAuthenticationTokenFilter extends OncePerRequestFilter 这个过滤器不恰当
+    *  看看这个过滤器是否合适UsernamePasswordAuthenticationFilter
+    * [参考网址](https://blog.csdn.net/haiyan_qi/article/details/77373900)
+* 在service的函数上通过注解添加redis乱码的问题.
+    * 如果在springboot2.0不行,那就先放放.
+* 每次访问过滤器的时候,不能每次都调用数据库.怎么解决?
+* 实验问题
+    * 生命周期 SecurityContextHolder.getContext().setAuthentication(authentication)
+        * authentication 是否在contorler中得到用户id,这个controller调用其他controller,是否会继续传递下去.
+       
+
+
+
 >参考
 
 重点
