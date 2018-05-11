@@ -176,11 +176,11 @@ ff02::2 ip6-allrouters
  
  >配置步骤
  
- * 启动apache的proxy功能
+ * 启动apache的proxy功能(必须用shudo 如果ln文件出现红色,那么就不能启动apache)
     * cd /etc/apache2/mods-available
-    * ln -s ./proxy.conf ../mods-enabled/
-    * ln -s ./proxy_http.load ../mods-enabled/
-    * ln -s ./proxy.load ../mods-enabled/
+    * sudo ln -s ./proxy.conf ../mods-enabled/
+    * sudo ln -s ./proxy_http.load ../mods-enabled/
+    * sudo ln -s ./proxy.load ../mods-enabled/
  * 在sites-enabled建立新配置文件
     * 如果输入wx.wk.com转到tomcat的127.0.0.1:8080端口
  ```xml

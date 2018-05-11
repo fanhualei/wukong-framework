@@ -21,6 +21,7 @@ public String getInfo(String name) {
 }
 ```
 
+
 ### 用户的角色在定义在user_role表中
 
 > [数据库表结构](sql/security/schema.sql)

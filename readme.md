@@ -39,6 +39,7 @@ wukong-framework
     * [如何使用elasticsearch](reference/elasticsearch.md)
     * [SpringBoot使用小技巧](reference/tip.md)
     * [bugs一些错误](reference/bugs.md)
+    * [gitlab使用](reference/gitlab.md)
 
 
 <br><br>
