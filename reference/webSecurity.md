@@ -5,6 +5,7 @@
 
 * os安全配置
     * [变更22端口](#变更22端口)
+    * [关闭ping ICMP协议](https://yq.aliyun.com/ziliao/78192)
 
 * apache安全配置
     * [关闭目录检索](#关闭目录检索)
@@ -15,9 +16,9 @@
 
 * nginx安全配置
 
-* redis安全配置
+* [redis安全配置](redis.md#redis安全设置)
 
-* mysql安全配置
+* [mysql安全配置](mysql.md#安全配置)
 
 * gitlab安全配置
 

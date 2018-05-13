@@ -6,8 +6,46 @@
 * [在代码中使用redis](#在代码中使用redis)
 * [通过注解使用redis](#通过注解使用redis)
 * [redis安装](#redis安装)
+* [redis安全设置](#redis安全设置)
     
 <br>   
+
+
+## redis安装
+
+    安装
+        sudo apt-get install redis-server
+    检查状态
+        sudo /etc/init.d/redis-server status
+    登录redis即获得帮助
+        redis-cli
+        help    
+    基本使用命令
+        查看所有的key列表  keys *
+        增加一条记录key1  set key1 "hello"
+        得到数据         get key1
+        增加一条数字记录  set key2 1
+        让数字自增       INCR key2
+        删除一个        del key1   
+        删除所有数据     flushall
+        
+
+> 参考文献:
+        
+* [redis使用说明](https://www.cnblogs.com/zongfa/p/7808807.html  "打开网页") 
+
+
+<br>
+
+##redis安全设置
+
+* [参考网址](https://blog.csdn.net/u011574239/article/details/78892174)
+
+* 绑定只能本地才能访问(默认已经是了)
+* 设置访问密码(这个没有做,今后可以做)
+* 删除特殊命令
+
+
     
 ## redis-key命名规范
 
@@ -108,25 +146,4 @@ public List<Role> selectRolesByUserid(Integer userid){
 
 <br>
 
-## redis安装
-
-    安装
-        sudo apt-get install redis-server
-    检查状态
-        sudo /etc/init.d/redis-server status
-    登录redis即获得帮助
-        redis-cli
-        help    
-    基本使用命令
-        查看所有的key列表  keys *
-        增加一条记录key1  set key1 "hello"
-        得到数据         get key1
-        增加一条数字记录  set key2 1
-        让数字自增       INCR key2
-        删除一个        del key1   
-        删除所有数据     flushall
-        
-
-> 参考文献:
-        
-* [redis使用说明](https://www.cnblogs.com/zongfa/p/7808807.html  "打开网页")        
+       
