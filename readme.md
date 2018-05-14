@@ -1,6 +1,8 @@
 wukong-framework
 ===
 
+gitlab
+
 
 `springboot2.0` `springsecurity` `testng`  `mybatis` `jwt` `https` `redis`
 
