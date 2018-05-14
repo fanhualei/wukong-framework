@@ -6,7 +6,7 @@
 * [软件安装](#软件安装)
     * [安装Ubuntu系统](#安装ubuntu系统)
     * [安装JDK](#安装jdk)
-    * [安装Tomcat](#安装tomcat)
+    * [安装Tomcat](tomcat.md#安装tomcat)
     * [设置Host文件](#设置host文件)
     * [安装Apache](#安装apache)
     * [Apache反向代理Tomcat](#apache反向代理tomcat)
@@ -66,31 +66,7 @@
  
  <br>
  
- ### 安装Tomcat
  
- > 注意事项
- * 推荐安装tomcat-9.0.2
- * [参考网址](https://www.linuxidc.com/Linux/2017-06/144809.htm)
- * 遇到权限问题,使用下面命令
-    * sudo chmod 755 -R tomcat # 是修改tomcat的权限
-    * sudo chmod fan tomcat # 这个是将某个目录的权限赋值给fan用户
- * Tomcat启动比较慢   
- 
- > 安装步骤
- 
- * 下载Tomcat
- * 解压Tomcat
- * 修改Tomcat下的startup.sh文件
-    * 主要是设置Java的环境
- * 修改Tomcat下的shutdown.sh文件,同上
- * 启动tomcat
- * 查看是否安装成功 http://127.0.0.1:8080 或 http://127.0.0.1:8080/examples  
- 
- > 常用命令
- 
- * cd /home/fan/tomcat/apache-tomcat-9.0.2/bin/
- * 启动 sudo ./startup.sh
- * 关闭 sudo ./shutdown.sh
  
  
  
