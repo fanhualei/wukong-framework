@@ -4,9 +4,11 @@
 * 基本用法
     * [controller上加校验](#controller上加校验)
     * [bean上加校验](#bean上加校验)
-    * [在函数内部进行校验](#在函数内部进行校验)
+    * [在函数内捕获错误但不抛出异常](#在函数内捕获错误但不抛出异常)
+    * [在函数内部进行校验抛出异常](#在函数内部进行校验抛出异常)
+    * [在自定义validator进行校验](#在自定义validator进行校验)
 
-* [自定义Validator](#自定义validator)
+
 * 其他参考
     * [常用的validator](#常用的validator)    
     * [提示国际化](#提示国际化)
@@ -126,7 +128,7 @@ public City bean2(@RequestBody @Valid City city) {
 
 <br>
 
-### 在函数内部进行校验
+### 在函数内捕获错误但不抛出异常
 
 在接口处@Validated添加BindingResult,可以在函数体内得到错误信息
 
@@ -156,7 +158,7 @@ public String method2(@RequestBody @Validated  City city
 
 
 
-## 自定义Validator
+## 在自定义validator进行校验
 
 <br>
 
