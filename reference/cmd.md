@@ -7,6 +7,7 @@
 * [文件目录操作]()
 * [权限操作]()
 * [远程登录操作]()
+* [其他操作](#其他操作)
 
 <br>
 
@@ -76,3 +77,19 @@
 
 
 
+
+
+
+
+## 其他操作
+
+
+### 命令行下访问http
+
+* w3m www.baidu.com
+
+* [linux 命令行模式下，浏览网页方法](https://blog.csdn.net/qq_35346390/article/details/76066326)
+
+### 判断tomcat是否启动
+
+* ps -ef |grep tomcat

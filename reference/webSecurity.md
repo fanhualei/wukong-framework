@@ -12,7 +12,7 @@
     * [不显示版本号与端口号](#不显示版本号与端口号)
     * [apache相关资料](#apache相关资料)
 
-* tomcat安全配置
+* [tomcat安全配置](#tomcat安全配置)
 
 * nginx安全配置
 
@@ -66,3 +66,24 @@
  
 ### apache相关资料
 [确保Apache Web服务器安全的8种安全设置技巧](http://www.laozuo.org/5503.html)
+
+
+
+## tomcat安全配置
+
+
+[参考网址](https://blog.csdn.net/lysinely/article/details/79005616)
+
+
+* 删除webapps目录下的所有文件，禁用tomcat管理界面
+    *  rm -rf
+* 注释或删除tomcat-users.xml文件内的所有用户权限(默认已经隐藏)
+* 隐藏版本信息，修改conf/server.xml(没有找到)
+* 关闭自动部署war
+
+
+
+
+
+
+
