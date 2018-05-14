@@ -13,6 +13,8 @@
     * [安装第二个Tomcat](#安装第二个tomcat)
     * [安装Mysql](mysql.md)
     * [安装redis](redis.md)
+    * [安装gitlab](gitlab.md)
+    * [gitlab中nginx方向代理](gitlab_apache.md)
 * [关键点](#关键点)
     * [Https配置](#https配置)
     * [负载均衡配置](#负载均衡配置)
