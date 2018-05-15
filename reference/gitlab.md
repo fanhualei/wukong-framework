@@ -69,7 +69,7 @@ Host 47.92.0.57
 * [IDEA 配置多个SSH key](https://blog.csdn.net/xiaolyuh123/article/details/78352614)
 
 
-#建立工程从服务器
+### 建立工程从服务器
 
 * 主要步骤
 
@@ -92,9 +92,12 @@ Host 47.92.0.57
 
 ![alt](imgs/idea_git_new_project_3.png)
 
+<br><br><br>
 
 ### idea中可以提交github也可以提交gitlab
 
 原先的工程在github上，现在需要既能提交github又能提交gitlab
+
+上午还行，下午就不行了，难道是没有ｍｅｒｇｅ的问题？？？？
 
     
