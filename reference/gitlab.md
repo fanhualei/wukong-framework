@@ -4,7 +4,7 @@
 
 
 * [gitLab基本用法](#gitlab基本用法)
-    * [设置ssh key](#设置ssh key)
+    * [设置ssh_key](#设置ssh_key)
     * [建立工程从服务器](#建立工程从服务器)
     * [idea中可以提交github也可以提交gitlab](#idea中可以提交github也可以提交gitlab)
 
@@ -24,7 +24,7 @@
 ## gitlab基本用法
 
 
-### 设置ssh key
+### 设置ssh_key
 
 使用ssh提交代码，比较安全
 
