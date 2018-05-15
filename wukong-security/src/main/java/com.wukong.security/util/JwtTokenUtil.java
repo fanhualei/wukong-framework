@@ -14,7 +14,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 
 @Component
@@ -118,7 +119,16 @@ public class JwtTokenUtil {
         ValueOperations<String, String> ops = template.opsForValue();
         String key=REDIS_TOKEN+userid+":"+getDateStr(createDate);
         ops.set(key,token);
+        template.expire(key,expiration,TimeUnit.SECONDS);
     }
+
+    private void delTokenFromRedisByUid(Integer userid){
+        String key=REDIS_TOKEN+userid+":*";
+        System.out.println(key);
+        Set<String> keySet=template.keys(key);
+        template.delete(keySet);
+    }
+
 
     //从缓存中得到token
     private String getTokenFromRedis(Integer userid,Date createDate){
@@ -170,19 +180,21 @@ public class JwtTokenUtil {
     /**
      * 是否可以刷新token
      * @param token
-     * @param lastPasswordReset  最后修改密码的时间
      * @return
      */
-    public Boolean canTokenBeRefreshed(String token, Date lastPasswordReset) {
-        final Date created = getCreatedDateFromToken(token);
-        return !isCreatedBeforeLastPasswordReset(created, lastPasswordReset)
-                && !isTokenExpired(token);
+    public Boolean canTokenBeRefreshed(String token) {
+//        final Date created = getCreatedDateFromToken(token);
+//        return !isCreatedBeforeLastPasswordReset(created, lastPasswordReset)
+//                && !isTokenExpired(token);
+        String key=REDIS_TOKEN+getUseridFromToken(token)+":"+getDateStr(getCreatedDateFromToken(token));
+        return template.hasKey(key);
     }
 
     //@todo 要重新设置缓存
     public String refreshToken(String token) {
         String refreshedToken;
         try {
+            if (!canTokenBeRefreshed(token)) throw new  Exception(); //TODO :应该写为单独的异常类
             final Claims claims = getClaimsFromToken(token);
             claims.put(CREATED, new Date());
             refreshedToken = generateToken(claims);
@@ -197,35 +209,46 @@ public class JwtTokenUtil {
         }
         return refreshedToken;
     }
-
-
     // @TODO 不能访问一次就查询数据库一次，不能只凭借用户名进行验证，应该把token放入到redis中
     //判断token是否有限，有很多方法，我可以把生成的token放入到缓存进行判断
-    public Boolean validateToken(String token, UserDetails userDetails) {
-        CustomUserDetails user = (CustomUserDetails) userDetails;
-
-
+    //token 的时效由redis控制，管理
+    public Boolean validateToken(String token) {
         final Date created = getCreatedDateFromToken(token);
-
-        String tokenFromRedis=getTokenFromRedis(user.getUserId(),created);
+        final Integer userid=getUseridFromToken(token);
+        if(userid==null||created==null){
+            return false;
+        }
+        String tokenFromRedis=getTokenFromRedis(userid,created);
         if(!token.equals(tokenFromRedis)){
             return false;//与服务中存储的不一致,token被修改
         }
-
-        if(isTokenExpired(token)){
-            return false; //token 过期
-        }
-
-
-        if(isCreatedBeforeLastPasswordReset(created, user.getPwresetdate())){
-            return false; //用户修改过密码，需要重新登录
-        }
-
-        if(!user.isEnabled()){
-            return false; //用户的账户被停用
-        }
-
         return true;
+
+//        CustomUserDetails user = (CustomUserDetails) userDetails;
+//
+//
+//        final Date created = getCreatedDateFromToken(token);
+//
+//        String tokenFromRedis=getTokenFromRedis(user.getUserId(),created);
+//        if(!token.equals(tokenFromRedis)){
+//            return false;//与服务中存储的不一致,token被修改
+//        }
+//
+//        if(isTokenExpired(token)){
+//            return false; //token 过期
+//        }
+//
+//
+//        if(isCreatedBeforeLastPasswordReset(created, user.getPwresetdate())){
+//            return false; //用户修改过密码，需要重新登录
+//        }
+//
+//        if(!user.isEnabled()){
+//            return false; //用户的账户被停用
+//        }
+//
+//        return true;
     }
+
 
 }
