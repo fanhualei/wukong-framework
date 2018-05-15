@@ -15,7 +15,7 @@ public class RedisConfig extends JCacheConfigurerSupport{
     /**
      *  设置 redis 数据默认过期时间
      *  设置@cacheable 序列化方式
-     * @return
+     * @return 配置类
      */
     @Bean
     public RedisCacheConfiguration redisCacheConfiguration(){
