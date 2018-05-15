@@ -6,6 +6,8 @@ import com.wukong.security.service.RoleService;
 import com.wukong.security.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -17,6 +19,7 @@ import java.util.List;
 
 @Service
 @Slf4j
+@CacheConfig(cacheNames = "wukong:auth")
 public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private UserService userService;
@@ -26,6 +29,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 
     @Override
+    @Cacheable(key="#p0")
     public UserDetails loadUserByUsername(String username) {
         User user = userService.selectUserByAccount(username);
         log.debug("日志输出");
