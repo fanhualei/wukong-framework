@@ -7,8 +7,10 @@
     * [设置ssh_key](#设置ssh_key)
     * [建立工程从服务器](#建立工程从服务器)
     * [idea中可以提交github也可以提交gitlab](#idea中可以提交github也可以提交gitlab)
+    * [gitlab与github代码冲突解决](#gitlab与github代码冲突解决)
     * 在小乌龟中配置git
     * [Idea中如何使用Git的基本操作](https://blog.csdn.net/shujiekeji/article/details/73896355)
+    
 
 * gitLab高级用法
     * todoList    
@@ -115,6 +117,21 @@ Host 47.92.0.57
 ![alt](imgs/gitlab_idea_2_url.png)
 
 
-> 点击［ＯＫ］按钮后，会让输入密码
+### gitlab与github代码冲突解决
 
-![alt](imgs/gitlab_idea_3_password.png)   
+> 背景
+
+* 马同学提交了变更到gitlab上，但是我没有同步到本地。
+* 我在本地变更了代码，然后提交到github上。
+* 这时候，我往gitlab上提交代码出现错误。
+* 我想从gitlab上pull代码下来也出现错误。
+
+> 解决方法
+
+* 把本地代码删除
+* 从github上获取一份新的代码(这个时候不能编辑本地的任何代码)
+* 在本地pull gitlab上的代码，系统会自动merge。
+* 然后就可以往gitlab上push代码
+* 然后就可以往github上push代码
+
+
