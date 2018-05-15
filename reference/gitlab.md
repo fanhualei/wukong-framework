@@ -7,7 +7,8 @@
     * [设置ssh_key](#设置ssh_key)
     * [建立工程从服务器](#建立工程从服务器)
     * [idea中可以提交github也可以提交gitlab](#idea中可以提交github也可以提交gitlab)
-
+    * 在小乌龟中配置git
+    * [Idea中如何使用Git的基本操作](https://blog.csdn.net/shujiekeji/article/details/73896355)
 
 * gitLab高级用法
     * todoList    
