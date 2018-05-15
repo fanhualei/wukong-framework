@@ -100,4 +100,20 @@ Host 47.92.0.57
 
 上午还行，下午就不行了，难道是没有ｍｅｒｇｅ的问题？？？？
 
-    
+> 在push时候，选择定义新的远程链接
+
+![alt](imgs/gitlab_idea_1.png)
+
+
+> 输入远程名称以及地址
+
+![alt](imgs/gitlab_idea_1_name.png)
+
+> 从gitlab服务器上取得url
+
+![alt](imgs/gitlab_idea_2_url.png)
+
+
+> 点击［ＯＫ］按钮后，会让输入密码
+
+![alt](imgs/gitlab_idea_3_password.png)   
