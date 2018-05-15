@@ -57,7 +57,10 @@ Host 47.92.0.57
 # User : 登录名
 # IdentityFile : 指明上面User对应的identityFile路径
 
-```            
+```    
+
+![alt](imgs/gitlab_createkey_1.png)
+        
 
 
 > 参考网址
