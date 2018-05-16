@@ -43,6 +43,7 @@ gitlab
     * [SpringBoot使用小技巧](reference/tip.md)
     * [bugs一些错误](reference/bugs.md)
     * [gitlab使用](reference/gitlab.md)
+    * [Https配置](reference/https.md)
 
 
 <br><br>
@@ -55,6 +56,13 @@ gitlab
 * [security库说明](wukong-security/readme.md )
 * [examples项目说明](wukong-examples/readme.md )
 * [代码生成器说明](wukong-generator/readme.md )
+
+
+
+## next todo list
+
+* 代码中的http转https没有意义，应该在nginx上配置，如果配置成功，删除这部分代码。
+* .ssh gitlab中conf起作用后，ssh无法远程登录，下周问马宇航
 
 
 
