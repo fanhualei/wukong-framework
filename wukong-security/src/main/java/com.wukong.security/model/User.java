@@ -18,6 +18,8 @@ public class User implements Serializable {
 
     private Date pwresetdate;
 
+    private Integer roleId;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getUserId() {
@@ -76,6 +78,14 @@ public class User implements Serializable {
         this.pwresetdate = pwresetdate;
     }
 
+    public Integer getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -89,6 +99,7 @@ public class User implements Serializable {
         sb.append(", phone=").append(phone);
         sb.append(", email=").append(email);
         sb.append(", pwresetdate=").append(pwresetdate);
+        sb.append(", roleId=").append(roleId);
         sb.append("]");
         return sb.toString();
     }

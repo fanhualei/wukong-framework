@@ -35,10 +35,10 @@ public interface UserMapper {
     @Insert({
         "insert into wk_user (username, password, ",
         "enabled, phone, email, ",
-        "pwResetDate)",
+        "pwResetDate, role_id)",
         "values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, ",
         "#{enabled,jdbcType=BIT}, #{phone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, ",
-        "#{pwresetdate,jdbcType=TIMESTAMP})"
+        "#{pwresetdate,jdbcType=TIMESTAMP}, #{roleId,jdbcType=INTEGER})"
     })
     @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="userId", before=false, resultType=Integer.class)
     int insert(User record);
@@ -55,13 +55,14 @@ public interface UserMapper {
         @Result(column="enabled", property="enabled", jdbcType=JdbcType.BIT),
         @Result(column="phone", property="phone", jdbcType=JdbcType.VARCHAR),
         @Result(column="email", property="email", jdbcType=JdbcType.VARCHAR),
-        @Result(column="pwResetDate", property="pwresetdate", jdbcType=JdbcType.TIMESTAMP)
+        @Result(column="pwResetDate", property="pwresetdate", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="role_id", property="roleId", jdbcType=JdbcType.INTEGER)
     })
     List<User> selectByExample(UserExample example);
 
     @Select({
         "select",
-        "user_id, username, password, enabled, phone, email, pwResetDate",
+        "user_id, username, password, enabled, phone, email, pwResetDate, role_id",
         "from wk_user",
         "where user_id = #{userId,jdbcType=INTEGER}"
     })
@@ -72,7 +73,8 @@ public interface UserMapper {
         @Result(column="enabled", property="enabled", jdbcType=JdbcType.BIT),
         @Result(column="phone", property="phone", jdbcType=JdbcType.VARCHAR),
         @Result(column="email", property="email", jdbcType=JdbcType.VARCHAR),
-        @Result(column="pwResetDate", property="pwresetdate", jdbcType=JdbcType.TIMESTAMP)
+        @Result(column="pwResetDate", property="pwresetdate", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="role_id", property="roleId", jdbcType=JdbcType.INTEGER)
     })
     User selectByPrimaryKey(Integer userId);
 
@@ -92,11 +94,11 @@ public interface UserMapper {
           "enabled = #{enabled,jdbcType=BIT},",
           "phone = #{phone,jdbcType=VARCHAR},",
           "email = #{email,jdbcType=VARCHAR},",
-          "pwResetDate = #{pwresetdate,jdbcType=TIMESTAMP}",
+          "pwResetDate = #{pwresetdate,jdbcType=TIMESTAMP},",
+          "role_id = #{roleId,jdbcType=INTEGER}",
         "where user_id = #{userId,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(User record);
-
 
     /**
      * 得到一个用户

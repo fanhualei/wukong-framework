@@ -16,8 +16,7 @@ create table wk_user (
   enabled     boolean        DEFAULT TRUE               COMMENT '是否有效',
   phone       varchar(255)                              COMMENT '手机号码',
   email       varchar(255)                              COMMENT '邮箱地址',
-  pwResetDate DATETIME       DEFAULT CURRENT_TIMESTAMP  COMMENT '最后修改密码的时间', -- 这个地方有个问题，我在通过java添加时default未生效
-  role_id     int            NOT NULL                   COMMENT '权限编号',
+  pwResetDate DATETIME       DEFAULT CURRENT_TIMESTAMP  COMMENT '最后修改密码的时间',
 
   PRIMARY KEY (user_id),
   UNIQUE KEY `uq_user_username` (`username`),
@@ -28,8 +27,8 @@ create table wk_user (
 
 -- 用 BCrypt 进行加密 ,admin密码=admin  user1密码=user1
 
-INSERT INTO wk_user(user_id,username,password,enabled,role_id) VALUES (1,'admin','$2a$10$iWIebpXWvbLyu4jYaDthdOfGcuQ99IgQBTkizHvVn6YwO94qjN9vq',true,1);
-INSERT INTO wk_user(user_id,username,password,enabled,role_id) VALUES (2,'user1','$2a$10$OVNco4o7D4PEnsSpGSxvUOMCLdb2FfEli26ccaGI7XDbK/OOx2h5q',true,2);
+INSERT INTO wk_user(user_id,username,password,enabled) VALUES (1,'admin','$2a$10$iWIebpXWvbLyu4jYaDthdOfGcuQ99IgQBTkizHvVn6YwO94qjN9vq',true);
+INSERT INTO wk_user(user_id,username,password,enabled) VALUES (2,'user1','$2a$10$OVNco4o7D4PEnsSpGSxvUOMCLdb2FfEli26ccaGI7XDbK/OOx2h5q',true);
 
 
 
@@ -50,8 +49,8 @@ create table wk_user_ex (
   weixin    varchar(50)    DEFAULT ''               COMMENT '微信号码',
   weibo     varchar(50)    DEFAULT ''               COMMENT '微博号码',
   avatar    varchar(500)   DEFAULT ''               COMMENT '头像图片路径',
-  PRIMARY KEY (user_id)
---   CONSTRAINT fk_user_ex_user FOREIGN KEY (user_id) REFERENCES wk_user (user_id)
+  PRIMARY KEY (user_id),
+  CONSTRAINT fk_user_ex_user FOREIGN KEY (user_id) REFERENCES wk_user (user_id)
 );
 
 
@@ -72,20 +71,20 @@ INSERT INTO wk_role(role_id,rolename,description) VALUES(1,"ROLE_ADMIN" ,"管理
 INSERT INTO wk_role(role_id,rolename,description) VALUES(2,"ROLE_USER"  ,"普通用户");
 
 
---
--- CREATE TABLE wk_user_role (
---   user_role_id        int      NOT NULL AUTO_INCREMENT,
---   user_id             int      NOT NULL,
---   role_id             int      NOT NULL,
---   PRIMARY KEY (user_role_id),
---   CONSTRAINT fk_user_role_user FOREIGN KEY (user_id) REFERENCES wk_user (user_id),
---   CONSTRAINT fk_user_role_role FOREIGN KEY (role_id) REFERENCES wk_role (role_id)
---
--- ) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8;
---
---
--- INSERT INTO wk_user_role(user_role_id, user_id, role_id) VALUES (1,1,1);
--- INSERT INTO wk_user_role(user_role_id, user_id, role_id) VALUES (2,2,2);
+
+CREATE TABLE wk_user_role (
+  user_role_id        int      NOT NULL AUTO_INCREMENT,
+  user_id             int      NOT NULL,
+  role_id             int      NOT NULL,
+  PRIMARY KEY (user_role_id),
+  CONSTRAINT fk_user_role_user FOREIGN KEY (user_id) REFERENCES wk_user (user_id),
+  CONSTRAINT fk_user_role_role FOREIGN KEY (role_id) REFERENCES wk_role (role_id)
+
+) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8;
+
+
+INSERT INTO wk_user_role(user_role_id, user_id, role_id) VALUES (1,1,1);
+INSERT INTO wk_user_role(user_role_id, user_id, role_id) VALUES (2,2,2);
 
 
 
@@ -110,9 +109,9 @@ CREATE TABLE wk_role_resource (
   role_resource_id    int NOT NULL AUTO_INCREMENT,
   role_id             int DEFAULT NULL,
   resource_id         int DEFAULT NULL,
-  PRIMARY KEY (role_resource_id)
---   CONSTRAINT fk_role_resource_role      FOREIGN KEY (role_id)     REFERENCES wk_role     (role_id),
---   CONSTRAINT fk_role_resource_resource  FOREIGN KEY (resource_id) REFERENCES wk_resource (resource_id)
+  PRIMARY KEY (role_resource_id),
+  CONSTRAINT fk_role_resource_role      FOREIGN KEY (role_id)     REFERENCES wk_role     (role_id),
+  CONSTRAINT fk_role_resource_resource  FOREIGN KEY (resource_id) REFERENCES wk_resource (resource_id)
 ) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8;
 
 

@@ -1,12 +1,9 @@
 package com.wukong.security.service;
 
-import com.wukong.security.dao.RoleMapper;
-import com.wukong.security.dao.UserRoleMapper;
 import com.wukong.security.model.User;
 import com.wukong.security.model.UserExample;
 import com.wukong.security.dao.UserMapper;
 
-import com.wukong.security.model.UserRole;
 import com.wukong.security.util.MyEncoder;
 import org.apache.ibatis.annotations.Param;
 
@@ -98,8 +95,6 @@ public class UserService {
     //部分字符串硬编码进去，比较dirty
     @Autowired
     private StringRedisTemplate template;
-    @Autowired
-    private UserRoleMapper userRoleMapper;
     //这个hashMap应该由一次查表得出放入内存中
     private HashMap<String,Integer>roleMap=new HashMap<String, Integer>() {
         {
@@ -110,7 +105,7 @@ public class UserService {
 
     public String getVerifyCode(String cellphone){
         //TODO 此处先通过phone字段查询用户是否存在
-        if(userMapper.isUserExistByCellphone(cellphone)==1) return null;
+        //if(userMapper.isUserExistByCellphone(cellphone)==1) return null;
         String verifyCode=String.valueOf((int)((Math.random()*9+1)*100000));//随机生成6位验证码
         ValueOperations<String, String> ops = template.opsForValue();
         String key="wukong:security:verifycode:"+cellphone;
@@ -121,6 +116,7 @@ public class UserService {
     }
     @Transactional
     public User regist(String cellphone,String password,String verifycode){
+        if(userMapper.isUserExistByCellphone(cellphone)==1) return null;
         ValueOperations<String, String> ops = template.opsForValue();
         String key="wukong:security:verifycode:"+cellphone;
         if(template.hasKey(key)){
@@ -132,13 +128,9 @@ public class UserService {
                 user.setPassword(MyEncoder.encoder(password));
                 user.setEnabled(true);
                 user.setPwresetdate(new Date());
+                user.setRoleId(roleMap.get("USER_ROLE"));
                 userMapper.insert(user);
-                user=userMapper.selectUserByAccount(user.getUsername());
-                UserRole userRole=new UserRole();
-                userRole.setUserId(user.getUserId());
-                userRole.setRoleId(roleMap.get("USER_ROLE"));
-                //log.info("USER_ROLE"+roleMap.toString());
-                userRoleMapper.insert(userRole);
+
                 return user;
 
             }
