@@ -53,7 +53,7 @@ public class JwtAuthenController {
     //此处有个问题 密码是否为明文传输，若是，我这需要进行加密，否则加密归前端
     @RequestMapping("/regist")
     public Object regist(HttpServletResponse response,@RequestParam String cellphone,@RequestParam String password,@RequestParam String verifycode )throws IOException{
-        if(!cellphone.equals("")&& !password.equals("")&&!verifycode.equals("")){
+        if(!cellphone.equals("")&& !password.equals("")&&!verifycode.equals("")){ //目前用这句话来代替有效性验证
             User user=userService.regist(cellphone,password,verifycode);
             if(user!=null){
                 String jwt = jwtTokenUtil.generateToken(user.getUsername(),user.getUserId());
@@ -67,8 +67,18 @@ public class JwtAuthenController {
         return new ResponseEntity(HttpStatus.UNAUTHORIZED);
     }
 
-//    @
-//    public Object loginByPhoneMessage(){
-//
-//    }
+    @RequestMapping("/loginByPhonemessage")
+    public Object loginByPhoneMessage(HttpServletResponse response,@RequestParam String cellphone,@RequestParam String verifycode){
+        if(!cellphone.equals("")&&!verifycode.equals("")){
+            User user=userService.loginByPhoneMessage(cellphone,verifycode);
+            if(user!=null){
+                String jwt = jwtTokenUtil.generateToken(user.getUsername(),user.getUserId());
+                response.setHeader("re_token",jwt);
+                return new HashMap<String,String>(){{
+                    put("token", jwt);
+                }};
+            }
+        }
+        return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+    }
 }

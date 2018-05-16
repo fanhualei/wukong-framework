@@ -43,6 +43,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/author/jwt/login").permitAll()
                 .antMatchers("/author/jwt/getVerifyCode").permitAll()
                 .antMatchers("/author/jwt/regist").permitAll()
+                .antMatchers("/author/jwt/loginByPhonemessage").permitAll()
                 // 除上面外的所有请求全部需要鉴权认证
                 .anyRequest().authenticated();
 

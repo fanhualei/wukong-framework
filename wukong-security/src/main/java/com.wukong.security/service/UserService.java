@@ -116,12 +116,12 @@ public class UserService {
     }
     @Transactional
     public User regist(String cellphone,String password,String verifycode){
-        if(userMapper.isUserExistByCellphone(cellphone)==1) return null;
         ValueOperations<String, String> ops = template.opsForValue();
         String key="wukong:security:verifycode:"+cellphone;
         if(template.hasKey(key)){
             if(verifycode.equals(ops.get(key))){ //verifycode之前已经验证非空故不会出错
                 template.delete(key);
+                if(userMapper.isUserExistByCellphone(cellphone)==1) return null;
                 User user=new User();
                 user.setUsername("(phone)"+cellphone);
                 user.setPhone(cellphone);
@@ -136,6 +136,17 @@ public class UserService {
             }
         }
         //log.info("return null");
+        return null;
+    }
+
+    @Transactional
+    public User loginByPhoneMessage(String cellphone,String verifycode){
+        ValueOperations<String, String> ops = template.opsForValue();
+        String key="wukong:security:verifycode:"+cellphone;
+        if(template.hasKey(key)){
+            template.delete(key);
+            return userMapper.selectByCellphone(cellphone);
+        }
         return null;
     }
 

@@ -118,7 +118,8 @@ public interface UserMapper {
             @Result(column="enabled", property="enabled", jdbcType=JdbcType.BIT),
             @Result(column="phone", property="phone", jdbcType=JdbcType.VARCHAR),
             @Result(column="email", property="email", jdbcType=JdbcType.VARCHAR),
-            @Result(column="pwResetDate", property="pwresetdate", jdbcType=JdbcType.TIMESTAMP)
+            @Result(column="pwResetDate", property="pwresetdate", jdbcType=JdbcType.TIMESTAMP),
+            @Result(column="role_id", property="role_id", jdbcType=JdbcType.INTEGER)
     })
     User selectUserByAccount( String account);
 
@@ -133,5 +134,28 @@ public interface UserMapper {
             "where  phone=#{account} "
     })
     int isUserExistByCellphone(String cellphone);
+
+    /**
+     * 依据电话号码查询用户
+     * @param cellphone 电话号码
+     */
+    @Select({
+            "select",
+            "*",
+            "from wk_user",
+            "where  phone=#{account} "
+    })
+    @Results({
+            @Result(column="user_id", property="userId", jdbcType=JdbcType.INTEGER, id=true),
+            @Result(column="username", property="username", jdbcType=JdbcType.VARCHAR),
+            @Result(column="password", property="password", jdbcType=JdbcType.VARCHAR),
+            @Result(column="enabled", property="enabled", jdbcType=JdbcType.BIT),
+            @Result(column="phone", property="phone", jdbcType=JdbcType.VARCHAR),
+            @Result(column="email", property="email", jdbcType=JdbcType.VARCHAR),
+            @Result(column="pwResetDate", property="pwresetdate", jdbcType=JdbcType.TIMESTAMP),
+            @Result(column="role_id", property="roleId", jdbcType=JdbcType.INTEGER)
+    })
+    User selectByCellphone(String cellphone);
+
 
 }
