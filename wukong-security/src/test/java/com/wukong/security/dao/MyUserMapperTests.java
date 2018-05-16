@@ -61,6 +61,10 @@ public class MyUserMapperTests extends AbstractTestNGSpringContextTests {
         List<Role> list=roleMapper.selectRolesByUserid(1);
         list.forEach(System.out::println);
     }
+    @Test
+    public void testisUserExistByCellphone(){
+        System.out.println(userMapper.isUserExistByCellphone("120"));
+    }
 
 
 

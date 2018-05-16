@@ -120,4 +120,16 @@ public interface UserMapper {
     })
     User selectUserByAccount( String account);
 
+    /**
+     * 依据电话号码检查用户是否已注册
+     * @param cellphone 电话号码
+     */
+    @Select({
+            "select",
+            "count(*)",
+            "from wk_user",
+            "where  phone=#{account} "
+    })
+    int isUserExistByCellphone(String cellphone);
+
 }

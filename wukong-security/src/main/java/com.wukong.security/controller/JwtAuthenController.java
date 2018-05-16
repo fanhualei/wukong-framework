@@ -38,4 +38,35 @@ public class JwtAuthenController {
             return new ResponseEntity(HttpStatus.UNAUTHORIZED);
         }
     }
+    //TODO 以下API待通过注解完成一个手机号码的有效性验证
+    @RequestMapping("/getVerifyCode")
+    public Object getVerifyCode(HttpServletResponse response,@RequestParam String cellphone)throws IOException{
+        if(cellphone!=null&&!cellphone.equals("")){//cellphone的验证按照设想应该有注解完成，这里仅仅验证是否为空
+            String verifyCode=userService.getVerifyCode(cellphone);
+            if(verifyCode!=null)
+                return new HashMap<String,String>(){{
+                    put("verifycode", verifyCode);
+                }};
+        }
+        return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+    }
+    //此处有个问题 密码是否为明文传输，若是，我这需要进行加密，否则加密归前端
+    @RequestMapping("/regist")
+    public Object regist(HttpServletResponse response,@RequestParam String cellphone,@RequestParam String password,@RequestParam String verifycode )throws IOException{
+        if(!cellphone.equals("")&& !password.equals("")&&!verifycode.equals("")){
+            User user=userService.regist(cellphone,password,verifycode);
+            if(user!=null){
+                String jwt = jwtTokenUtil.generateToken(user.getUsername(),user.getUserId());
+                response.setHeader("re_token",jwt);
+                return new HashMap<String,String>(){{
+                    put("token", jwt);
+                }};
+            }
+        }
+
+        return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+    }
+//    public Object loginByPhoneMessage(){
+//
+//    }
 }
