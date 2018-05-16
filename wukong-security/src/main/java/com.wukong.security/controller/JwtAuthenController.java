@@ -24,7 +24,7 @@ public class JwtAuthenController {
     private JwtTokenUtil jwtTokenUtil;
 
 
-    @RequestMapping("/login")
+    @RequestMapping("/public/login")
     public Object login(HttpServletResponse response,
                         @RequestParam String username,@RequestParam String password) throws IOException {
         User user=userService.selectUserByAccount(username);
@@ -39,7 +39,7 @@ public class JwtAuthenController {
         }
     }
     //TODO 以下API待通过注解完成一个手机号码的有效性验证
-    @RequestMapping("/getVerifyCode")
+    @RequestMapping("/public/getVerifyCode")
     public Object getVerifyCode(HttpServletResponse response,@RequestParam String cellphone)throws IOException{
         if(cellphone!=null&&!cellphone.equals("")){//cellphone的验证按照设想应该有注解完成，这里仅仅验证是否为空
             String verifyCode=userService.getVerifyCode(cellphone);
@@ -51,7 +51,7 @@ public class JwtAuthenController {
         return new ResponseEntity(HttpStatus.UNAUTHORIZED);
     }
     //此处有个问题 密码是否为明文传输，若是，我这需要进行加密，否则加密归前端
-    @RequestMapping("/regist")
+    @RequestMapping("/public/regist")
     public Object regist(HttpServletResponse response,@RequestParam String cellphone,@RequestParam String password,@RequestParam String verifycode )throws IOException{
         if(!cellphone.equals("")&& !password.equals("")&&!verifycode.equals("")){ //目前用这句话来代替有效性验证
             User user=userService.regist(cellphone,password,verifycode);
@@ -67,7 +67,7 @@ public class JwtAuthenController {
         return new ResponseEntity(HttpStatus.UNAUTHORIZED);
     }
 
-    @RequestMapping("/loginByPhonemessage")
+    @RequestMapping("/public/loginByPhonemessage")
     public Object loginByPhoneMessage(HttpServletResponse response,@RequestParam String cellphone,@RequestParam String verifycode){
         if(!cellphone.equals("")&&!verifycode.equals("")){
             User user=userService.loginByPhoneMessage(cellphone,verifycode);
