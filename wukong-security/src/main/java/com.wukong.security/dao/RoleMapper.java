@@ -88,11 +88,9 @@ public interface RoleMapper {
 
     @Select({
             "select",
-            "wk_role.*",
+            "role_id, rolename, description, sort",
             "from wk_role",
-            "join wk_user_role on wk_user_role.role_id=wk_role.role_id",
-            "where wk_user_role.user_id = #{userid,jdbcType=INTEGER}",
-            "order by sort"
+            "where role_id = #{roleId,jdbcType=INTEGER}"
     })
     @Results({
             @Result(column="role_id", property="roleId", jdbcType=JdbcType.INTEGER, id=true),
@@ -100,5 +98,5 @@ public interface RoleMapper {
             @Result(column="description", property="description", jdbcType=JdbcType.VARCHAR),
             @Result(column="sort", property="sort", jdbcType=JdbcType.INTEGER)
     })
-    List<Role> selectRolesByUserid(Integer userid);
+    List<Role> selectByRoleId(Integer roleId);//仅仅为了统一返回值
 }

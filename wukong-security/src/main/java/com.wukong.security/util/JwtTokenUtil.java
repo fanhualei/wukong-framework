@@ -122,13 +122,18 @@ public class JwtTokenUtil {
         template.expire(key,expiration,TimeUnit.SECONDS);
     }
 
-    private void delTokenFromRedisByUid(Integer userid){
+    public void delTokenFromRedisByUid(Integer userid){
         String key=REDIS_TOKEN+userid+":*";
-        System.out.println(key);
+        //System.out.println(key);
         Set<String> keySet=template.keys(key);
         template.delete(keySet);
     }
 
+    public void delTokenFromredisByToken(String token){
+        String key=REDIS_TOKEN+getUseridFromToken(token)+":"+getDateStr(getCreatedDateFromToken(token));
+        if(template.hasKey(key))
+            template.delete(key);
+    }
 
     //从缓存中得到token
     private String getTokenFromRedis(Integer userid,Date createDate){

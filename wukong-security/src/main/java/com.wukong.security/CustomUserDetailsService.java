@@ -32,6 +32,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Cacheable(key="#p0")
     public UserDetails loadUserByUsername(String username) {
         User user = userService.selectUserByAccount(username);
+//        log.error(user.toString());
         log.debug("日志输出");
         if(user == null){
             throw new UsernameNotFoundException("用户名不存在");
@@ -44,7 +45,9 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     //得到用户的权限 这个是我自己做的
     private List<SimpleGrantedAuthority> loadGrantedAuthorityByUserid(Integer userid){
-        List<Role> roles=roleService.selectRolesByUserid(userid);
+        //List<Role> roles=roleService.selectRolesByUserid(userid);
+        Integer roleId=userService.selectRoleidByUserid(userid);
+        List<Role> roles=roleService.selectRolesByRoleId(roleId);
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
         roles.forEach(role -> {authorities.add(new SimpleGrantedAuthority(role.getRolename()));});
         return authorities;

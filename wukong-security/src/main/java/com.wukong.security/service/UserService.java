@@ -4,6 +4,7 @@ import com.wukong.security.model.User;
 import com.wukong.security.model.UserExample;
 import com.wukong.security.dao.UserMapper;
 
+import com.wukong.security.util.JwtTokenUtil;
 import com.wukong.security.util.MyEncoder;
 import org.apache.ibatis.annotations.Param;
 
@@ -150,5 +151,44 @@ public class UserService {
         return null;
     }
 
+    @Transactional
+    public boolean phoneExist(String cellphone){
+        return userMapper.isUserExistByCellphone(cellphone) > 0;
+    }
 
+    @Transactional
+    public boolean usernameExist(String username){
+        return userMapper.isUserExistByUsername(username) > 0;
+    }
+
+    @Transactional
+    public boolean emailExist(String email){
+        return userMapper.isUserExistByEmail(email) > 0;
+    }
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
+    public User refreshToken(String username,String token){
+        jwtTokenUtil.delTokenFromredisByToken(token);
+        return userMapper.selectUserByAccount(username);
+    }
+    @Transactional
+    public User changePassword(String cellphone,String password,String verifycode) {
+        ValueOperations<String, String> ops = template.opsForValue();
+        String key = "wukong:security:verifycode:" + cellphone;
+        if (template.hasKey(key)) {
+            if (verifycode.equals(ops.get(key))) { //verifycode之前已经验证非空故不会出错
+                template.delete(key);
+                User user = userMapper.selectByCellphone(cellphone);
+                if (user == null) return null;
+                userMapper.updatePasswordbyUserid(user.getUserId(), MyEncoder.encoder(password));
+                return user;
+
+            }
+
+        }
+        return null;
+    }
+    public Integer selectRoleidByUserid(Integer uid){
+        return userMapper.selectRoleidByUserid(uid);
+    }
 }

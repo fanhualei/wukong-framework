@@ -119,7 +119,7 @@ public interface UserMapper {
             @Result(column="phone", property="phone", jdbcType=JdbcType.VARCHAR),
             @Result(column="email", property="email", jdbcType=JdbcType.VARCHAR),
             @Result(column="pwResetDate", property="pwresetdate", jdbcType=JdbcType.TIMESTAMP),
-            @Result(column="role_id", property="role_id", jdbcType=JdbcType.INTEGER)
+            @Result(column="role_id", property="roleId", jdbcType=JdbcType.INTEGER)
     })
     User selectUserByAccount( String account);
 
@@ -131,9 +131,34 @@ public interface UserMapper {
             "select",
             "count(*)",
             "from wk_user",
-            "where  phone=#{account} "
+            "where  phone=#{cellphone} "
     })
     int isUserExistByCellphone(String cellphone);
+
+
+    /**
+     * 依据email检查用户是否已注册
+     * @param email
+     */
+    @Select({
+            "select",
+            "count(*)",
+            "from wk_user",
+            "where  email=#{email} "
+    })
+    int isUserExistByEmail(String email);
+
+    /**
+     * 依据用户名检查用户是否已注册
+     * @param username 用户名
+     */
+    @Select({
+            "select",
+            "count(*)",
+            "from wk_user",
+            "where  username=#{username} "
+    })
+    int isUserExistByUsername(String username);
 
     /**
      * 依据电话号码查询用户
@@ -143,7 +168,7 @@ public interface UserMapper {
             "select",
             "*",
             "from wk_user",
-            "where  phone=#{account} "
+            "where  phone=#{cellphone} "
     })
     @Results({
             @Result(column="user_id", property="userId", jdbcType=JdbcType.INTEGER, id=true),
@@ -158,4 +183,27 @@ public interface UserMapper {
     User selectByCellphone(String cellphone);
 
 
+    /**
+     * 依据用户id更改密码
+     * @param userid 用户id
+     */
+    @Update({
+            "update wk_user",
+            "set password=#{password}",
+            "where  user_id=#{userid} "
+    })
+    int updatePasswordbyUserid(@Param("userid") Integer userid,@Param("password") String password);
+
+
+    /**
+    * 依据uid获取role id
+    * @param uid
+    * */
+    @Select({
+            "select",
+            "role_id",
+            "from wk_user",
+            "where  user_id=#{uid} "
+    })
+    Integer selectRoleidByUserid(Integer uid);
 }

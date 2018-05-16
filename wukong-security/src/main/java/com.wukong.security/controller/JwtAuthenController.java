@@ -7,11 +7,16 @@ import com.wukong.security.util.MyEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
+
+import static org.springframework.security.core.context.SecurityContextHolder.getContext;
 
 @RestController
 @RequestMapping("/author/jwt")
@@ -26,7 +31,7 @@ public class JwtAuthenController {
 
     @RequestMapping("/public/login")
     public Object login(HttpServletResponse response,
-                        @RequestParam String username,@RequestParam String password) throws IOException {
+                        @RequestParam String username,@RequestParam String password) throws IOException { //为什么要throw IOException？
         User user=userService.selectUserByAccount(username);
         if(user!=null && MyEncoder.matches(password,user.getPassword())) {
             String jwt = jwtTokenUtil.generateToken(username,user.getUserId());
@@ -55,13 +60,9 @@ public class JwtAuthenController {
     public Object regist(HttpServletResponse response,@RequestParam String cellphone,@RequestParam String password,@RequestParam String verifycode )throws IOException{
         if(!cellphone.equals("")&& !password.equals("")&&!verifycode.equals("")){ //目前用这句话来代替有效性验证
             User user=userService.regist(cellphone,password,verifycode);
-            if(user!=null){
-                String jwt = jwtTokenUtil.generateToken(user.getUsername(),user.getUserId());
-                response.setHeader("re_token",jwt);
-                return new HashMap<String,String>(){{
-                    put("token", jwt);
-                }};
-            }
+            if(user!=null)
+                return generateTokenResponse(response, user);
+
         }
 
         return new ResponseEntity(HttpStatus.UNAUTHORIZED);
@@ -71,12 +72,67 @@ public class JwtAuthenController {
     public Object loginByPhoneMessage(HttpServletResponse response,@RequestParam String cellphone,@RequestParam String verifycode){
         if(!cellphone.equals("")&&!verifycode.equals("")){
             User user=userService.loginByPhoneMessage(cellphone,verifycode);
-            if(user!=null){
-                String jwt = jwtTokenUtil.generateToken(user.getUsername(),user.getUserId());
-                response.setHeader("re_token",jwt);
-                return new HashMap<String,String>(){{
-                    put("token", jwt);
-                }};
+            if(user!=null)
+                return generateTokenResponse(response, user);
+        }
+        return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+    }
+
+    private Object generateTokenResponse(HttpServletResponse response, User user) {
+        if(user!=null){
+//            System.out.println("---------------------------------"+user.toString());
+            String jwt = jwtTokenUtil.generateToken(user.getUsername(),user.getUserId());
+            response.setHeader("re_token",jwt);
+            return new HashMap<String,String>(){{
+                put("token", jwt);
+            }};
+        }
+        return null;
+    }
+
+    @RequestMapping("/public/phoneExist")
+    public Object phoneExist(HttpServletResponse response,@RequestParam String cellphone){
+        if(!cellphone.equals("")){
+            return new HashMap<String,Boolean>(){{
+                put("phoneExist", userService.phoneExist(cellphone));
+            }};
+        }
+        return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+    }
+
+    @RequestMapping("/public/emailExist")
+    public Object emailExist(HttpServletResponse response,@RequestParam String email){
+        if(!email.equals("")){
+            return new HashMap<String,Boolean>(){{
+                put("emailExist", userService.emailExist(email));
+            }};
+        }
+        return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+    }
+
+    @RequestMapping("/public/usernameExist")
+    public Object usernameExist(HttpServletResponse response,@RequestParam String username){
+        if(!username.equals("")){
+            return new HashMap<String,Boolean>(){{
+                put("usernameExist", userService.usernameExist(username));
+            }};
+        }
+        return new ResponseEntity(HttpStatus.UNAUTHORIZED);
+    }
+    @RequestMapping("/refreshToken")
+    public Object refreshToken(HttpServletResponse response, HttpServletRequest request){
+        UserDetails userDetails=(UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String token = request.getHeader(JwtTokenUtil.HEADER_STRING);
+        return generateTokenResponse(response,userService.refreshToken(userDetails.getUsername(),token));
+    }
+
+    @RequestMapping("/changePassword")
+    public Object changePassword(HttpServletResponse response,@RequestParam String cellphone,@RequestParam String password,@RequestParam String verifycode )throws IOException {
+        if (!cellphone.equals("") && !password.equals("") && !verifycode.equals("")) { //目前用这句话来代替有效性验证
+            User user = userService.changePassword(cellphone, password, verifycode);
+            if (user != null) {
+                jwtTokenUtil.delTokenFromRedisByUid(user.getUserId());
+                return generateTokenResponse(response, user);
             }
         }
         return new ResponseEntity(HttpStatus.UNAUTHORIZED);
