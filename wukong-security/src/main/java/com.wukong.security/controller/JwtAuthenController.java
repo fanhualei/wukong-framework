@@ -69,7 +69,7 @@ public class JwtAuthenController {
     }
 
     @RequestMapping("/public/loginByPhonemessage")
-    public Object loginByPhoneMessage(HttpServletResponse response,@RequestParam String cellphone,@RequestParam String verifycode){
+    public Object loginByPhoneMessage(HttpServletResponse response,@RequestParam String cellphone,@RequestParam String verifycode)throws IOException{
         if(!cellphone.equals("")&&!verifycode.equals("")){
             User user=userService.loginByPhoneMessage(cellphone,verifycode);
             if(user!=null)
@@ -78,7 +78,7 @@ public class JwtAuthenController {
         return new ResponseEntity(HttpStatus.UNAUTHORIZED);
     }
 
-    private Object generateTokenResponse(HttpServletResponse response, User user) {
+    private Object generateTokenResponse(HttpServletResponse response, User user) throws IOException{
         if(user!=null){
 //            System.out.println("---------------------------------"+user.toString());
             String jwt = jwtTokenUtil.generateToken(user.getUsername(),user.getUserId());
@@ -87,11 +87,12 @@ public class JwtAuthenController {
                 put("token", jwt);
             }};
         }
-        return null;
+        throw new IOException("用户不存在");
+        //return null;
     }
 
     @RequestMapping("/public/phoneExist")
-    public Object phoneExist(HttpServletResponse response,@RequestParam String cellphone){
+    public Object phoneExist(HttpServletResponse response,@RequestParam String cellphone)throws IOException{
         if(!cellphone.equals("")){
             return new HashMap<String,Boolean>(){{
                 put("phoneExist", userService.phoneExist(cellphone));
@@ -101,7 +102,7 @@ public class JwtAuthenController {
     }
 
     @RequestMapping("/public/emailExist")
-    public Object emailExist(HttpServletResponse response,@RequestParam String email){
+    public Object emailExist(HttpServletResponse response,@RequestParam String email)throws IOException{
         if(!email.equals("")){
             return new HashMap<String,Boolean>(){{
                 put("emailExist", userService.emailExist(email));
@@ -111,7 +112,7 @@ public class JwtAuthenController {
     }
 
     @RequestMapping("/public/usernameExist")
-    public Object usernameExist(HttpServletResponse response,@RequestParam String username){
+    public Object usernameExist(HttpServletResponse response,@RequestParam String username)throws IOException{
         if(!username.equals("")){
             return new HashMap<String,Boolean>(){{
                 put("usernameExist", userService.usernameExist(username));
@@ -120,7 +121,9 @@ public class JwtAuthenController {
         return new ResponseEntity(HttpStatus.UNAUTHORIZED);
     }
     @RequestMapping("/refreshToken")
-    public Object refreshToken(HttpServletResponse response, HttpServletRequest request){
+    public Object refreshToken(HttpServletResponse response, HttpServletRequest request)throws IOException{
+        //System.out.println("Hello World");
+//        throw new IOException("SB");
         UserDetails userDetails=(UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String token = request.getHeader(JwtTokenUtil.HEADER_STRING);
         return generateTokenResponse(response,userService.refreshToken(userDetails.getUsername(),token));

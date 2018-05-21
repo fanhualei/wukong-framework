@@ -1,9 +1,11 @@
 package com.wukong.security.service;
 
+import com.wukong.security.dao.UserRoleMapper;
 import com.wukong.security.model.User;
 import com.wukong.security.model.UserExample;
 import com.wukong.security.dao.UserMapper;
 
+import com.wukong.security.model.UserRole;
 import com.wukong.security.util.JwtTokenUtil;
 import com.wukong.security.util.MyEncoder;
 import org.apache.ibatis.annotations.Param;
@@ -14,6 +16,7 @@ import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -104,7 +107,7 @@ public class UserService {
         }
     };
 
-    public String getVerifyCode(String cellphone){
+    public String getVerifyCode(String cellphone)throws IOException{
         //TODO 此处先通过phone字段查询用户是否存在
         //if(userMapper.isUserExistByCellphone(cellphone)==1) return null;
         String verifyCode=String.valueOf((int)((Math.random()*9+1)*100000));//随机生成6位验证码
@@ -115,64 +118,74 @@ public class UserService {
         return verifyCode;
 
     }
+
+    @Autowired
+    private UserRoleMapper userRoleMapper;
     @Transactional
-    public User regist(String cellphone,String password,String verifycode){
+    public User regist(String cellphone,String password,String verifycode)throws IOException {
         ValueOperations<String, String> ops = template.opsForValue();
         String key="wukong:security:verifycode:"+cellphone;
         if(template.hasKey(key)){
             if(verifycode.equals(ops.get(key))){ //verifycode之前已经验证非空故不会出错
                 template.delete(key);
-                if(userMapper.isUserExistByCellphone(cellphone)==1) return null;
+                if(userMapper.isUserExistByCellphone(cellphone)==1) throw new IOException("用户已注册");//return null;
                 User user=new User();
                 user.setUsername("(phone)"+cellphone);
                 user.setPhone(cellphone);
                 user.setPassword(MyEncoder.encoder(password));
                 user.setEnabled(true);
                 user.setPwresetdate(new Date());
-                user.setRoleId(roleMap.get("USER_ROLE"));
+//                user.setRoleId(roleMap.get("USER_ROLE"));
                 userMapper.insert(user);
+                user=userMapper.selectByCellphone(cellphone);
+                UserRole userRole=new UserRole();
+                userRole.setUserId(user.getUserId());
+                userRole.setRoleId(roleMap.get("USER_ROLE"));
+                userRoleMapper.insert(userRole);
+
 
                 return user;
 
             }
         }
+        throw new IOException("验证码错误");
         //log.info("return null");
-        return null;
+//        return null;
     }
 
     @Transactional
-    public User loginByPhoneMessage(String cellphone,String verifycode){
+    public User loginByPhoneMessage(String cellphone,String verifycode)throws IOException{
         ValueOperations<String, String> ops = template.opsForValue();
         String key="wukong:security:verifycode:"+cellphone;
         if(template.hasKey(key)){
             template.delete(key);
             return userMapper.selectByCellphone(cellphone);
         }
-        return null;
+        throw new IOException("验证码错误");
     }
 
     @Transactional
-    public boolean phoneExist(String cellphone){
+    public boolean phoneExist(String cellphone)throws IOException{
         return userMapper.isUserExistByCellphone(cellphone) > 0;
     }
 
     @Transactional
-    public boolean usernameExist(String username){
+    public boolean usernameExist(String username)throws IOException{
         return userMapper.isUserExistByUsername(username) > 0;
     }
 
     @Transactional
-    public boolean emailExist(String email){
+    public boolean emailExist(String email)throws IOException{
         return userMapper.isUserExistByEmail(email) > 0;
     }
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
-    public User refreshToken(String username,String token){
+    public User refreshToken(String username,String token)throws IOException{
         jwtTokenUtil.delTokenFromredisByToken(token);
         return userMapper.selectUserByAccount(username);
     }
     @Transactional
-    public User changePassword(String cellphone,String password,String verifycode) {
+    public User changePassword(String cellphone,String password,String verifycode)throws IOException {
         ValueOperations<String, String> ops = template.opsForValue();
         String key = "wukong:security:verifycode:" + cellphone;
         if (template.hasKey(key)) {
@@ -183,12 +196,10 @@ public class UserService {
                 userMapper.updatePasswordbyUserid(user.getUserId(), MyEncoder.encoder(password));
                 return user;
 
-            }
+            }throw new IOException("验证码错误");
 
         }
-        return null;
-    }
-    public Integer selectRoleidByUserid(Integer uid){
-        return userMapper.selectRoleidByUserid(uid);
+        throw new IOException("验证码不存在");
+        //return null;
     }
 }

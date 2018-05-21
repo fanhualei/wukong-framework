@@ -80,9 +80,9 @@ public class RoleService {
     }
 
     // @Cacheable 会先查询缓存，如果缓存中存在，则不执行方法
-//    @Cacheable(cacheNames="wukong:role" , key = "#userid.toString()")
-    public List<Role> selectRolesByRoleId(Integer roleid){
-        return roleMapper.selectByRoleId(roleid);
+    @Cacheable(cacheNames="wukong:role" , key = "#userid.toString()")
+    public List<Role> selectRolesByUserid(Integer userid){
+        return roleMapper.selectRolesByUserid(userid);
 
     }
 

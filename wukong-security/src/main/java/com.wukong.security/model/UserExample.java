@@ -1,7 +1,6 @@
 package com.wukong.security.model;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class UserExample {
@@ -502,126 +501,6 @@ public class UserExample {
 
         public Criteria andEmailNotBetween(String value1, String value2) {
             addCriterion("email not between", value1, value2, "email");
-            return (Criteria) this;
-        }
-
-        public Criteria andPwresetdateIsNull() {
-            addCriterion("pwResetDate is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPwresetdateIsNotNull() {
-            addCriterion("pwResetDate is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPwresetdateEqualTo(Date value) {
-            addCriterion("pwResetDate =", value, "pwresetdate");
-            return (Criteria) this;
-        }
-
-        public Criteria andPwresetdateNotEqualTo(Date value) {
-            addCriterion("pwResetDate <>", value, "pwresetdate");
-            return (Criteria) this;
-        }
-
-        public Criteria andPwresetdateGreaterThan(Date value) {
-            addCriterion("pwResetDate >", value, "pwresetdate");
-            return (Criteria) this;
-        }
-
-        public Criteria andPwresetdateGreaterThanOrEqualTo(Date value) {
-            addCriterion("pwResetDate >=", value, "pwresetdate");
-            return (Criteria) this;
-        }
-
-        public Criteria andPwresetdateLessThan(Date value) {
-            addCriterion("pwResetDate <", value, "pwresetdate");
-            return (Criteria) this;
-        }
-
-        public Criteria andPwresetdateLessThanOrEqualTo(Date value) {
-            addCriterion("pwResetDate <=", value, "pwresetdate");
-            return (Criteria) this;
-        }
-
-        public Criteria andPwresetdateIn(List<Date> values) {
-            addCriterion("pwResetDate in", values, "pwresetdate");
-            return (Criteria) this;
-        }
-
-        public Criteria andPwresetdateNotIn(List<Date> values) {
-            addCriterion("pwResetDate not in", values, "pwresetdate");
-            return (Criteria) this;
-        }
-
-        public Criteria andPwresetdateBetween(Date value1, Date value2) {
-            addCriterion("pwResetDate between", value1, value2, "pwresetdate");
-            return (Criteria) this;
-        }
-
-        public Criteria andPwresetdateNotBetween(Date value1, Date value2) {
-            addCriterion("pwResetDate not between", value1, value2, "pwresetdate");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoleIdIsNull() {
-            addCriterion("role_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoleIdIsNotNull() {
-            addCriterion("role_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoleIdEqualTo(Integer value) {
-            addCriterion("role_id =", value, "roleId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoleIdNotEqualTo(Integer value) {
-            addCriterion("role_id <>", value, "roleId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoleIdGreaterThan(Integer value) {
-            addCriterion("role_id >", value, "roleId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoleIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("role_id >=", value, "roleId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoleIdLessThan(Integer value) {
-            addCriterion("role_id <", value, "roleId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoleIdLessThanOrEqualTo(Integer value) {
-            addCriterion("role_id <=", value, "roleId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoleIdIn(List<Integer> values) {
-            addCriterion("role_id in", values, "roleId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoleIdNotIn(List<Integer> values) {
-            addCriterion("role_id not in", values, "roleId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoleIdBetween(Integer value1, Integer value2) {
-            addCriterion("role_id between", value1, value2, "roleId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoleIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("role_id not between", value1, value2, "roleId");
             return (Criteria) this;
         }
     }
