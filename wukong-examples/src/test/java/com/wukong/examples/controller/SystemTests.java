@@ -10,7 +10,7 @@ public class SystemTests {
         //类所在位置
         System.out.println( HelloControllerTests.class.getResource(""));
         //classPath的路径
-        System.out.println( HelloControllerTests.class.getResource("/"));
+        System.out.println( HelloControllerTests.class.getResource("/").getPath());
         System.out.println( HelloControllerTests.class.getClassLoader().getResource(""));
 
     }
