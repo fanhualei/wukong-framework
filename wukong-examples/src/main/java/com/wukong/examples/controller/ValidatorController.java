@@ -3,6 +3,8 @@ package com.wukong.examples.controller;
 
 import com.wukong.core.result.ResponseResult;
 import com.wukong.examples.entity.City;
+import com.wukong.examples.entity.User;
+import com.wukong.examples.validator.Phone;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -125,5 +127,14 @@ public class ValidatorController {
         return city.getName()+"ok";
     }
 
+    @RequestMapping("/phone")
+    public String phone1(@RequestBody @Valid User user) {
+        return user.getPhone();
+    }
 
+
+    @RequestMapping("/phone2")
+    public String phone2(@RequestParam @Valid @Phone String phone) {
+        return phone;
+    }
 }
