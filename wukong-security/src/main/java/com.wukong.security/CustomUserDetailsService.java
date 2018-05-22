@@ -19,7 +19,7 @@ import java.util.List;
 
 @Service
 @Slf4j
-@CacheConfig(cacheNames = "wukong:security")
+@CacheConfig(cacheNames = "wukong:security:userdetails:")
 public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private UserService userService;
