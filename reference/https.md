@@ -17,7 +17,7 @@
 
 * 在阿里提交证书申请，等待审批
 * 下载专有验证文件fileauth.txt
-* 创建.well-known/pki-validation子目录，将上面的文件放入
+* web根目录下创建.well-known/pki-validation子目录，将上面的文件放入
 * 等待阿里审批
 * 审批成功后
 
@@ -44,7 +44,7 @@
 * 方案一：nginx配置htts,tomcat不配
 * 方案二：nginx与tomcat都配置https
 * 选择方案一
-* 参考资料(主要看我写的，这两个文档配置复制了，其实不用修改tomcat的内容)
+* 参考资料(主要看我写的，网友的教程复杂了，实际上不用修改tomcat的内容)
     * [Nginx + Tomcat + HTTPS 配置原来不需要在 Tomcat 上启用 SSL 支持](https://blog.csdn.net/newtelcom/article/details/50782950)
     * [nginx https反向代理tomcat的2种实现方法](http://www.jb51.net/article/131766.htm)
     
