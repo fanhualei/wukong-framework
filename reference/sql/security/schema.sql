@@ -1,5 +1,10 @@
 
 
+DROP database IF EXISTS wukong_write;
+
+CREATE database wukong_write;
+
+use wukong_write;
 
 DROP TABLE IF EXISTS wk_user_role;
 DROP TABLE IF EXISTS wk_role_resource;
