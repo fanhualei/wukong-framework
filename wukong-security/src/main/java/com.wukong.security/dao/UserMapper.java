@@ -120,4 +120,88 @@ public interface UserMapper {
     })
     User selectUserByAccount( String account);
 
+    /**
+     * 依据电话号码检查用户是否已注册
+     * @param cellphone 电话号码
+     */
+    @Select({
+            "select",
+            "count(*)",
+            "from wk_user",
+            "where  phone=#{cellphone} "
+    })
+    int isUserExistByCellphone(String cellphone);
+
+
+    /**
+     * 依据email检查用户是否已注册
+     * @param email
+     */
+    @Select({
+            "select",
+            "count(*)",
+            "from wk_user",
+            "where  email=#{email} "
+    })
+    int isUserExistByEmail(String email);
+
+    /**
+     * 依据用户名检查用户是否已注册
+     * @param username 用户名
+     */
+    @Select({
+            "select",
+            "count(*)",
+            "from wk_user",
+            "where  username=#{username} "
+    })
+    int isUserExistByUsername(String username);
+
+    /**
+     * 依据电话号码查询用户
+     * @param cellphone 电话号码
+     */
+    @Select({
+            "select",
+            "*",
+            "from wk_user",
+            "where  phone=#{cellphone} "
+    })
+    @Results({
+            @Result(column="user_id", property="userId", jdbcType=JdbcType.INTEGER, id=true),
+            @Result(column="username", property="username", jdbcType=JdbcType.VARCHAR),
+            @Result(column="password", property="password", jdbcType=JdbcType.VARCHAR),
+            @Result(column="enabled", property="enabled", jdbcType=JdbcType.BIT),
+            @Result(column="phone", property="phone", jdbcType=JdbcType.VARCHAR),
+            @Result(column="email", property="email", jdbcType=JdbcType.VARCHAR),
+            @Result(column="pwResetDate", property="pwresetdate", jdbcType=JdbcType.TIMESTAMP),
+            @Result(column="role_id", property="roleId", jdbcType=JdbcType.INTEGER)
+    })
+    User selectByCellphone(String cellphone);
+
+
+    /**
+     * 依据用户id更改密码
+     * @param userid 用户id
+     */
+    @Update({
+            "update wk_user",
+            "set password=#{password}",
+            "where  user_id=#{userid} "
+    })
+    int updatePasswordbyUserid(@Param("userid") Integer userid,@Param("password") String password);
+
+
+//    /**
+//     * 依据uid获取role id
+//     * @param uid
+//     * */
+//    @Select({
+//            "select",
+//            "role_id",
+//            "from wk_user",
+//            "where  user_id=#{uid} "
+//    })
+//    Integer selectRoleidByUserid(Integer uid);
+
 }

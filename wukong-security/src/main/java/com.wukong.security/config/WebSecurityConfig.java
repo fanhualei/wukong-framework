@@ -39,8 +39,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.css",
                         "/**/*.js"
                 ).permitAll()
-                // 对于获取token的rest api要允许匿名访问
-                .antMatchers("/author/jwt/login").permitAll()
+                // 对于获取token的rest api要允许匿名访问 TODO 建议将需要验证和不需要验证的API放在不同的目录下
+                .antMatchers("/author/jwt/public/**").permitAll()
+//                .antMatchers("/author/jwt/getVerifyCode").permitAll()
+//                .antMatchers("/author/jwt/regist").permitAll()
+//                .antMatchers("/author/jwt/loginByPhonemessage").permitAll()
                 // 除上面外的所有请求全部需要鉴权认证
                 .anyRequest().authenticated();
 

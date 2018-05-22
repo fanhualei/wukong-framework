@@ -49,8 +49,8 @@ create table wk_user_ex (
   weixin    varchar(50)    DEFAULT ''               COMMENT '微信号码',
   weibo     varchar(50)    DEFAULT ''               COMMENT '微博号码',
   avatar    varchar(500)   DEFAULT ''               COMMENT '头像图片路径',
-  PRIMARY KEY (user_id),
-  CONSTRAINT fk_user_ex_user FOREIGN KEY (user_id) REFERENCES wk_user (user_id)
+  PRIMARY KEY (user_id)
+--   CONSTRAINT fk_user_ex_user FOREIGN KEY (user_id) REFERENCES wk_user (user_id)
 );
 
 
@@ -76,9 +76,9 @@ CREATE TABLE wk_user_role (
   user_role_id        int      NOT NULL AUTO_INCREMENT,
   user_id             int      NOT NULL,
   role_id             int      NOT NULL,
-  PRIMARY KEY (user_role_id),
-  CONSTRAINT fk_user_role_user FOREIGN KEY (user_id) REFERENCES wk_user (user_id),
-  CONSTRAINT fk_user_role_role FOREIGN KEY (role_id) REFERENCES wk_role (role_id)
+  PRIMARY KEY (user_role_id)
+--   CONSTRAINT fk_user_role_user FOREIGN KEY (user_id) REFERENCES wk_user (user_id),
+--   CONSTRAINT fk_user_role_role FOREIGN KEY (role_id) REFERENCES wk_role (role_id)
 
 ) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8;
 
@@ -109,9 +109,9 @@ CREATE TABLE wk_role_resource (
   role_resource_id    int NOT NULL AUTO_INCREMENT,
   role_id             int DEFAULT NULL,
   resource_id         int DEFAULT NULL,
-  PRIMARY KEY (role_resource_id),
-  CONSTRAINT fk_role_resource_role      FOREIGN KEY (role_id)     REFERENCES wk_role     (role_id),
-  CONSTRAINT fk_role_resource_resource  FOREIGN KEY (resource_id) REFERENCES wk_resource (resource_id)
+  PRIMARY KEY (role_resource_id)
+--   CONSTRAINT fk_role_resource_role      FOREIGN KEY (role_id)     REFERENCES wk_role     (role_id),
+--   CONSTRAINT fk_role_resource_resource  FOREIGN KEY (resource_id) REFERENCES wk_resource (resource_id)
 ) ENGINE=InnoDB AUTO_INCREMENT=10000 DEFAULT CHARSET=utf8;
 
 
