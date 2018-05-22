@@ -127,6 +127,10 @@ public class WukongGenerator {
         tableList.clear();
         TablesInDatabase tablesInDatabase =new TablesInDatabase(context,serviceConfig);
 
+        if( tablesInDatabase.getPassWordError()){
+            context.getJdbcConnectionConfiguration().setPassword("rootmysql");
+        }
+
         //set table  get table List
         for(TableInfo tableInfo: tablesInDatabase.getTableList().values()) {
             TableConfiguration tableConfig = new TableConfiguration(context);

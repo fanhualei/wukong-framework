@@ -26,6 +26,9 @@ public class TablesInDatabase {
     @Getter
     private Map<String,TableInfo> tableList=new HashMap<String, TableInfo>();
 
+    @Getter
+    private Boolean passWordError=false;
+
 
 
     public TablesInDatabase(Context a_context, ServiceConfig serviceConfig){
@@ -101,7 +104,16 @@ public class TablesInDatabase {
         Connection connection = null;
         try {
             Class.forName(driver);
-            connection = DriverManager.getConnection(url, userid, password);
+            try{
+                connection = DriverManager.getConnection(url, userid, password);
+            }
+            catch(SQLException e){
+                //如果出现错误，自动按照rootmysql密码进行尝试
+                connection = DriverManager.getConnection(url, userid, "rootmysql");
+                passWordError=true;
+            }
+
+
             Statement statement = connection.createStatement();
 
             String getTableNameSql = "select distinct  table_name  from information_schema.`COLUMNS`  where table_schema='"+tableSchema+"'";
