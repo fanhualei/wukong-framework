@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
 
-    <classPathEntry location="/media/eric_ma/563604A906684C7E/Learns/grade3.2/java/wukong-framework/wukong-generator/src/main/resources/mysql-connector-java-5.1.45-bin.jar" />
+    <classPathEntry location="mysql-connector-java-5.1.45-bin.jar" />
 
 
     <!--MyBatis3DynamicSql  MyBatis3-->
@@ -26,7 +26,7 @@
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://127.0.0.1:3306/wukong_write?useSSL=false"
                         userId="root"
-                        password="WorkGroup@1">
+                        password="rootmysql">
         </jdbcConnection>
 
         <javaTypeResolver >
@@ -52,7 +52,7 @@
             <property name="enableSubPackages" value="true" />
             <property name="prefix" value="wk_"/>
             <!--effects 计划生成的Table，如果为空，就生成全部的-->
-            <property name="effects" value="wk_user "/>
+            <property name="effects" value="wk_user"/>
             <property name="ignores" value="groups,wk_order"/>
             <property name="targetPackage" value="com.wukong.security.service"/>
             <property name="targetProject" value="log"/>

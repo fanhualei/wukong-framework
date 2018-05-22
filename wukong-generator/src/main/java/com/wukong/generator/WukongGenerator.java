@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
+
+
 public class WukongGenerator {
 
     public static  void main(String[] arg){
@@ -42,6 +44,7 @@ public class WukongGenerator {
         DefaultShellCallback callback = new DefaultShellCallback(overwrite);
         MyBatisGenerator myBatisGenerator = new MyBatisGenerator(config, callback, warnings);
 
+        checkClassPathEntry(config);
 
         ServiceConfig serviceConfig=  initServiceConfig(config);
 
@@ -67,6 +70,19 @@ public class WukongGenerator {
 
                 }
             }
+        }
+    }
+
+
+    //检查如果mysql的jar包路径配置有错误，就自动找到正确的路径
+    private void checkClassPathEntry(Configuration config){
+        //dedao jar class
+        String classPathEntry=config.getClassPathEntries().get(0);
+        File fileTemp = new File(classPathEntry);
+        if (!fileTemp.exists()) {
+            config.getClassPathEntries().clear();
+            String newClassPathEntry=WukongGenerator.class.getResource("/").getPath()+"mysql-connector-java-5.1.45-bin.jar";
+            config.addClasspathEntry(newClassPathEntry);
         }
     }
 
