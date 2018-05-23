@@ -25,7 +25,7 @@
 
 ```java
 @RequestMapping("/public/login")
-public Object login(@RequestParam String username,@RequestParam String password) throws IOException { //为什么要throw IOException？
+public Object login(@RequestParam String username,@RequestParam String password) throws IOException { 
 
     if(username=="admin"&& password="admin") {
         return new HashMap<String,String>(){{
@@ -42,7 +42,7 @@ public Object login(@RequestParam String username,@RequestParam String password)
 
 ```java
 @RequestMapping("/public/login")
-public HashMap<String,String> login(@RequestParam String username,@RequestParam String password) throws IOException { //为什么要throw IOException？
+public HashMap<String,String> login(@RequestParam String username,@RequestParam String password) throws Exception { 
 
     if(username=="admin"&& password="admin") {
         return new HashMap<String,String>(){{
