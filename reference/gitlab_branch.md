@@ -46,6 +46,21 @@
 
 ## 参考资料
 
+
+> idea 创建分支
+
+* 很简单，在idea branches中new 一个分支就行，然后就push到服务器上。
+* 创建完分支，新建立分支成为idea当前分支，这样就要切回原先的分支。
+
+> idea 切换分支
+
+* 看下图，checkout就可以了
+
+![alt](imgs/gitlab_change_branch.png)
+
+
+> 网上资料
+
 * [idea创建git分支](https://blog.csdn.net/feicongcong/article/details/76431471)
 * [IDEA git新建分支tag标签](https://jingyan.baidu.com/article/656db918ca023fe380249c68.html)
 
