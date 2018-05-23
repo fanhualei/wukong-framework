@@ -41,3 +41,11 @@
 
 * 自己定义的分支，今后如果人数多的话，这些分支要合并
 
+
+
+
+## 参考资料
+
+* [idea创建git分支](https://blog.csdn.net/feicongcong/article/details/76431471)
+* [IDEA git新建分支tag标签](https://jingyan.baidu.com/article/656db918ca023fe380249c68.html)
+
