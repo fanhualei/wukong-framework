@@ -5,8 +5,7 @@
 
 
     + 主从数据库
-        -阿里的druid连接池
-    + http自动转https
+        -阿里的druid连接池e
     + swagger集成
     + markdown语法
 
