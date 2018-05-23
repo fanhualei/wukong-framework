@@ -62,7 +62,10 @@ gitlab
 ## next todo list
 
 * 代码中的http转https没有意义，应该在nginx上配置，如果配置成功，删除这部分代码。
+    * [Nginx的https配置记录以及http强制跳转到https的方法梳理](https://www.cnblogs.com/kevingrace/p/6187072.html)
 * .ssh gitlab中conf起作用后，ssh无法远程登录，下周问马宇航
+* 持续化集成需要有人做一下
+* 性能测试需要有人研究一下
 
 
 
