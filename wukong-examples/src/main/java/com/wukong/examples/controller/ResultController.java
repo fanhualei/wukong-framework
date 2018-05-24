@@ -1,14 +1,13 @@
 package com.wukong.examples.controller;
 
 
-import com.wukong.core.exceptions.UserNotLoginException;
-import com.wukong.core.result.ResponseResult;
+
+import com.wukong.core.enums.ResultCode;
+import com.wukong.core.exceptions.BusinessException;
 import com.wukong.examples.entity.City;
 
 
 import org.hibernate.validator.constraints.Length;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,16 +27,12 @@ public class ResultController {
      * http://localhost:8080/result/success
      */
 
-    @RequestMapping("/success1")
+    @RequestMapping("/success")
     public City success1() {
         return success();
     }
 
-    @RequestMapping("/success2")
-    @ResponseResult
-    public City success2() {
-        return success();
-    }
+
 
     private City success(){
         City city = new City(1,"city1","001");
@@ -47,7 +42,7 @@ public class ResultController {
     /**
      * 测试参数异常
      */
-    @RequestMapping("/para1")
+    @RequestMapping("/para")
     public String para1(@RequestParam @Valid @Length(min = 6,max = 50)  String name
             ,@RequestParam @Valid @Email String email
             ,@RequestParam String cellPhone
@@ -55,32 +50,18 @@ public class ResultController {
         return "name:"+name+";"+"email:"+email+";"+"cellPhone:"+cellPhone+";";
     }
 
-    @RequestMapping("/para2")
-    @ResponseResult
-    public String para2(@RequestParam @Valid @Length(min = 6,max = 50) String name
-            ,@RequestParam  @Valid @Email String email
-            ,@RequestParam  String cellPhone
-    ) {
-        return "name:"+name+";"+"email:"+email+";"+"cellPhone:"+cellPhone+";";
-    }
 
 
     /**
      * 测试返回类型
      */
 
-    @RequestMapping("/type1")
+    @RequestMapping("/type")
     public Object type1(@RequestParam Integer code)
     {
         return type(code);
     }
 
-    @RequestMapping("/type2")
-    @ResponseResult
-    public Object type2(@RequestParam Integer code)
-    {
-        return type(code);
-    }
 
     private Object type(Integer code){
         if(code==1){
@@ -113,16 +94,12 @@ public class ResultController {
      * 异常的自动包裹
      * http://localhost:8080/result/fail?code=1
      */
-    @RequestMapping("/exception1")
+    @RequestMapping("/exception")
     public String exception1(Integer code) {
         return exception(code);
     }
 
-    @RequestMapping("/exception2")
-    @ResponseResult
-    public String exception2(Integer code) {
-        return exception(code);
-    }
+
     //通过不同的code 得到错误信息
     private String exception(Integer code){
         if(code==1){
@@ -132,7 +109,23 @@ public class ResultController {
         }else if(code==3){
             throw new NumberFormatException();
         }else if(code==4){
-            throw new UserNotLoginException();
+//            throw new UserNotLoginException();
+            //throw new RuntimeException("my throws 11111111111111111111");
+            throw new BusinessException(ResultCode.RESOURCE_EXISTED);
+            //
+
+//            {
+//                "status": 500,
+//                    "error": "Internal Server Error",
+//                    "message": "系统繁忙，请稍后重试",
+//                    "code": 40001,
+//                    "path": "/result/exception",
+//                    "exception": "java.lang.RuntimeException",
+//                    "errors": null,
+//                    "timestamp": "2018-05-24T09:08:27.601+0000"
+//            }
+
+
         }
         return "ok";
     }

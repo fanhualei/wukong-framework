@@ -1,66 +1,208 @@
-# API返回格式与全局异常捕获
-
-
-
+# API返回结果
 
 
 > 目录
 
-* [注意事项](#注意事项)
-* [API返回格式](#api返回格式)
-* [全局异常捕获](#全局异常捕获)
+
+* [API返回结果](#api返回结果)
+    * [成功返回结果](#成功返回结果)
+    * [异常返回结果](#异常返回结果)
+    
+* [全局异常处理](#全局异常处理)
+    * [为什么做全局异常处理](#为什么做全局异常处理)
+    * [全局异常处理设计思路](#全局异常处理设计思路)
+
+
+* [不同类型异常处理方法](#不同类型异常处理方法)
     * [参数校验异常](#参数校验异常)
     * [其他系统错误](#其他系统错误)
     * [自定义异常](#自定义异常)
 
+
 <br>
 
-## 注意事项
-
-以下信息十分重要
-
-> @ResponseResult 的适用范围
-* 不建议添加到Class上
-* 添加到函数上,不能返回String类型
-
-> 不完善的地方
-* 当参数不完整的情况下,返回成功状态 code=1
 
 
 
+## API返回结果
+
+* 通过status来判断是否成功
+    * 成功：status=200
+    * 失败：status!=200
+    
 
 
-## API返回格式
+### 成功返回结果
 
-> 添加`@ResponseResult`注解,统一返回格式
+> 成功返回结果的类型
+    
+* 基础类型->字符串
+* 对象   ->json字符串
 
-```java
-@RequestMapping("/success1")
-public City success1() {
-    City city = new City(1,"city1","001");
-    return city;
-}
 
-@RequestMapping("/success2")
-@ResponseResult
-public City success2() {
-    City city = new City(1,"city1","001");
-    return city;
+>> 字符串结果
+
+```youtrack
+name:123456;email:123@189.cn;cellPhone:123;
+```
+
+>> json 结果
+
+````json
+{"id":1,"name":"city1","code":"001"}
+````
+
+
+
+### 异常返回结果
+
+> Sringboot默认的返回结果
+
+* 使用参数校验框架的返回结果
+
+```json
+{
+    "timestamp": "2018-05-24T06:31:51.423+0000",
+    "status": 500,
+    "error": "Internal Server Error",
+    "message": "para1.name: 长度需要在6和50之间, para1.email: 不是一个合法的电子邮件地址",
+    "path": "/result/para"
 }
 ```
 
-[详细代码](../wukong-examples/src/main/java/com/wukong/examples/controller/ResultController.java) 
+* 异常的抛出结果
 
-<br>
+```json
+{
+    "timestamp": "2018-05-24T06:36:09.686+0000",
+    "status": 500,
+    "error": "Internal Server Error",
+    "message": "No message available",
+    "path": "/result/exception"
+}
+```
 
-> 添加注解:https://localhost:8443/result/success2
-
-    {"code":0,"msg":"success","data":{"id":1,"name":"city1","code":"001"}}
 
 
-> 不加注解:https://localhost:8443/result/success1
 
-    {"id":1,"name":"city1","code":"001"}
+## 全局异常处理
+
+
+### 为什么做全局异常处理
+
+* spring 的异常处理太简单
+
+```json
+{
+    "timestamp": "2018-05-24T06:31:51.423+0000",
+    "status": 500,
+    "error": "Internal Server Error",
+    "message": "para1.name: 长度需要在6和50之间, para1.email: 不是一个合法的电子邮件地址",
+    "path": "/result/para"
+}
+```
+
+* 希望能添加更多的信息，例如下面
+
+```json
+{
+    "status": 400,
+    "error": "Bad Request",
+    "message": "参数无效",
+    "code": 10001,
+    "path": "/result/para1",
+    "exception": "javax.validation.ConstraintViolationException",
+    "errors": [
+        {
+            "fieldName": "email",
+            "message": "不是一个合法的电子邮件地址"
+        },
+        {
+            "fieldName": "name",
+            "message": "长度需要在6和50之间"
+        }
+    ],
+    "timestamp": "2018-03-11T13:34:30.611+0000"
+}
+```
+
+
+### 全局异常处理设计思路
+
+
+#### GlobalExceptionHandler 来捕获错误
+
+
+
+> 实例代码
+
+````java
+@ControllerAdvice  // 这个注解是用来捕获异常
+@ResponseBody     //  如果不添加这个注解，那么不能将DefaultErrorResult 返回
+public class GlobalExceptionHandler  {
+    
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(ConstraintViolationException.class) //需要拦截的异常
+    public DefaultErrorResult handleConstraintViolationException(ConstraintViolationException e
+      , HttpServletRequest request) {
+        
+        //自定义defaultErrorResult ，来返回数据
+        return new DefaultErrorResult(ResultCode.PARAM_IS_INVALID, e);    
+    }
+
+}
+````
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

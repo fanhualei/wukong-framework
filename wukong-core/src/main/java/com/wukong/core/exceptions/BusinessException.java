@@ -1,6 +1,6 @@
 package com.wukong.core.exceptions;
 
-import com.wukong.core.enums.BusinessExceptionEnum;
+
 import com.wukong.core.enums.ResultCode;
 import com.wukong.core.util.StringUtil;
 import lombok.Data;
@@ -27,12 +27,6 @@ public class BusinessException extends RuntimeException {
     protected Object data;
 
     public BusinessException() {
-        BusinessExceptionEnum exceptionEnum = BusinessExceptionEnum.getByEClass(this.getClass());
-        if (exceptionEnum != null) {
-            resultCode = exceptionEnum.getResultCode();
-            code = exceptionEnum.getResultCode().code().toString();
-            message = exceptionEnum.getResultCode().message();
-        }
 
     }
 
@@ -50,6 +44,7 @@ public class BusinessException extends RuntimeException {
         this(resultCode);
         this.data = data;
     }
+
 
     public BusinessException(ResultCode resultCode) {
         this.resultCode = resultCode;

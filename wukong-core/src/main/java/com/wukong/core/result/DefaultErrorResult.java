@@ -2,9 +2,10 @@ package com.wukong.core.result;
 
 import java.util.Date;
 
-import com.wukong.core.enums.ExceptionEnum;
+
 import com.wukong.core.enums.ResultCode;
 import com.wukong.core.exceptions.BusinessException;
+import com.wukong.core.util.RequestContextHolderUtil;
 import com.wukong.core.util.StringUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,11 +15,12 @@ import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
 
 
+
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class DefaultErrorResult implements Result {
+public class DefaultErrorResult  {
 
     private static final long serialVersionUID = 1899083570489722793L;
 
@@ -84,10 +86,10 @@ public class DefaultErrorResult implements Result {
     }
 
     public static DefaultErrorResult failure(BusinessException e) {
-        ExceptionEnum ee = ExceptionEnum.getByEClass(e.getClass());
-        if (ee != null) {
-            return DefaultErrorResult.failure(ee.getResultCode(), e, ee.getHttpStatus(), e.getData());
-        }
+//        ExceptionEnum ee = ExceptionEnum.getByEClass(e.getClass());
+//        if (ee != null) {
+//            return DefaultErrorResult.failure(ee.getResultCode(), e, ee.getHttpStatus(), e.getData());
+//        }
 
         DefaultErrorResult defaultErrorResult = DefaultErrorResult.failure(e.getResultCode() == null ? ResultCode.SUCCESS : e.getResultCode(), e, HttpStatus.OK, e.getData());
         if (StringUtil.isNotEmpty(e.getMessage())) {

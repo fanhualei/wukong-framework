@@ -1,7 +1,7 @@
 package com.wukong.examples.controller;
 
 
-import com.wukong.core.result.ResponseResult;
+
 import com.wukong.examples.entity.City;
 import com.wukong.examples.entity.Method;
 import com.wukong.examples.entity.User;
@@ -37,7 +37,7 @@ public class ValidatorController {
     }
 
     @RequestMapping("/para2")
-    @ResponseResult
+
     public Map para2(@RequestParam @Valid @Length(min = 6,max = 50) String name
             ,@RequestParam  @Valid @Email String email
             ,@RequestParam  String cellPhone
@@ -69,7 +69,6 @@ public class ValidatorController {
     }
 
     @RequestMapping("/bean3")
-    @ResponseResult
     public City bean3(@RequestBody @Valid City city) {
         return bean(city);
     }

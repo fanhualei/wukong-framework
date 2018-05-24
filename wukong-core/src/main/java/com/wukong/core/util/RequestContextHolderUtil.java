@@ -1,4 +1,4 @@
-package com.wukong.core.result;
+package com.wukong.core.util;
 
 import org.springframework.web.context.ContextLoader;
 import org.springframework.web.context.request.RequestContextHolder;
