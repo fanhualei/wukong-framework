@@ -1,5 +1,14 @@
 # gitLab
 
+
+> 注意
+
+* 本页中图片的ip后台都修改成了域名。因为时间原因，没有更换图片。
+* 刚开始gitlab没有域名，所以用ip访问，但是造成了ssh远程登录的冲突。
+* 后来配置完域名后，就没有这个问题了。
+
+<br>
+
 > 目录
 
 
@@ -38,14 +47,24 @@
         * ssh-keygen -t rsa -C 'fanhl@189.cn' -f ~/.ssh/gitlab-rsa
     * 将gitlab-rsa.pub的内容复制到gitlab网站上
         * cat ~/.ssh/gitlab-rsa.pub
-    * 本机配置ssh　conf文件，见下面注释
+    * 本机配置ssh　conf文件，见下面注释 (下面追加了按照域名配置)
 
 ```properties
-# gitlab
-Host 47.92.0.57
-    HostName 47.92.0.57
+# gitlab by id
+#Host 47.92.0.57
+#    HostName 47.92.0.57
+#    PreferredAuthentications publickey
+#    IdentityFile ~/.ssh/gitlab-rsa
+
+
+# gitlab by name
+
+Host gitlab.runzhichina.com
+    HostName gitlab.runzhichina.com
     PreferredAuthentications publickey
     IdentityFile ~/.ssh/gitlab-rsa
+
+
 
 
 # github
@@ -55,10 +74,11 @@ Host 47.92.0.57
 #    IdentityFile ~/.ssh/github_id-rsa
 
 # 配置文件参数
-# Host : Host可以看作是一个你要识别的模式，对识别的模式，进行配置对应的的主机名>和ssh文件
+# Host : Host可以看作是一个你要识别的模式，对识别的模式，进行配置对应的的主机名和ssh文件
 # HostName : 要登录主机的主机名
 # User : 登录名
 # IdentityFile : 指明上面User对应的identityFile路径
+
 
 ```    
 
