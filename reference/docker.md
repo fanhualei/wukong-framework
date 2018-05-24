@@ -1,11 +1,16 @@
 # docker 基本用法
 
-> 基本概念
+> 名词解释
 
-* docker:一个操作平台
-* 镜像: 可安装或恢复的包，例如windows上用gohst生成iso文件
-* 容器: 镜像安装完毕后的东西，类似于虚拟机。
 
+名称 | 说明 |
+--------- | --------|
+docker  | docker管理平台 |
+镜像    | 可安装或恢复的包，例如windows上用gohst生成iso文件 |
+容器    | 镜像安装后可以运行的独立环境，类似于虚拟机。 |
+
+
+<br>
 
 > 目录
 
@@ -53,7 +58,11 @@ systemctl enable docker.service && service docker start
 
 ## 安装镜像
 
-    可以把镜像理解成一个虚拟机，镜像是今后微服务的基础
+> 镜像市场
+
+* [daocloud](https://www.daocloud.io/)
+
+
 
 
 ### 安装mysql
