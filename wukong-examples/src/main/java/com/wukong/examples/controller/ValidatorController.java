@@ -3,6 +3,9 @@ package com.wukong.examples.controller;
 
 import com.wukong.core.result.ResponseResult;
 import com.wukong.examples.entity.City;
+import com.wukong.examples.entity.Method;
+import com.wukong.examples.entity.User;
+import com.wukong.examples.validator.Phone;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -78,21 +81,36 @@ public class ValidatorController {
 
 
 
+//bean类，使用到Bindingresult，需要使用@Validated注解类参数
+// （注意到@Validated不能用在成员属性上，
+// 所以使用bindingresult的时候，不能单单检测字段，而要用类包装字段）
+// 所以method1的使用方法同method2
+//    @RequestMapping("/method1")
+//    public String method1(@RequestParam @Valid @Length(min = 6,max = 50) String name
+//            ,@RequestParam  @Valid @Email String email
+//            ,@RequestParam  String cellPhone
+//            ,BindingResult result
+//    ) {
+//        if(result.hasErrors()) {
+//            List<ObjectError> list = result.getAllErrors();
+//            for (ObjectError error : list) {
+//                System.out.println(error.getCode() + "---" + error.getArguments() + "---" + error.getDefaultMessage());
+//            }
+//        }
+//        return name+"ok";
+//    }
 
     @RequestMapping("/method1")
-    public String method1(@RequestParam @Valid @Length(min = 6,max = 50) String name
-            ,@RequestParam  @Valid @Email String email
-            ,@RequestParam  String cellPhone
+    public String method1(@Validated Method method
             ,BindingResult result
     ) {
-
         if(result.hasErrors()) {
             List<ObjectError> list = result.getAllErrors();
             for (ObjectError error : list) {
                 System.out.println(error.getCode() + "---" + error.getArguments() + "---" + error.getDefaultMessage());
             }
         }
-        return name+"ok";
+        return method.toString()+": ok";
     }
 
     @RequestMapping("/method2")
@@ -125,5 +143,14 @@ public class ValidatorController {
         return city.getName()+"ok";
     }
 
+    @RequestMapping("/phone")
+    public String phone1(@RequestBody @Valid User user) {
+        return user.getPhone();
+    }
 
+
+    @RequestMapping("/phone2")
+    public String phone2(@RequestParam @Valid @Phone String phone) {
+        return phone;
+    }
 }
