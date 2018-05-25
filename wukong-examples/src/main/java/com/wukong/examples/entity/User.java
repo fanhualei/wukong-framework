@@ -1,6 +1,6 @@
 package com.wukong.examples.entity;
 
-import com.wukong.examples.validator.Phone;
+import com.wukong.core.validator.Phone;
 import lombok.Data;
 
 @Data

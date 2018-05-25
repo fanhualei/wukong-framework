@@ -11,46 +11,64 @@ import java.util.List;
  */
 public enum ResultCode {
 
-    /* 成功状态码 */
-    SUCCESS(1, "成功"),
 
-    /* 参数错误：10001-19999 */
-    PARAM_IS_INVALID(10001, "参数无效"),
-    PARAM_IS_BLANK(10002, "参数为空"),
-    PARAM_TYPE_BIND_ERROR(10003, "参数类型错误"),
-    PARAM_NOT_COMPLETE(10004, "参数缺失"),
 
-    /* 用户错误：20001-29999*/
-    USER_NOT_LOGGED_IN(20001, "用户未登录"),
-    USER_LOGIN_ERROR(20002, "账号不存在或密码错误"),
-    USER_ACCOUNT_FORBIDDEN(20003, "账号已被禁用"),
-    USER_NOT_EXIST(20004, "用户不存在"),
-    USER_HAS_EXISTED(20005, "用户已存在"),
-    LOGIN_CREDENTIAL_EXISTED(20006, "凭证已存在"),
 
-    /* 业务错误：30001-39999 */
-    SPECIFIED_QUESTIONED_USER_NOT_EXIST(30001, "业务错误"),
 
-    /* 系统错误：40001-49999 */
-    SYSTEM_INNER_ERROR(40001, "系统繁忙，请稍后重试"),
+    /*
+    权限错误：10001-19999
+    前缀:SECU
+    */
+    SECU_PERMISSION_NO_ACCESS(10001, "无访问权限"),
+    SECU_RESOURCE_EXISTED(10002, "资源已存在"),
+    SECU_RESOURCE_NOT_EXISTED(10003, "资源不存在"),
 
-    /* 数据错误：50001-599999 */
-    RESULE_DATA_NONE(50001, "数据未找到"),
-    DATA_IS_WRONG(50002, "数据有误"),
-    DATA_ALREADY_EXISTED(50003, "数据已存在"),
+    SECU_USER_NOT_LOGGED_IN(10004, "用户未登录"),
+    SECU_USER_LOGIN_ERROR(10005, "账号不存在或密码错误"),
+    SECU_USER_ACCOUNT_FORBIDDEN(10006, "账号已被禁用"),
+    SECU_USER_NOT_EXIST(10007, "用户不存在"),
+    SECU_USER_HAS_EXISTED(10008, "用户已存在"),
+    SECU_LOGIN_CREDENTIAL_EXISTED(10009, "凭证已存在"),
 
-    /* 接口错误：60001-69999 */
-    INTERFACE_INNER_INVOKE_ERROR(60001, "内部系统接口调用异常"),
-    INTERFACE_OUTTER_INVOKE_ERROR(60002, "外部系统接口调用异常"),
-    INTERFACE_FORBID_VISIT(60003, "该接口禁止访问"),
-    INTERFACE_ADDRESS_INVALID(60004, "接口地址无效"),
-    INTERFACE_REQUEST_TIMEOUT(60005, "接口请求超时"),
-    INTERFACE_EXCEED_LOAD(60006, "接口负载过高"),
 
-    /* 权限错误：70001-79999 */
-    PERMISSION_NO_ACCESS(70001, "无访问权限"),
-    RESOURCE_EXISTED(70002, "资源已存在"),
-    RESOURCE_NOT_EXISTED(70003, "资源不存在");
+    /*
+    接口错误：20001-29999
+    */
+    INTERFACE_INNER_INVOKE_ERROR(20001, "内部系统接口调用异常"),
+    INTERFACE_OUTTER_INVOKE_ERROR(20002, "外部系统接口调用异常"),
+    INTERFACE_FORBID_VISIT(20003, "该接口禁止访问"),
+    INTERFACE_ADDRESS_INVALID(20004, "接口地址无效"),
+    INTERFACE_REQUEST_TIMEOUT(20005, "接口请求超时"),
+    INTERFACE_EXCEED_LOAD(20006, "接口负载过高"),
+
+
+    /*
+    常见的错误:30001-39999
+    参数相关的：30101-30199
+    数据相关的：30201-30299
+    其他     :30301-30399
+     */
+
+    COMM_PARAM_IS_INVALID(30101, "参数无效"),
+    COMM_PARAM_IS_BLANK(30102, "参数为空"),
+    COMM_PARAM_TYPE_BIND_ERROR(30103, "参数类型错误"),
+    COMM_PARAM_NOT_COMPLETE(30104, "参数缺失"),
+
+    COMM_DATA_NONE(30201, "数据未找到"),
+    COMM_DATA_IS_WRONG(30202, "数据有误"),
+    COMM_DATA_ALREADY_EXISTED(30203, "数据已存在"),
+
+    COMM_SYSTEM_INNER_ERROR(30301, "系统繁忙，请稍后重试"),
+
+
+
+            ;
+
+
+
+
+
+
 
     private Integer code;
 

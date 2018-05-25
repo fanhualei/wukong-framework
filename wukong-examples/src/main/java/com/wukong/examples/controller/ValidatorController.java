@@ -5,7 +5,7 @@ package com.wukong.examples.controller;
 import com.wukong.examples.entity.City;
 import com.wukong.examples.entity.Method;
 import com.wukong.examples.entity.User;
-import com.wukong.examples.validator.Phone;
+import com.wukong.core.validator.Phone;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;

@@ -1,4 +1,4 @@
-package com.wukong.examples.validator;
+package com.wukong.core.validator;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

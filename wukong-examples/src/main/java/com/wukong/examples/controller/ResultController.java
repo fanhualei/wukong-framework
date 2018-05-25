@@ -109,23 +109,8 @@ public class ResultController {
         }else if(code==3){
             throw new NumberFormatException();
         }else if(code==4){
-//            throw new UserNotLoginException();
             //throw new RuntimeException("my throws 11111111111111111111");
-            throw new BusinessException(ResultCode.RESOURCE_EXISTED);
-            //
-
-//            {
-//                "status": 500,
-//                    "error": "Internal Server Error",
-//                    "message": "系统繁忙，请稍后重试",
-//                    "code": 40001,
-//                    "path": "/result/exception",
-//                    "exception": "java.lang.RuntimeException",
-//                    "errors": null,
-//                    "timestamp": "2018-05-24T09:08:27.601+0000"
-//            }
-
-
+            throw new BusinessException(ResultCode.COMM_PARAM_IS_INVALID);
         }
         return "ok";
     }

@@ -38,7 +38,7 @@ public class GlobalExceptionHandler  {
 
         log.error("handleConstraintViolationException start, uri:{}, caused by: ", request.getRequestURI(), e);
         List<ParameterInvalidItem> parameterInvalidItemList = ParameterInvalidItemHelper.convertCVSetToParameterInvalidItemList(e.getConstraintViolations());
-        return DefaultErrorResult.failure(ResultCode.PARAM_IS_INVALID, e, HttpStatus.BAD_REQUEST, parameterInvalidItemList);
+        return DefaultErrorResult.failure(ResultCode.COMM_PARAM_IS_INVALID, e, HttpStatus.BAD_REQUEST, parameterInvalidItemList);
 
     }
 
@@ -50,7 +50,7 @@ public class GlobalExceptionHandler  {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public DefaultErrorResult handleConstraintViolationException(HttpMessageNotReadableException e, HttpServletRequest request) {
         log.error("handleConstraintViolationException start, uri:{}, caused by: ", request.getRequestURI(), e);
-        return DefaultErrorResult.failure(ResultCode.PARAM_IS_INVALID, e, HttpStatus.BAD_REQUEST);
+        return DefaultErrorResult.failure(ResultCode.COMM_PARAM_IS_INVALID, e, HttpStatus.BAD_REQUEST);
     }
 
     /**
@@ -61,7 +61,7 @@ public class GlobalExceptionHandler  {
     public DefaultErrorResult handleBindException(BindException e, HttpServletRequest request) {
         log.error("handleBindException start, uri:{}, caused by: ", request.getRequestURI(), e);
         List<ParameterInvalidItem> parameterInvalidItemList = ParameterInvalidItemHelper.convertBindingResultToMapParameterInvalidItemList(e.getBindingResult());
-        return DefaultErrorResult.failure(ResultCode.PARAM_IS_INVALID, e, HttpStatus.BAD_REQUEST, parameterInvalidItemList);
+        return DefaultErrorResult.failure(ResultCode.COMM_PARAM_IS_INVALID, e, HttpStatus.BAD_REQUEST, parameterInvalidItemList);
 
     }
 
@@ -74,7 +74,7 @@ public class GlobalExceptionHandler  {
     public DefaultErrorResult handleMethodArgumentNotValidException(MethodArgumentNotValidException e, HttpServletRequest request) {
         log.error("handleMethodArgumentNotValidException start, uri:{}, caused by: ", request.getRequestURI(), e);
         List<ParameterInvalidItem> parameterInvalidItemList = ParameterInvalidItemHelper.convertBindingResultToMapParameterInvalidItemList(e.getBindingResult());
-        return DefaultErrorResult.failure(ResultCode.PARAM_IS_INVALID, e, HttpStatus.BAD_REQUEST, parameterInvalidItemList);
+        return DefaultErrorResult.failure(ResultCode.COMM_PARAM_IS_INVALID, e, HttpStatus.BAD_REQUEST, parameterInvalidItemList);
 
     }
 
@@ -97,7 +97,7 @@ public class GlobalExceptionHandler  {
         //TODO 可通过邮件、微信公众号等方式发送信息至开发人员、记录存档等操作
 
         log.error("handleRuntimeException start, uri:{}, caused by: ", request.getRequestURI(), e);
-        return DefaultErrorResult.failure(ResultCode.SYSTEM_INNER_ERROR, e, HttpStatus.INTERNAL_SERVER_ERROR);
+        return DefaultErrorResult.failure(ResultCode.COMM_SYSTEM_INNER_ERROR, e, HttpStatus.INTERNAL_SERVER_ERROR);
 
 
 

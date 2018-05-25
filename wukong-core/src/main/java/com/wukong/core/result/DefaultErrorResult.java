@@ -91,7 +91,7 @@ public class DefaultErrorResult  {
 //            return DefaultErrorResult.failure(ee.getResultCode(), e, ee.getHttpStatus(), e.getData());
 //        }
 
-        DefaultErrorResult defaultErrorResult = DefaultErrorResult.failure(e.getResultCode() == null ? ResultCode.SUCCESS : e.getResultCode(), e, HttpStatus.OK, e.getData());
+        DefaultErrorResult defaultErrorResult = DefaultErrorResult.failure(e.getResultCode() == null ? ResultCode.COMM_SYSTEM_INNER_ERROR : e.getResultCode(), e, HttpStatus.OK, e.getData());
         if (StringUtil.isNotEmpty(e.getMessage())) {
             defaultErrorResult.setMessage(e.getMessage());
         }
