@@ -117,6 +117,21 @@ public class ResultController {
 
 
 
+    @RequestMapping("/exception")
+    public String exception2(String name, String email
+    ) {
+
+        String errs="";
+        if(1!=2){
+
+//            throws ConstraintViolationException();
+        }
+
+
+        return "";
+    }
+
+
 
 
 }
