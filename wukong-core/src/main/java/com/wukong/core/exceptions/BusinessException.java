@@ -26,24 +26,24 @@ public class BusinessException extends RuntimeException {
 
     protected Object data;
 
-    public BusinessException() {
-
-    }
-
-    public BusinessException(String message) {
-        this();
-        this.message = message;
-    }
-
-    public BusinessException(String format, Object... objects) {
-        this();
-        this.message = StringUtil.formatIfArgs(format, "{}", objects);
-    }
-
-    public BusinessException(ResultCode resultCode, Object data) {
-        this(resultCode);
-        this.data = data;
-    }
+//    public BusinessException() {
+//
+//    }
+//
+//    public BusinessException(String message) {
+//        this();
+//        this.message = message;
+//    }
+//
+//    public BusinessException(String format, Object... objects) {
+//        this();
+//        this.message = StringUtil.formatIfArgs(format, "{}", objects);
+//    }
+//
+//    public BusinessException(ResultCode resultCode, Object data) {
+//        this(resultCode);
+//        this.data = data;
+//    }
 
 
     public BusinessException(ResultCode resultCode) {
