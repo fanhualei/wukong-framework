@@ -11,8 +11,10 @@
 
 ## 手工部署
 
-* 到Idea代码生成目录,将代码复制到webapp中
-    * 例如:/IdeaProjects/wukong-framework/wukong-examples/target/wukong-examples-1.1.RELEASE
+### 到Idea代码生成目录,将代码复制到webapp中
+    
+* 例如:/IdeaProjects/wukong-framework/wukong-examples/target/wukong-examples-1.1.RELEASE
+
 ```youtrack
 sudo chown fan /opt/wk/webapp
 cd /opt/wk/webapp
@@ -20,13 +22,15 @@ jar -xvf /home/fan/IdeaProjects/wukong-framework/wukong-examples/target/wukong-e
 
 ```
 
-* 启动Tomcat与Apache
+### 启动Tomcat与Apache
 
-* 测试
-    * 测试Tomcat http://127.0.0.1:20180/hello
-    * 测试Apache http://www.wk.com/hello
+### 测试
+
+* 测试Tomcat http://127.0.0.1:20180/hello
+* 测试Apache http://www.wk.com/hello
 
 <br>
+
 
 ## Maven部署
 
