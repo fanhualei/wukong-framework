@@ -60,9 +60,8 @@ public enum ResultCode {
 
     COMM_SYSTEM_INNER_ERROR(30301, "系统繁忙，请稍后重试"),
 
+    GOODS_NOT_EXISTS(66666, "商品不存在");
 
-
-            ;
 
 
 

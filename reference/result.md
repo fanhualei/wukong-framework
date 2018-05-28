@@ -155,6 +155,25 @@ public class GlobalExceptionHandler  {
 
 }
 ````
+# 自定义异常的使用
+
+## 如何改变status数值
+通过设置ResponseEnitiy的status属性，可以自定义任何status代码进行返回。
+```
+//返回600状态码
+ResponseEntity.status(600).body(defaultErrorResult);
+```
+## 如何定义code值
+修改ResultCode,添加Enum类型变量。
+```
+//添加一个名为GOODS_NOT_EXISTS的变量，其Code为66666，提示信息为商品不存在
+GOODS_NOT_EXISTS(66666, "商品不存在");
+```
+## 初始化BusinessException三个方法
+### 通过code值
+```
+throw new BusinessException(ResultCode.GOODS_NOT_EXISTS);
+```
 
 
 

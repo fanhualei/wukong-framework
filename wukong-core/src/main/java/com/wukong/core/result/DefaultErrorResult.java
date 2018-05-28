@@ -90,12 +90,23 @@ public class DefaultErrorResult  {
 //        if (ee != null) {
 //            return DefaultErrorResult.failure(ee.getResultCode(), e, ee.getHttpStatus(), e.getData());
 //        }
+        DefaultErrorResult result = new DefaultErrorResult();
+        result.setCode(e.getResultCode().code());
+        result.setMessage(e.getMessage());
+        result.setStatus(600);
+        result.setError("Business Error");
+        result.setException(e.getClass().getName());
+        result.setPath(RequestContextHolderUtil.getRequest().getRequestURI());
+        result.setTimestamp(new Date());
+        return result;
 
+    /*
         DefaultErrorResult defaultErrorResult = DefaultErrorResult.failure(e.getResultCode() == null ? ResultCode.COMM_SYSTEM_INNER_ERROR : e.getResultCode(), e, HttpStatus.OK, e.getData());
         if (StringUtil.isNotEmpty(e.getMessage())) {
             defaultErrorResult.setMessage(e.getMessage());
         }
         return defaultErrorResult;
+        */
     }
 
 }
