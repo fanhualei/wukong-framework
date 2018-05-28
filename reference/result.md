@@ -157,6 +157,30 @@ public class GlobalExceptionHandler  {
 ````
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 >参考资料
 
 主要参考了:企业实战之spring项目《接口响应体格式统一封装》
@@ -170,9 +194,8 @@ public class GlobalExceptionHandler  {
 * Exception统一处理
     * [企业实战之spring增强器实现《全局异常处理器》](http://blog.csdn.net/aiyaya_/article/details/78725755)
 
-* 不正确的解决方法
-    * [Java 接口返回类](https://www.jianshu.com/p/d8f2939d6a36)
-    * [SpringBoot进阶之统一接口返回信息格式](http://blog.csdn.net/tiegenz/article/details/78231993)
+
+
 
 
 
