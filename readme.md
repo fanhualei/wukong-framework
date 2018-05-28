@@ -93,6 +93,8 @@ gitlab
 * 性能测试需要有人研究一下
 * 需要有人研究一下树型结构的编码e
 * 测试https是否好用 step2
+* 马宇航在gitlab上配置plantuml
+    * [GitLab 之 PlantUML 的配置及使用](https://blog.csdn.net/aixiaoyang168/article/details/76888254)
 
 
 

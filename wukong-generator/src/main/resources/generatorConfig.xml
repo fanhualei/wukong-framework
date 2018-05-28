@@ -15,6 +15,7 @@
         <!-- This plugin adds the @Mapper annotation to generated mapper interfaces. This plugin should only be used in MyBatis3 environments.  -->
         <plugin type="org.mybatis.generator.plugins.MapperAnnotationPlugin" />
         <plugin type="com.wukong.generator.mybatis.plugins.WukongPlugin"/>
+        <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin" />
 
         <commentGenerator>
             <property name="suppressAllComments" value="true" />
