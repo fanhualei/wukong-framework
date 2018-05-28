@@ -46,12 +46,14 @@ gitlab
 * 规范
     * [编码规范](reference/coding_standards.md)
     * [记录log规范](reference/uselog.md)
+    * [代码分支规范](reference/gitlab_branch.md)
+    * [redis-key命名规范](reference/redis.md#redis-key命名规范)
 
 
 * 持续集成
     * [gitLab](reference/gitlab.md)
     * [gitlab与apache 同时部署在一台服务器](reference/gitlab_apache.md)
-    * [代码分支说明文档](reference/gitlab_branch.md)
+
    
 * docker使用
     * [docker基本用法](reference/docker.md)
