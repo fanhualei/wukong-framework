@@ -68,7 +68,7 @@
 
 ### 生成代码说明
 
-> 目录结构
+#### 目录结构
 
 目录文件 | 说明 |
 --------- | --------|
@@ -78,7 +78,7 @@ model.User.java    | user对象 |
 model.UserExample.java    | 为了检索而生成的对象|
 
 
-> dao类函数说明
+#### dao类函数说明
 
 
 函数名 | 说明 | 备注 |
@@ -97,16 +97,16 @@ int updateByPrimaryKey(User record)| 根据主键更新，属性=null，会将�
 
 
 
-> Example类的使用
+#### Example类的使用
 
 
-> 参考网址
+##### 参考网址
 
 * [官方：Example Class Usage Notes](http://www.mybatis.org/generator/generatedobjects/exampleClassUsage.html)
 * [官方:Extending the Example Classes](http://www.mybatis.org/generator/generatedobjects/extendingExampleClass.html)
 
 
-> 简单查询
+##### 简单查询
 
 ```java
 TestTableExample example = new TestTableExample();
@@ -116,7 +116,7 @@ List<TestTable>  testTables =testTableMapper.selectByExample(example);
 
 ```
 
-> 多条件
+##### 多条件
 
 ```java
 TestTableExample example = new TestTableExample();
@@ -144,7 +144,7 @@ TestTableExample example = new TestTableExample();
 
 ```
 
-等价与
+> 等价与
 
 ```sql
 where (field1 = 5 and field2 is null)
@@ -154,13 +154,13 @@ where (field1 = 5 and field2 is null)
 ```
 
 
-> 去重
+##### 去重
 
-使用example中的setDistinct(true)
+> 使用example中的setDistinct(true)
 
 
 
-> like 不区分大小写
+##### like 不区分大小写
 
 ```java
 ExtendedExample example = new ExtendedExample();
@@ -169,27 +169,27 @@ criteria.andFirstNameLikeInsensitive("fred%");
 List results = selectByExample(example);
 ```
 
-> in 检索
+##### in 检索
 
 
-* 例如
+> 例如
 
     FIRST_NAME IN (?, ?, ?) 或
     LAST_NAME NOT IN (?, ?, ?, ?)
 
-* 代码这么写
+> 代码这么写
 
     addCriterion(String anyString, List listOfObjects, String propertyName)
     
     
-> between 检索    
+##### between 检索    
 
-* 例如
+> 例如
 
     FIRST_NAME BETWEEN ? AND ?
     LAST_NAME NOT BETWEEN ? AND ?
     
-* 代码这么写
+> 代码这么写
 
     addCriterion(String anyString, Object object1, Object object2, String propertyName)
         
