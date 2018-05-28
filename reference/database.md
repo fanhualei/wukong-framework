@@ -24,11 +24,11 @@
 
 ### 代码自动生成
 
-> wukong_generator 工程中用来生成代码
+#### wukong_generator 工程中用来生成代码
 
 
 
->> 修改generatorConfig.xom
+##### 修改generatorConfig.xom
 
 * password需要修改
 * <property name="effects" value="wk_user"/> 中输入要生成的table名称
@@ -55,7 +55,7 @@
 ```
 
 
->> 执行WukongGenerator 类，代码会生成到log目录下
+##### 执行WukongGenerator 类，代码会生成到log目录下
 
 <br>
 
@@ -156,7 +156,7 @@ where (field1 = 5 and field2 is null)
 
 ##### 去重
 
-> 使用example中的setDistinct(true)
+    使用example中的setDistinct(true)
 
 
 
