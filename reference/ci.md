@@ -34,6 +34,46 @@ jar -xvf /home/fan/IdeaProjects/wukong-framework/wukong-examples/target/wukong-e
 
 ## Maven部署
 
+### add exec code in pom.xml
+
+````xml
+<build>
+         <plugins>
+             <plugin>
+                 <artifactId>exec-maven-plugin</artifactId>
+                 <groupId>org.codehaus.mojo</groupId>
+                 <executions>
+                     <execution>
+                         <id>uncompress</id>
+                         <phase>package</phase>
+                         <goals>
+                             <goal>exec</goal>
+                         </goals>
+                         <configuration>
+                             <executable>${basedir}/wukong-donghai/deploy.sh   </executable>
+                             <arguments>${basedir}/wukong-donghai/target/wukong-donghai-1.1.RELEASE.war</arguments>
+                         </configuration>
+                     </execution>
+                 </executions>
+             </plugin>
+         </plugins>
+</build>
+````
+
+#### add sh file to deploy 
+
+```youtrack
+echo "hello world,I will deploy app to webserver !!!"
+
+echo $1
+
+echo "I'will deploy this file to server bu ssh!!!"
+```
+
+
+
+
+
 <br>
 
 ## GitLab持续集成
