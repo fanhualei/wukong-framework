@@ -15,8 +15,6 @@ gitlab
 * [环境配置](reference/readme.md "开打环境配置文档")
     * [开发环境配置](reference/readme.md "开打环境配置文档")
     * [服务器环境配置](reference/webEnvironment.md "开打环境配置文档")
-        * [docker基本用法](reference/docker.md)
-        * [dockerQ&A](reference/docker_qa.md)
     * [Https配置](reference/https.md)
     * [服务器安全配置](reference/webSecurity.md)
     * [部署到服务器上](reference/ci.md "部署到服务器上")
@@ -35,6 +33,7 @@ gitlab
         
     
 * 数据库开发    
+    * [Mysql使用](reference/mysql.md)
     * [如何撰写数据库操作](reference/database.md)
  
 
@@ -54,20 +53,20 @@ gitlab
     * [gitlab与apache 同时部署在一台服务器](reference/gitlab_apache.md)
     * [代码分支说明文档](reference/gitlab_branch.md)
    
+* docker使用
+    * [docker基本用法](reference/docker.md)
+    * [dockerQ&A](reference/docker_qa.md)
+
 
 
 * 其他
-    * [如何记录log](reference/uselog.md)
     * [如何使用Redis缓存](reference/redis.md)
     * [RocketMQ使用](reference/mq.md)
     * [如何使用elasticsearch](reference/elasticsearch.md)
     * [SpringBoot使用小技巧](reference/tip.md)
     * [bugs一些错误](reference/bugs.md)
-    * [gitlab使用](reference/gitlab.md)
-    * [Https配置](reference/https.md)
     * [linux常用命令](reference/cmd.md)
     * [maven 使用技巧](reference/maven.md)
-    * [Mysql使用](reference/mysql.md)
     * [tomcat 使用](reference/tomcat.md)
 
 
