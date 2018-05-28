@@ -1,17 +1,6 @@
-# 环境配置
-
-> 目录
-
-* [快速搭建开发环境](#快速搭建开发环境)
-* [部署程序](#部署程序)
-    * [Maven自动部署](#maven自动部署)
-    * [数据库结构升级](#数据库结构升级)    
-    * [系统回滚](#系统回滚)
+# 快速搭建开发环境
 
 
-<br>
-
-## 快速搭建开发环境
     
 > 关键步骤
 
@@ -26,13 +15,6 @@
 * 9:application-db.properties 修改数据库的名称与密码(wukong-examples/src/main/resources/目录下)
 * 10:右键点击 DemoApplicaiton Run, 执行整个程序
 * 11: 打开浏览器，输入下面地址,系统显示出一个字符串<br>
-      https://localhost:8443/author/jwt/login?username=admin&password=admin
+      https://localhost:8080/author/jwt/login?username=admin&password=admin
           
  
- <br>
- 
- ## 部署程序
- 
- 
- 
- <br>

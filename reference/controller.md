@@ -8,17 +8,8 @@
 
 * [实际开发](#实际开发)
     * [默认规范](#默认规范)
-    * [统一返回格式](result.md)
-    * [全局异常处理](result.md)
-    * [数据校验](validator.md)
     * [配置访问权限](#配置访问权限)
-    * [撰写swagger注释](#撰写swagger注释)
-
-    
-* 接口测试
-    * [PostMan](postman.md)
-    * [swagger2](swagger2.md)
-    * [TestNg](testng.md)   
+   
 
 * [基础概念](#基础概念)
     * [返回一个字符串](#返回一个字符串)
@@ -44,17 +35,6 @@
 
 <br>
 
-### 返回格式要统一
-
-> 用code msg data形式返回
-
-    {"code":0,"msg":"success","data":{"id":1,"name":"city1","code":"001"}}
-
-
-详情见:[添加注解就可以返回统一的格式](result.md)
-
-
-<br>
 
 ### 配置访问权限
 
@@ -70,24 +50,6 @@ public Map<String, String> getInfo(@RequestParam String name) {
 
 <br>
 
-### 撰写swagger注释
-
-`不建议使用,因为这些内容可以在代码外写`
-
-> @ApiOperation  @ApiImplicitParam 分别是swagger的注解
-
-
-```java
-@ApiOperation(value="得到名称", notes="")
-@ApiImplicitParam(name = "name", value = "用户名称", required = true, dataType = "String")
-@RequestMapping("/info")
-public Map<String, String> getInfo(@RequestParam String name) {
-    //代码略
-}
-```
-
-
-<br>
 
 
     
