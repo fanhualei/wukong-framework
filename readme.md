@@ -48,6 +48,9 @@ gitlab
     * [记录log规范](reference/uselog.md)
     * [代码分支规范](reference/gitlab_branch.md)
     * [redis-key命名规范](reference/redis.md#redis-key命名规范)
+    * [服务器端口规范](reference/standards_server.md#端口规范)
+    * [docker命名规范](reference/standards_server.md#docker命名规范)
+    * [tomcat工程目录规范](reference/standards_server.md#tomcat工程目录规范])
 
 
 * 持续集成
