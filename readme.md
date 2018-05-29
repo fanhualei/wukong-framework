@@ -12,7 +12,7 @@ gitlab
 
 ## 快速掌握
 
-* [环境配置](reference/readme.md "开打环境配置文档")
+* 环境配置
     * [开发环境配置](reference/readme.md "开打环境配置文档")
     * [服务器环境配置](reference/webEnvironment.md "开打环境配置文档")
     * [Https配置](reference/https.md)
@@ -61,6 +61,12 @@ gitlab
 * docker使用
     * [docker基本用法](reference/docker.md)
     * [dockerQ&A](reference/docker_qa.md)
+    
+* linux常用技巧
+    * [linux常用命令](reference/cmd.md)
+    * [ssh免密码登录](reference/cmd.md#ssh免密码登录)
+    
+    
 
 
 
@@ -70,7 +76,6 @@ gitlab
     * [如何使用elasticsearch](reference/elasticsearch.md)
     * [SpringBoot使用小技巧](reference/tip.md)
     * [bugs一些错误](reference/bugs.md)
-    * [linux常用命令](reference/cmd.md)
     * [maven 使用技巧](reference/maven.md)
     * [tomcat 使用](reference/tomcat.md)
 

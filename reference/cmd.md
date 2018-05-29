@@ -11,8 +11,9 @@
     * [文件目录操作]()
 
 * 远程操作    
-    * [远程登录操作]()
+    * [远程登录操作](#远程登录操作)
     * [文件上传与下载](#文件上传与下载)
+    * [ssh免密码登录](#ssh免密码登录)
     
 * 权限相关
     * [切换用户](#切换用户)
@@ -57,10 +58,11 @@
 
 > 基本操作
 
-* 解压
-    * tar zxvf FileName.tar.gz
-* 压缩
-    * tar zcvf FileName.tar.gz DirName    
+    #解压
+    tar zxvf FileName.tar.gz
+    
+    #压缩
+    tar zcvf FileName.tar.gz DirName    
 
 
 > 参考文档
@@ -71,22 +73,36 @@
 
 ## 远程操作  
 
+
+### 远程登录操作
+
+    ssh -l root -p 1422 47.92.0.57
+
+
 ### 文件上传与下载
 
 > 基本操作
 
-* 文件上传
-    * scp  -P 1422  -r /opt/jdk1.8.0_161.tar.gz  root@47.92.10.57:/opt/
-        * 将本地文件,通过1422端口上传到服务器上
+    #文件上传 #将本地文件,通过1422端口上传到服务器上
+    scp  -P 1422  -r /opt/jdk1.8.0_161.tar.gz  root@47.92.10.57:/opt/
 
-* 文件下载
-    * scp   -P 1422 -r root@47.92.10.57:/opt/readme.txt ./
-        * 将远程服务器的readme下载到本地
+    #文件下载 将远程服务器的readme下载到本地
+    scp   -P 1422 -r root@47.92.10.57:/opt/readme.txt ./
+
 
 > 参考文档
 
 * [ubuntu SSH 连接、远程上传下载文件](https://www.cnblogs.com/qinduanyinghua/p/7152812.html)
 * [scp命令需要指定端口时要紧跟在scp后](https://www.cnblogs.com/jixingke/p/6213074.html)
+
+
+### ssh免密码登录
+
+    注意点，由于端口改变了，copy时，需要指定端口：
+    ssh-copy-id -i ~/.ssh/id_rsa.pub -p 1422 root@47.92.1.57
+
+
+> 参考网址[linux实现ssh免密码登录的正确方法](https://jingyan.baidu.com/article/c275f6ba08267ae33c756758.html)
 
 
 
@@ -95,21 +111,14 @@
 
 ### 切换用户
 
-> 基本操作
-
-* su 切换到root
-* exit 退出root
-
-
+    #切换到root
+    su
+    #退出root 
+    exit 
 
 > 参考资料
 
-
 * [ubuntu中root和普通用户切换](https://blog.csdn.net/u011484045/article/details/52108692)
-
-
-
-
 
 
 
@@ -123,13 +132,13 @@
 
 ### 命令行下访问http
 
-* w3m www.baidu.com
+    w3m www.baidu.com
 
 * [linux 命令行模式下，浏览网页方法](https://blog.csdn.net/qq_35346390/article/details/76066326)
 
 ### 判断tomcat是否启动
 
-* ps -ef |grep tomcat
+    ps -ef |grep tomcat
 
 ### 常见的linux命令
 
