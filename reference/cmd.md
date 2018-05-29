@@ -98,11 +98,13 @@
 
 ### ssh免密码登录
 
+> 教程：[linux实现ssh免密码登录的正确方法](https://jingyan.baidu.com/article/c275f6ba08267ae33c756758.html)
+
     注意点，由于端口改变了，copy时，需要指定端口：
     ssh-copy-id -i ~/.ssh/id_rsa.pub -p 1422 root@47.92.1.57
 
 
-> 参考网址[linux实现ssh免密码登录的正确方法](https://jingyan.baidu.com/article/c275f6ba08267ae33c756758.html)
+
 
 
 
