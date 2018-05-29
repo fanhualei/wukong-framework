@@ -8,6 +8,7 @@
 * [vim](#vim)
 * 文件操作
     * [压缩与解压](#压缩与解压)
+    * [删除移动复制操作](#删除移动复制操作)
     * [文件目录操作]()
 
 * 远程操作    
@@ -17,7 +18,9 @@
     
 * 权限相关
     * [切换用户](#切换用户)
+    * [给sh追加执行权限](#给sh追加执行权限)
     * [权限操作]()    
+    
     
 * [自启动](#自启动)    
     
@@ -73,6 +76,23 @@
 * [Ubuntu下各种压缩与解压的方式小结](http://www.jb51.net/article/112207.htm)
 
 
+### 删除移动复制操作
+
+#### 删除
+
+-r 就是向下递归，不管有多少级目录，一并删除
+-f 就是直接强行删除，不作任何提示的意思
+
+    删除文件夹实例：
+    rm -rf /var/log/httpd/access
+    将会删除/var/log/httpd/access目录以及其下所有文件、文件夹
+    
+    删除文件使用实例：
+    rm -f /var/log/httpd/access.log
+    将会强制删除/var/log/httpd/access.log
+    
+
+
 
 ## 远程操作  
 
@@ -109,9 +129,6 @@
 
 
 
-
-
-
 ## 权限相关
 
 ### 切换用户
@@ -121,11 +138,14 @@
     #退出root 
     exit 
 
-> 参考资料
-
-* [ubuntu中root和普通用户切换](https://blog.csdn.net/u011484045/article/details/52108692)
+> 参考资料 [ubuntu中root和普通用户切换](https://blog.csdn.net/u011484045/article/details/52108692)
 
 
+
+
+### 给sh追加执行权限
+
+    chmod +x deploy_server.sh 
 
 ## 自启动
 
@@ -169,4 +189,4 @@ sudo update-rc.d -f redis_6379 remove
 
 ### 常见的linux命令
 
-* [常见命令](https://zhidao.baidu.com/question/919345359486228339.html)
+> [常见命令](https://zhidao.baidu.com/question/919345359486228339.html)
