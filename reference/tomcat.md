@@ -37,9 +37,9 @@
  
  ### 常用命令
  
- * cd /home/fan/tomcat/apache-tomcat-9.0.2/bin/
- * 启动 sudo ./startup.sh
- * 关闭 sudo ./shutdown.sh
+    cd /home/fan/tomcat/apache-tomcat-9.0.2/bin/
+    启动 sudo ./startup.sh
+    关闭 sudo ./shutdown.sh
  
  
  ## 热加载    
@@ -64,13 +64,15 @@
 ps   -ef|grep  tomcat
 ```
 
-> 也可以使用w3m http://127.0.0.1:20180/,但是在端口不向外开放时，不能使用
+> 也可以使用w3m,但是在端口不向外开放时，好像不能使用
 
+```youtrack
+w3m http://127.0.0.1:20180/
+```
 
 ## tomcat自启动
 
 ```youtrack
-
 cd /opt/wk/apache-tomcat-9.0.2/bin/
 
 sudo cp catalina.sh  /etc/init.d/tomcat_20180
@@ -86,14 +88,17 @@ sudo update-rc.d -f tomcat_20180 defaults
 #执行该命令会有两个警告提示，这个可以忽略，如果是报error,就一定不能忽略
 
 sudo reboot 
-
 ```
 
-> 参考网址： [ubuntu16.04设置tomcat自启动](https://www.cnblogs.com/youcong/p/8469488.html)
+> 参考网址： 
+    
+* [ubuntu16.04设置tomcat自启动](https://www.cnblogs.com/youcong/p/8469488.html)
 
-> 如果想删除启动项目，可以执行 sudo update-rc.d -f tomcat_20180 remove
+> 如果想删除启动项目，可以执行 
+
+    sudo update-rc.d -f tomcat_20180 remove
 
 > 查看服务器是否启动了
 
-* http://127.0.0.1:20180/
-* w3m http://127.0.0.1:20180/
+    http://127.0.0.1:20180/
+    w3m http://127.0.0.1:20180/
