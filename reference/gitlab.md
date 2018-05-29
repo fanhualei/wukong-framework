@@ -1,4 +1,4 @@
-# gitLab
+# 使用gitLab提交代码
 
 
 > 注意
@@ -21,15 +21,7 @@
     * [Idea中如何使用Git的基本操作](https://blog.csdn.net/shujiekeji/article/details/73896355)
     
 
-* gitLab高级用法
-    * todoList    
-    * ci持续集成
-    * uml集成
-    * wiki
 
-* gitlab安装与配置
-    * 安装
-    * 安全配置
     
     
     
@@ -38,49 +30,52 @@
 
 ### 设置ssh_key
 
-使用ssh提交代码，比较安全
+> 使用ssh提交代码，比较安全
 
-> 主要步骤
+#### 主要步骤
 
 * 设置SSH Key
     * 为gitlab生成key
-        * ssh-keygen -t rsa -C 'fanhl@189.cn' -f ~/.ssh/gitlab-rsa
+    ```youtrack
+    ssh-keygen -t rsa -C 'fanhl@189.cn' -f ~/.ssh/gitlab-rsa
+    ```     
     * 将gitlab-rsa.pub的内容复制到gitlab网站上
-        * cat ~/.ssh/gitlab-rsa.pub
+    ```youtrack
+    cat ~/.ssh/gitlab-rsa.pub
+    ```
     * 本机配置ssh　conf文件，见下面注释 (下面追加了按照域名配置)
-
-```properties
-# gitlab by id
-#Host 47.92.0.57
-#    HostName 47.92.0.57
-#    PreferredAuthentications publickey
-#    IdentityFile ~/.ssh/gitlab-rsa
-
-
-# gitlab by name
-
-Host gitlab.runzhichina.com
-    HostName gitlab.runzhichina.com
-    PreferredAuthentications publickey
-    IdentityFile ~/.ssh/gitlab-rsa
-
-
-
-
-# github
-#Host github.com
-#    HostName github.com
-#    PreferredAuthentications publickey
-#    IdentityFile ~/.ssh/github_id-rsa
-
-# 配置文件参数
-# Host : Host可以看作是一个你要识别的模式，对识别的模式，进行配置对应的的主机名和ssh文件
-# HostName : 要登录主机的主机名
-# User : 登录名
-# IdentityFile : 指明上面User对应的identityFile路径
-
-
-```    
+    ```properties
+    # gitlab by id
+    #Host 47.92.0.57
+    #    HostName 47.92.0.57
+    #    PreferredAuthentications publickey
+    #    IdentityFile ~/.ssh/gitlab-rsa
+    
+    
+    # gitlab by name
+    
+    Host gitlab.runzhichina.com
+        HostName gitlab.runzhichina.com
+        PreferredAuthentications publickey
+        IdentityFile ~/.ssh/gitlab-rsa
+    
+    
+    
+    
+    # github
+    #Host github.com
+    #    HostName github.com
+    #    PreferredAuthentications publickey
+    #    IdentityFile ~/.ssh/github_id-rsa
+    
+    # 配置文件参数
+    # Host : Host可以看作是一个你要识别的模式，对识别的模式，进行配置对应的的主机名和ssh文件
+    # HostName : 要登录主机的主机名
+    # User : 登录名
+    # IdentityFile : 指明上面User对应的identityFile路径
+    
+    
+    ```    
 
 ![alt](imgs/gitlab_createkey_1.png)
         
@@ -96,22 +91,22 @@ Host gitlab.runzhichina.com
 
 * 主要步骤
 
-> idea菜单File->New->Project From Version Control->Git
+#### idea菜单File->New->Project From Version Control->Git
 
 <br>
 
-> 输入SSH的git地址
+#### 输入SSH的git地址
 
 ![alt](imgs/idea_git_new_project_1.png)
 
 <br>
 
-> 编辑代码后，选择commit
+#### 编辑代码后，选择commit
 
 ![alt](imgs/idea_git_new_project_2.png)
 
 
-> push提交到服务
+#### push提交到服务
 
 ![alt](imgs/idea_git_new_project_3.png)
 
@@ -123,30 +118,30 @@ Host gitlab.runzhichina.com
 
 上午还行，下午就不行了，难道是没有ｍｅｒｇｅ的问题？？？？
 
-> 在push时候，选择定义新的远程链接
+#### 在push时候，选择定义新的远程链接
 
 ![alt](imgs/gitlab_idea_1.png)
 
 
-> 输入远程名称以及地址
+#### 输入远程名称以及地址
 
 ![alt](imgs/gitlab_idea_1_name.png)
 
-> 从gitlab服务器上取得url
+#### 从gitlab服务器上取得url
 
 ![alt](imgs/gitlab_idea_2_url.png)
 
 
 ### gitlab与github代码冲突解决
 
-> 背景
+#### 背景
 
 * 马同学提交了变更到gitlab上，但是我没有同步到本地。
 * 我在本地变更了代码，然后提交到github上。
 * 这时候，我往gitlab上提交代码出现错误。
 * 我想从gitlab上pull代码下来也出现错误。
 
-> 解决方法
+#### 解决方法
 
 * 把本地代码删除
 * 从github上获取一份新的代码(这个时候不能编辑本地的任何代码)

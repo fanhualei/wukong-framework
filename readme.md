@@ -54,8 +54,9 @@ gitlab
 
 
 * 持续集成
-    * [gitLab](reference/gitlab.md)
-    * [gitlab与apache 同时部署在一台服务器](reference/gitlab_apache.md)
+    * [使用gitLab提交代码](reference/gitlab.md)
+    * [gitlab niginx方向代理实例](reference/gitlab_apache.md)
+    * [gitlab常用命令及运维](reference/gitlab_opt.md)
 
    
 * docker使用
