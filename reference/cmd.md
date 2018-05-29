@@ -19,6 +19,9 @@
     * [切换用户](#切换用户)
     * [权限操作]()    
     
+* [自启动](#自启动)    
+    
+    
 * [其他操作](#其他操作)
     * [查看性能](#查看性能)
     * [命令行下访问http](#命令行下访问http)
@@ -121,6 +124,28 @@
 > 参考资料
 
 * [ubuntu中root和普通用户切换](https://blog.csdn.net/u011484045/article/details/52108692)
+
+
+
+## 自启动
+
+* 添加启动项
+
+```youtrack
+sudo update-rc.d   apache2 defaults  
+sudo update-rc.d   nginx defaults  
+sudo update-rc.d   redis_6379 defaults  
+```
+
+* 删除启动项
+
+
+```youtrack
+sudo update-rc.d -f apache2 remove  
+sudo update-rc.d -f nginx remove  
+sudo update-rc.d -f redis_6379 remove  
+```
+
 
 
 

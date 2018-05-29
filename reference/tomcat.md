@@ -49,11 +49,12 @@
  配置server.xml实现热加载：只要在server.xml文件中的host节点中，加入下面的节点。
  
  ```xml
-<span style="font-size:24px;">
-    <Context debug="0" docBase="D:\TGBLearnnote\JAVA\drp\DRP\drp1.0\WebRoot" 
-    path="/demo1" privileged="true" reloadable="true"/>
-</span>  
+<Context path="" docBase="../../webapp" debug="0" reloadable="true"/>
+
 ```
+> 注意：在正式环境中，应该将reloadable设置成false，因为自动加载可能会出现错误
+
+
  
 ## 判断tomcat是否启动
 
@@ -62,6 +63,8 @@
 ```youtrack
 ps   -ef|grep  tomcat
 ```
+
+> 也可以使用w3m http://127.0.0.1:20180/,但是在端口不向外开放时，不能使用
 
 
 ## tomcat自启动
@@ -88,3 +91,9 @@ sudo reboot
 
 > 参考网址： [ubuntu16.04设置tomcat自启动](https://www.cnblogs.com/youcong/p/8469488.html)
 
+> 如果想删除启动项目，可以执行 sudo update-rc.d -f tomcat_20180 remove
+
+> 查看服务器是否启动了
+
+* http://127.0.0.1:20180/
+* w3m http://127.0.0.1:20180/

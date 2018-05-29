@@ -67,6 +67,13 @@ gitlab
     * [ssh免密码登录](reference/cmd.md#ssh免密码登录)
     
     
+* tomcat使用技巧
+    * [判断tomcat是否启动](reference/tomcat.md#判断tomcat是否启动)
+    * [tomcat添加成自启动](reference/tomcat.md#tomcat自启动)
+    * [热加载](reference/tomcat.md#热加载)   
+    * [其他](reference/tomcat.md)    
+    
+    
 
 
 
@@ -77,7 +84,7 @@ gitlab
     * [SpringBoot使用小技巧](reference/tip.md)
     * [bugs一些错误](reference/bugs.md)
     * [maven 使用技巧](reference/maven.md)
-    * [tomcat 使用](reference/tomcat.md)
+    
 
 
 <br><br>
