@@ -3,16 +3,16 @@
 
 > 目录
 
-* 部署相关sh
+* [部署相关sh](#部署相关sh)
     * [上传文件脚本](#上传文件脚本)
     * [服务器自动部署shell脚本](#服务器自动部署shell脚本)
 
 
 
-##部署相关sh
+## 部署相关sh
 
 
-###上传文件脚本
+### 上传文件脚本
 
 #### 操作步骤
 
@@ -21,7 +21,7 @@
 
 > 注意事项：远程执行脚本的时候，一定要cd 到脚本的目录，不然脚本中的相对路径会出现错误
 
-####
+#### shell脚本
 
 ````youtrack
 #!/bin/bash
@@ -61,7 +61,7 @@ echo "==========run server sh ok================="
 ![alt](imgs/sh_deploy_server.png)
 
 
-#### sh脚本说明
+#### shell脚本
 
 ```youtrack
 #!/bin/bash
@@ -115,9 +115,7 @@ echo   "----------------${datename} end----------------" >> webapp/version.html
 
 ./apache-tomcat-9.0.2/bin/startup.sh
 
-
-
-
-
-
 ```
+
+
+

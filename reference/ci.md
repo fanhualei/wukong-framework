@@ -78,12 +78,22 @@ scp -P 1422  -r $1 root@47.92.0.57:/opt/wk/
 ssh -l root -p 1422 47.92.0.57 "cd /opt/wk/; pwd ; ./deploy_server.sh"
 ```
 
-[上述脚本详细代码](../wukong-donghai/deploy.sh)
+> [shell代码](../wukong-donghai/deploy.sh)
 
 
 ### 服务器上的自动部署shell脚本
 
-[详细说明](sh.md)
+    * 上传war到 /opt/wk
+    * 停止tomcat
+    * 备份原有的webapp程序 到 /opt/wk/backup目录
+    * 删除原有的webapp目录下的两目录，但是index.html与version.html保留
+    * 加压war到webapp
+    * 备份war包
+    * 将更新结果写入webapp/version.html
+    * 重启tomcat
+
+
+> [shell代码](sh.md#服务器自动部署shell脚本)
 
 
 
