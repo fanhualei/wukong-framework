@@ -85,6 +85,7 @@ gitlab
     * [SpringBoot使用小技巧](reference/tip.md)
     * [bugs一些错误](reference/bugs.md)
     * [maven 使用技巧](reference/maven.md)
+    * [shell脚本相关技巧](reference/sh.md)
     
 
 

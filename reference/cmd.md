@@ -6,9 +6,12 @@
 
 
 * [vim](#vim)
+
+
 * 文件操作
     * [压缩与解压](#压缩与解压)
     * [删除移动复制操作](#删除移动复制操作)
+    * [查看文件大小](#查看文件大小)
     * [文件目录操作]()
 
 * 远程操作    
@@ -24,6 +27,8 @@
     
 * [自启动](#自启动)    
     
+    
+* [Linux 命令大全](http://www.runoob.com/linux/linux-command-manual.html)    
     
 * [其他操作](#其他操作)
     * [查看性能](#查看性能)
@@ -62,7 +67,7 @@
 
 ### 压缩与解压
 
-> 基本操作
+#### tar
 
     #解压
     tar zxvf FileName.tar.gz
@@ -71,10 +76,24 @@
     tar zcvf FileName.tar.gz DirName    
 
 
+
+#### zip
+
+    #压缩，将webapp目录压缩成a.zip  
+    zip -r a.zip webapp
+    
+    #解压，将.war 文件解压到 webapp
+    unzip wukong-donghai-1.1.RELEASE.war -d webapp/
+
+    #特殊用法
+    -q     安静模式，在压缩的时候不显示指令的执行过程
+    -t 日期 把压缩文件的最后修改日期设为指定的日期，日期格式为mmddyyyy 
+
+
+
 > 参考文档
-
 * [Ubuntu下各种压缩与解压的方式小结](http://www.jb51.net/article/112207.htm)
-
+* [Linux zip命令](http://www.runoob.com/linux/linux-comm-zip.html)
 
 ### 删除移动复制操作
 
@@ -92,6 +111,13 @@
     将会强制删除/var/log/httpd/access.log
     
 
+
+
+### 查看文件大小
+
+    ls  -lht 
+    
+[linux里如何查看文件大小](https://jingyan.baidu.com/article/86fae346b5f1623c49121ae9.html)
 
 
 ## 远程操作  

@@ -34,7 +34,10 @@ jar -xvf /home/fan/IdeaProjects/wukong-framework/wukong-examples/target/wukong-e
 
 ## Maven部署
 
-### add exec code in pom.xml
+> 通过maven，自动打包并将程序部署到远程服务器上
+
+
+### 在maven中添加plugin，调用[上传服务器的shell脚本文件](#上传war文件到服务器)
 
 ````xml
 <build>
@@ -60,17 +63,27 @@ jar -xvf /home/fan/IdeaProjects/wukong-framework/wukong-examples/target/wukong-e
 </build>
 ````
 
-#### add sh file to deploy 
+### 上传war文件到服务器，并远程调用[服务器上的自动部署shell脚本](#服务器上的自动部署shell脚本)
+
+> 自动将$1文件上传到服务器/opt/wk目录，并执行服务器上的部署脚本，这里用到三个知识点
+
+* [无密码ssh登录远程服务器](cmd.md#ssh免密码登录)
+* [远程执行服务器脚本](https://www.cnblogs.com/sparkdev/p/6842805.html)
+
 
 ```youtrack
-echo "hello world,I will deploy app to webserver !!!"
-
+#!/bin/bash
 echo $1
-
-echo "I'will deploy this file to server bu ssh!!!"
+scp -P 1422  -r $1 root@47.92.0.57:/opt/wk/
+ssh -l root -p 1422 47.92.0.57 "cd /opt/wk/; pwd ; ./deploy_server.sh"
 ```
 
+[上述脚本详细代码](../wukong-donghai/deploy.sh)
 
+
+### 服务器上的自动部署shell脚本
+
+[详细说明](sh.md)
 
 
 
