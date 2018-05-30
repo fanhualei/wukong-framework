@@ -12,7 +12,7 @@ public class HelloSenderTest extends AbstractTestNGSpringContextTests {
     @Autowired
     private HelloSender helloSender;
 
-    @Test
+    //@Test
     public void hello() throws Exception {
         helloSender.send();
     }

@@ -16,11 +16,7 @@
         </classes>
     </test>
 
-    <test name="testByClass2" enabled="false">
-        <classes>
-            <class name="com.wukong.examples.controller.Http2HttpsTests"/>
-        </classes>
-    </test>
+
 
 </suite>
 

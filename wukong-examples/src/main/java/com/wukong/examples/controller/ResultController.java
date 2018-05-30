@@ -92,7 +92,7 @@ public class ResultController {
 
     /**
      * 异常的自动包裹
-     * http://localhost:8080/result/fail?code=1
+     * http://localhost:8080/result/exception?code=1
      */
     @RequestMapping("/exception")
     public String exception1(Integer code) {
@@ -117,19 +117,6 @@ public class ResultController {
 
 
 
-    @RequestMapping("/exception")
-    public String exception2(String name, String email
-    ) {
-
-        String errs="";
-        if(1!=2){
-
-//            throws ConstraintViolationException();
-        }
-
-
-        return "";
-    }
 
 
 
