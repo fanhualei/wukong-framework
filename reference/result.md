@@ -162,13 +162,14 @@ public class GlobalExceptionHandler  {
 违反约定异常，常见于对数据库的操作。
 例如插入重复的主键，找不到对应的模型，实体属性的值和数据库实际类型不一致等
 
-2. HttpMessageNotReadableException
+2. HttpMessageNotReadableException  
 参数传送的请求无法正常处理，常见于字符串格式不正确，无法识别为对应的实体或Json对象。
 
 3. BindException  
 数据绑定时发生异常，因为发送的数据与接收时使用的变量格式无法匹配。  
 例如接收时需要数据，但发送的数据是字符串。  
-4. MethodArgumentNotValidException  
+
+4. MethodArgumentNotValidException   
 违反参数校验的异常，抛出此类型。
 
 # 自定义异常的使用
