@@ -34,48 +34,31 @@
 
 #### 主要步骤
 
-* 设置SSH Key
-    * 为gitlab生成key
-    ```youtrack
-    ssh-keygen -t rsa -C 'fanhl@189.cn' -f ~/.ssh/gitlab-rsa
-    ```     
-    * 将gitlab-rsa.pub的内容复制到gitlab网站上
-    ```youtrack
-    cat ~/.ssh/gitlab-rsa.pub
-    ```
-    * 本机配置ssh　conf文件，见下面注释 (下面追加了按照域名配置)
-    ```properties
-    # gitlab by id
-    #Host 47.92.0.57
-    #    HostName 47.92.0.57
-    #    PreferredAuthentications publickey
-    #    IdentityFile ~/.ssh/gitlab-rsa
+##### 设置SSH Key
+
+* 为gitlab生成key
     
+```youtrack
+ssh-keygen -t rsa -C 'fanhl@189.cn' -f ~/.ssh/gitlab-rsa
+```     
     
-    # gitlab by name
+* 将gitlab-rsa.pub的内容复制到gitlab网站上
     
-    Host gitlab.runzhichina.com
-        HostName gitlab.runzhichina.com
-        PreferredAuthentications publickey
-        IdentityFile ~/.ssh/gitlab-rsa
+```youtrack
+cat ~/.ssh/gitlab-rsa.pub
+```
+
+* 本机配置ssh　conf文件，见下面注释 (下面追加了按照域名配置)
     
-    
-    
-    
-    # github
-    #Host github.com
-    #    HostName github.com
-    #    PreferredAuthentications publickey
-    #    IdentityFile ~/.ssh/github_id-rsa
-    
-    # 配置文件参数
-    # Host : Host可以看作是一个你要识别的模式，对识别的模式，进行配置对应的的主机名和ssh文件
-    # HostName : 要登录主机的主机名
-    # User : 登录名
-    # IdentityFile : 指明上面User对应的identityFile路径
-    
-    
-    ```    
+```properties
+
+Host gitlab.runzhichina.com
+    HostName gitlab.runzhichina.com
+    PreferredAuthentications publickey
+    IdentityFile ~/.ssh/gitlab-rsa
+
+``` 
+   
 
 ![alt](imgs/gitlab_createkey_1.png)
         
