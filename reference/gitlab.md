@@ -14,6 +14,7 @@
 
 * [gitLab基本用法](#gitlab基本用法)
     * [设置ssh_key](#设置ssh_key)
+    * [在gitlab设置key](#在gitlab设置key)
     * [建立工程从服务器](#建立工程从服务器)
     * [idea中可以提交github也可以提交gitlab](#idea中可以提交github也可以提交gitlab)
     * [gitlab与github代码冲突解决](#gitlab与github代码冲突解决)
@@ -62,6 +63,14 @@ Host gitlab.runzhichina.com
 
 ![alt](imgs/gitlab_createkey_1.png)
         
+
+##### 在gitlab设置key
+
+
+需要到服务器上把ssh数值给设置进去
+
+![alt](imgs/gitlab_server_seting_1.png)
+
 
 
 > 参考网址
