@@ -4,6 +4,9 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
 
+    <!-- 引入配置文件 -->
+    <properties resource="init.properties"/>
+
     <classPathEntry location="mysql-connector-java-5.1.45-bin.jar" />
 
 
@@ -27,7 +30,7 @@
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                         connectionURL="jdbc:mysql://127.0.0.1:3306/wukong_write?useSSL=false"
                         userId="root"
-                        password="rootmysql">
+                        password="${password}">
         </jdbcConnection>
 
         <javaTypeResolver >
@@ -35,13 +38,13 @@
         </javaTypeResolver>
 
         <!--model-->
-        <javaModelGenerator targetPackage="com.wukong.security.model" targetProject="log">
+        <javaModelGenerator targetPackage="${packagename}.model" targetProject="log">
             <property name="enableSubPackages" value="true" />
             <property name="trimStrings" value="true" />
         </javaModelGenerator>
 
         <!-- sql mapper xml-->
-        <sqlMapGenerator targetPackage="com.wukong.security.mapper"  targetProject="log">
+        <sqlMapGenerator targetPackage="${packagename}.mapper"  targetProject="log">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
 
@@ -49,13 +52,13 @@
 
         <!--ANNOTATEDMAPPER MIXEDMAPPER XMLMAPPER  -->
         <!--dao-->
-        <javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="com.wukong.security.dao"  targetProject="log">
+        <javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="${packagename}.dao"  targetProject="log">
             <property name="enableSubPackages" value="true" />
             <property name="prefix" value="wk_"/>
             <!--effects 计划生成的Table，如果为空，就生成全部的-->
-            <property name="effects" value="wk_user"/>
-            <property name="ignores" value="groups,wk_order"/>
-            <property name="targetPackage" value="com.wukong.security.service"/>
+            <property name="effects" value="${effects}"/>
+            <property name="ignores" value="${ignores}"/>
+            <property name="targetPackage" value="${packagename}.service"/>
             <property name="targetProject" value="log"/>
             <property name="runWukongRule" value="true"/>
         </javaClientGenerator>
