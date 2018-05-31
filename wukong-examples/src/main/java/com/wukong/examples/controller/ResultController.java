@@ -108,16 +108,30 @@ public class ResultController {
             throw new NullPointerException();
         }else if(code==3){
             throw new NumberFormatException();
-        }else if(code==4){
+        }else if(code==4) {
             //throw new RuntimeException("my throws 11111111111111111111");
             throw new BusinessException(ResultCode.COMM_PARAM_IS_INVALID);
+        }else if(code==5){
+            Map p=new HashMap();
+            p.put("email","不是一个合法的电子邮件地址");
+            p.put("name","长度需要在6和50之间");
+            throw new BusinessException(ResultCode.COMM_PARAM_IS_INVALID,p);
+        }
+        else if(code==6){
+            String username="admin";
+            throw new BusinessException(ResultCode.USER_NOT_RIGHT,username);
+        }
+        else if(code==7){
+            String username="admin";
+            String mode="manage";
+            throw new BusinessException(ResultCode.USER_NOT_RIGHT2,username,mode);
         }
         return "ok";
     }
 
 
 
-    @RequestMapping("/exception")
+    @RequestMapping("/exception1")
     public String exception2(String name, String email
     ) {
 
@@ -130,8 +144,4 @@ public class ResultController {
 
         return "";
     }
-
-
-
-
 }

@@ -6,6 +6,8 @@ import com.wukong.core.util.StringUtil;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.Map;
+
 /**
  * @desc 业务异常类
  *
@@ -24,7 +26,7 @@ public class BusinessException extends RuntimeException {
 
     protected ResultCode resultCode;
 
-    protected Object data;
+    protected Object Errors;
 
 //    public BusinessException() {
 //
@@ -52,4 +54,16 @@ public class BusinessException extends RuntimeException {
         this.message = resultCode.message();
     }
 
+    public BusinessException(ResultCode resultCode,Map p) {
+        this.resultCode = resultCode;
+        this.code = resultCode.code().toString();
+        this.message = resultCode.message();
+
+        this.Errors=p;
+    }
+    public BusinessException(ResultCode resultCode,Object... objs) {
+        this.resultCode = resultCode;
+        this.code = resultCode.code().toString();
+        this.message =String.format(resultCode.message(),objs);
+    }
 }

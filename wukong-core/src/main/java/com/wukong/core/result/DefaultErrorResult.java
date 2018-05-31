@@ -93,8 +93,18 @@ public class DefaultErrorResult  {
         DefaultErrorResult result = new DefaultErrorResult();
         result.setCode(e.getResultCode().code());
         result.setMessage(e.getMessage());
-        result.setStatus(600);
-        result.setError("Business Error");
+        if(e.getErrors()==null)
+        {
+            result.setStatus(600);
+            result.setError("Business Error");
+
+        }
+        else
+        {
+            result.setStatus(601);
+            result.setError("Bad Request");
+            result.errors=e.getErrors();
+        }
         result.setException(e.getClass().getName());
         result.setPath(RequestContextHolderUtil.getRequest().getRequestURI());
         result.setTimestamp(new Date());
