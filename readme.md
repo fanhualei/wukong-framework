@@ -44,7 +44,6 @@ gitlab
     * [关闭与开启security认证](reference/tip.md) `见·关闭security认证·小节`
 
 * 规范
-    * [编码规范](reference/coding_standards.md)
     * [记录log规范](reference/uselog.md)
     * [代码分支规范](reference/gitlab_branch.md)
     * [redis-key命名规范](reference/redis.md#redis-key命名规范)
@@ -53,6 +52,8 @@ gitlab
     * [tomcat工程目录规范](reference/specification_server.md#tomcat工程目录规范])
     * [java开发规范](reference/specification_java.md)
     * [git提交代码规范](reference/specification_git.md)
+    * [属性参数规范](reference/specification_properties.md)
+    * [其他](reference/coding_standards.md)
 
 
 * 持续集成
