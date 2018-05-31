@@ -29,12 +29,12 @@
 
 ## docker命名规范
 
-### 组织名_项目名_组件名_版本号
+### 组织名_项目名_组件名_开发端口号
 
     例如：
-    wukong_gitlab_runner_1.0   # gitlab下的runner
-    wukong_donghai_webenv_1.0  # 东海项目的web集成环境
-    wukong_donghai_msyql_1.0   # 东海项目用到的mysql环境
+    wukong_gitlab_runner_1023   # gitlab下的runner
+    wukong_donghai_webenv_30180  # 东海项目的web集成环境
+    wukong_donghai_msyql_30133   # 东海项目用到的mysql环境
 
 
 
