@@ -24,6 +24,7 @@ gitlab
     * [返回格式及异常处理](reference/result.md)
     * [数据校验](reference/validator.md)
     * [配置访问权限](reference/controller.md#配置访问权限)
+    * [一个完整的代码例子](reference/myfirst_controller.md)
 
     
 * 单元测试
