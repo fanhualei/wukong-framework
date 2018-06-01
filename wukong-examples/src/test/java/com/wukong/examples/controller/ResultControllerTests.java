@@ -43,9 +43,9 @@ public class ResultControllerTests extends AbstractTestNGSpringContextTests {
 
     @Test
     public void testFail() {
-        String url="/result/fail?name=11&email=email&cellPhone=3333";
+        String url="/result/para?name=11&email=email&cellPhone=3333";
         ResponseEntity<String> entity = this.restTemplate.getForEntity(url, String.class);
-        assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(entity.getStatusCode()).isNotEqualTo(HttpStatus.OK);
         System.out.printf(entity.getBody().toString());
     }
 

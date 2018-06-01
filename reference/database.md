@@ -28,30 +28,19 @@
 
 
 
-##### 修改generatorConfig.xom
+##### 修改 init.properties
 
-* password需要修改
-* <property name="effects" value="wk_user"/> 中输入要生成的table名称
+```properties
+password=rootmysql
 
+# packagename
+packagename=com.wukong.examples
 
-```xml
-<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                connectionURL="jdbc:mysql://127.0.0.1:3306/wukong_write?useSSL=false"
-                userId="root"
-                password="rootmysql">
-</jdbcConnection>
+# 计划生成的Table，如果为空，就生成全部的
+effects=wk_user
 
-<javaClientGenerator type="ANNOTATEDMAPPER" targetPackage="com.wukong.security.dao"  targetProject="log">
-    <property name="enableSubPackages" value="true" />
-    <property name="prefix" value="wk_"/>
-    <!--effects 计划生成的Table，如果为空，就生成全部的-->
-    <property name="effects" value="wk_user"/>
-    <property name="ignores" value="groups,wk_order"/>
-    <property name="targetPackage" value="com.wukong.security.service"/>
-    <property name="targetProject" value="log"/>
-    <property name="runWukongRule" value="true"/>
-</javaClientGenerator>
-
+# ignores talbes
+ignores=groups,wk_order
 ```
 
 
@@ -63,6 +52,7 @@
 
 * [github官网](https://github.com/mybatis/generator)
 * [mybatis generator官方参考文档](http://www.mybatis.org/generator/)
+* [MyBatis Generator generatorConfig.xml配置详解](https://blog.csdn.net/luobing_csdn/article/details/66969481)
 
 
 

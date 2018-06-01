@@ -89,6 +89,9 @@ server {
   }
 }
 ```    
+
+
+
     
 
 
@@ -139,8 +142,28 @@ include /var/opt/gitlab/nginx/conf/wk_nginx_https.conf;
 
 ## nginx从http跳转到https
 
+### 配置文档
+
+```properties
+server {
+  listen 80;
+  server_name wx.runzhichina.com;
+  server_tokens off;
+  ## Don't show the nginx version number, a security best practice
+  location / {
+    return 301 https://wx.runzhichina.com$request_uri; 
+
+    # 下面代码是用来通过80端口访问的
+    # proxy_set_header   X-Real-IP $remote_addr;
+    # proxy_set_header   Host      $http_host;
+    # proxy_pass  http://127.0.0.1:20180;
+  }
+}
+```
+
+* 我是参考了gitlab的配置文件，使用了return 301 https://gitlab.runzhichina.com:443$request_uri;
+
+
 > 参考文档
-
-未来有时间的话去实现一下
-
 * [nginx从http跳转到https](https://www.cnblogs.com/nuccch/p/7681592.html)
+

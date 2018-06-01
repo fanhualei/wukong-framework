@@ -49,7 +49,7 @@ public class JwtAuthenControllerTests extends AbstractTestNGSpringContextTests {
         return new HttpEntity<String>(headers);
     }
 
-    @Test(priority = 0)
+    //@Test(priority = 0)
     public void testPhoneExist(){
         String url=baseUrl+"/public/phoneExist?cellphone=1234567890";
 
@@ -58,7 +58,7 @@ public class JwtAuthenControllerTests extends AbstractTestNGSpringContextTests {
 
     }
 
-    @Test(priority = 1)
+    //@Test(priority = 1)
     public void testEmailExist(){
         String url=baseUrl+"/public/emailExist?email=xxxx@xxxx.com";
 
@@ -67,7 +67,7 @@ public class JwtAuthenControllerTests extends AbstractTestNGSpringContextTests {
 
     }
 
-    @Test(priority = 2)
+    //@Test(priority = 2)
     public void testUsernameExist(){
         String url=baseUrl+"/public/usernameExist?username=admin";
 
@@ -76,21 +76,21 @@ public class JwtAuthenControllerTests extends AbstractTestNGSpringContextTests {
         assertThat(value).isEqualTo(true);
 
     }
-    @Test(priority = 3)
+    //@Test(priority = 3)
     public void testLoginOk(){
         String url=baseUrl+"/public/login?username=admin&password=admin";
         Map<String, String> map = this.restTemplate.getForObject(url,Map.class);
         String token=map.get("token");
         assertThat(token).isNotNull();
     }
-    @Test(priority = 4)
+    //@Test(priority = 4)
     public void testGetVerifyCode(){
         String url=baseUrl+"/public/getVerifyCode?cellphone=1234567890";
         Map<String, String> map = this.restTemplate.getForObject(url,Map.class);
         verifyCode=map.get("verifycode");
         assertThat(verifyCode.length()).isEqualTo(6);
     }
-    @Test(priority = 5)
+    //@Test(priority = 5)
     public void testRegist(){
         String url=baseUrl+"/public/regist?cellphone=1234567890&password=123456&verifycode="+verifyCode;
         Map<String, String> map = this.restTemplate.getForObject(url,Map.class);
@@ -98,7 +98,7 @@ public class JwtAuthenControllerTests extends AbstractTestNGSpringContextTests {
         assertThat(token).isNotNull();
         this.token=token;
     }
-    @Test(priority = 6)
+    //@Test(priority = 6)
     public void testLoginByPhonemessage(){
         testGetVerifyCode();
         String url=baseUrl+"/public/loginByPhonemessage?cellphone=1234567890&verifycode="+verifyCode;
@@ -109,7 +109,7 @@ public class JwtAuthenControllerTests extends AbstractTestNGSpringContextTests {
         this.token=token;
 //        basicJwtInterceptor.setToken(token);
     }
-    @Test(priority = 7)
+    //@Test(priority = 7)
     public void testRefreshToken(){
         String url=baseUrl+"/refreshToken";
         ResponseEntity<Map> result=this.restTemplate.exchange(url,HttpMethod.GET,getAuthHeader(),Map.class);
@@ -119,7 +119,7 @@ public class JwtAuthenControllerTests extends AbstractTestNGSpringContextTests {
         this.token=token;
         //basicJwtInterceptor.setToken(token);
     }
-    @Test(priority = 8)
+    //@Test(priority = 8)
     public void testchangePassword(){
         testGetVerifyCode();
         String url=baseUrl+"/changePassword?cellphone=1234567890&password=123&verifycode="+verifyCode;

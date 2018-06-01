@@ -12,7 +12,7 @@ gitlab
 
 ## 快速掌握
 
-* [环境配置](reference/readme.md "开打环境配置文档")
+* 环境配置
     * [开发环境配置](reference/readme.md "开打环境配置文档")
     * [服务器环境配置](reference/webEnvironment.md "开打环境配置文档")
     * [Https配置](reference/https.md)
@@ -24,6 +24,7 @@ gitlab
     * [返回格式及异常处理](reference/result.md)
     * [数据校验](reference/validator.md)
     * [配置访问权限](reference/controller.md#配置访问权限)
+    * [一个完整的代码例子](reference/myfirst_controller.md)
 
     
 * 单元测试
@@ -44,20 +45,44 @@ gitlab
     * [关闭与开启security认证](reference/tip.md) `见·关闭security认证·小节`
 
 * 规范
-    * [编码规范](reference/coding_standards.md)
-    * [记录log规范](reference/uselog.md)
-    * [代码分支规范](reference/gitlab_branch.md)
-    * [redis-key命名规范](reference/redis.md#redis-key命名规范)
+    * 开发人员的规范
+        * [java开发规范](reference/specification_java.md)
+        * [记录log规范](reference/uselog.md)
+        * [git提交代码规范](reference/specification_git.md)
+        * [属性参数规范](reference/specification_properties.md)
+        * [redis-key命名规范](reference/redis.md#redis-key命名规范)  
+        * [其他](reference/coding_standards.md)
+        * [Java与Mysql数据对应关系](reference/mysql_java.md)
+    * 服务器部署人员的规范
+        * [代码分支规范](reference/gitlab_branch.md)
+        * [服务器端口规范](reference/specification_server.md#端口规范)
+        * [docker命名规范](reference/specification_server.md#docker命名规范)
+        * [tomcat工程目录规范](reference/specification_server.md#tomcat工程目录规范])
+
 
 
 * 持续集成
-    * [gitLab](reference/gitlab.md)
-    * [gitlab与apache 同时部署在一台服务器](reference/gitlab_apache.md)
+    * [使用gitLab提交代码](reference/gitlab.md)
+    * [gitlab niginx方向代理实例](reference/gitlab_apache.md)
+    * [gitlab常用命令及运维](reference/gitlab_opt.md)
 
    
 * docker使用
     * [docker基本用法](reference/docker.md)
     * [dockerQ&A](reference/docker_qa.md)
+    
+* linux常用技巧
+    * [linux常用命令](reference/cmd.md)
+    * [ssh免密码登录](reference/cmd.md#ssh免密码登录)
+    
+    
+* tomcat使用技巧
+    * [判断tomcat是否启动](reference/tomcat.md#判断tomcat是否启动)
+    * [tomcat添加成自启动](reference/tomcat.md#tomcat自启动)
+    * [热加载](reference/tomcat.md#热加载)   
+    * [其他](reference/tomcat.md)    
+    
+    
 
 
 
@@ -67,9 +92,9 @@ gitlab
     * [如何使用elasticsearch](reference/elasticsearch.md)
     * [SpringBoot使用小技巧](reference/tip.md)
     * [bugs一些错误](reference/bugs.md)
-    * [linux常用命令](reference/cmd.md)
     * [maven 使用技巧](reference/maven.md)
-    * [tomcat 使用](reference/tomcat.md)
+    * [shell脚本相关技巧](reference/sh.md)
+    
 
 
 <br><br>
@@ -96,5 +121,5 @@ gitlab
 * 马宇航在gitlab上配置plantuml
     * [GitLab 之 PlantUML 的配置及使用](https://blog.csdn.net/aixiaoyang168/article/details/76888254)
 
-
+* 找个人把 Java与Mysql数据对应关系 给搞明白了
 

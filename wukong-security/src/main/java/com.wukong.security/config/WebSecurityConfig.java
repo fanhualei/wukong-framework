@@ -1,6 +1,7 @@
 package com.wukong.security.config;
 
 import com.wukong.security.filter.JwtAuthenticationTokenFilter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -10,12 +11,18 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.util.StringUtils;
 
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Value("${wukong.security.permiturls:}")
+    private String permiturls;
+
+
     @Bean
     public JwtAuthenticationTokenFilter authenticationTokenFilterBean()  {
         return new JwtAuthenticationTokenFilter();
@@ -39,13 +46,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.css",
                         "/**/*.js"
                 ).permitAll()
-                // 对于获取token的rest api要允许匿名访问 TODO 建议将需要验证和不需要验证的API放在不同的目录下
                 .antMatchers("/author/jwt/public/**").permitAll()
-//                .antMatchers("/author/jwt/getVerifyCode").permitAll()
-//                .antMatchers("/author/jwt/regist").permitAll()
-//                .antMatchers("/author/jwt/loginByPhonemessage").permitAll()
-                // 除上面外的所有请求全部需要鉴权认证
-                .anyRequest().authenticated();
+                ;
+
+
+        //在配置文件中添加了，可以不受权限控制的访问地址
+        if(permiturls!=null && permiturls.length()>0){
+            String[] urlArray= StringUtils.split(permiturls,",");
+            for (String url:urlArray) {
+                httpSecurity.authorizeRequests().antMatchers(url).permitAll();
+            }
+        }
+
+
+        //这行代码一定要放到最后，因为它后面的所有permitAll都不执行了
+        httpSecurity.authorizeRequests().anyRequest().authenticated();
 
         // 添加JWT filter
         httpSecurity.addFilterBefore(authenticationTokenFilterBean()
@@ -53,6 +68,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         // 禁用缓存
         httpSecurity.headers().cacheControl();
+
+
     }
 
 }
