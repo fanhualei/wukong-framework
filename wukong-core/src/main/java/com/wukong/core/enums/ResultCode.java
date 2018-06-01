@@ -61,8 +61,9 @@ public enum ResultCode {
     COMM_SYSTEM_INNER_ERROR(30301, "系统繁忙，请稍后重试"),
 
 
-
-            ;
+    //用于测试，非正式编码
+    USER_NOT_RIGHT(66666, "用户%s权限不足"),
+    USER_NOT_RIGHT2(66667, "用户%s权限不足以使用%s功能");
 
 
 

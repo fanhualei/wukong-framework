@@ -84,9 +84,13 @@ public class GlobalExceptionHandler  {
         log.error("handleBusinessException start, uri:{}, exception:{}, caused by: {}", request.getRequestURI(), e.getClass(), e.getMessage());
 
         DefaultErrorResult defaultErrorResult = DefaultErrorResult.failure(e);
+        return ResponseEntity.status(defaultErrorResult.getStatus()).body(defaultErrorResult);
+        /*
         return ResponseEntity
+
                 .status(HttpStatus.valueOf(defaultErrorResult.getStatus()))
                 .body(defaultErrorResult);
+                */
 
     }
 

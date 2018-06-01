@@ -11,6 +11,7 @@
 * [全局异常处理](#全局异常处理)
     * [为什么做全局异常处理](#为什么做全局异常处理)
     * [全局异常处理设计思路](#全局异常处理设计思路)
+    * [关于400错误的四种异常抛出情形](#关于400错误的四种异常抛出情形)
 
 
 * [自定义异常的使用](#自定义异常的使用)
@@ -18,7 +19,8 @@
     * [如何定义code值](#如何定义code值)
     * [初始化BusinessException三个方法](初始化businessexception三个方法)
         * [通过code值](#通过code值)
-        * [通过code值+变量](#通过code值+变量)
+        * [通过code值+异常变量列表](#通过code值+异常变量列表)
+        * [通过code值+Message格式化参数](#通过code值+Message格式化参数)
         * todo BusinessException  实际用法
 
 
@@ -155,6 +157,143 @@ public class GlobalExceptionHandler  {
 
 }
 ````
+#### 关于400错误的四种异常抛出情形
+1. ConstraintViolationException  
+违反约定异常，常见于对数据库的操作。
+例如插入重复的主键，找不到对应的模型，实体属性的值和数据库实际类型不一致等
+
+2. HttpMessageNotReadableException  
+参数传送的请求无法正常处理，常见于字符串格式不正确，无法识别为对应的实体或Json对象。
+
+3. BindException  
+数据绑定时发生异常，因为发送的数据与接收时使用的变量格式无法匹配。  
+例如接收时需要数据，但发送的数据是字符串。  
+
+4. MethodArgumentNotValidException   
+违反参数校验的异常，抛出此类型。
+
+# 自定义异常的使用
+
+## 如何改变status数值
+在全局异常处理的GlobalExceptionHandler里，对异常的返回结果进行处理，通过设置ResponseEnitiy的status属性，可以改变status的数值。
+```
+//返回600状态码
+ResponseEntity.status(600).body(defaultErrorResult);
+```
+
+## 如何定义code值
+在ResultCode中，定义新的枚举类型，来定义Code值。  
+最简单的定义方法为Code与Message的组合。
+```
+//添加一个名为GOODS_NOT_EXISTS的变量，其Code为66666，提示信息为商品不存在
+GOODS_NOT_EXISTS(66665, "商品不存在");
+```
+Message中可以自定义参数，并在具体抛出异常时使用自定义的信息初始化， 详情参阅初始化BussinessException小节。
+```
+//添加一个名为USER_NOT_RIGHT的新异常，其Code为66666，提示信息为用户权限不足，但用户名处%s，可在后期进行格式化处理
+USER_NOT_RIGHT(66666, "用户%s权限不足"),
+//Message中的参数可以有多个，例如以下为带两个参数的Message实例
+USER_NOT_RIGHT2(66667, "用户%s权限不足以使用%s功能");
+```
+
+
+## 初始化BusinessException三个方法
+### 通过code值
+以Controller为例，演示通过Code值抛出600异常的方法
+```
+//抛出COMM_PARAM_IS_INVALID(30101, "参数无效"),异常。
+ @RequestMapping("/exception")
+    public String exception1(Integer code) {
+        throw new BusinessException(ResultCode.COMM_PARAM_IS_INVALID);
+    }
+```
+该Controller的返回结果如下
+```
+{
+    "status": 600,
+    "error": "Business Error",
+    "message": "参数无效",
+    "code": 30101,
+    "path": "/result/exception",
+    "exception": "com.wukong.core.exceptions.BusinessException",
+    "errors": null,
+    "timestamp": "2018-05-31T09:42:11.224+0000"
+}
+```
+### 通过code值+异常变量列表
+通过带异常变量列表的方式来抛出601异常。
+```
+//抛出COMM_PARAM_IS_INVALID(30101, "参数无效"),异常。
+ @RequestMapping("/exception")
+ public String exception1(Integer code) {
+        //构造一个HashMap用于存放违反规则的变量与提示信息
+        Map p=new HashMap();
+        //将变量名作为Key，提示信息作为Value存入Map中
+        p.put("email","不是一个合法的电子邮件地址");
+        p.put("name","长度需要在6和50之间");
+        //将p作为参数抛出
+        throw new BusinessException(ResultCode.COMM_PARAM_IS_INVALID,p);
+    }
+```
+该Controller的返回结果如下(其中errors与标注格式还存在一定区别，有待进一步优化)。
+```
+{
+    "status": 601,
+    "error": "Bad Request",
+    "message": "参数无效",
+    "code": 30101,
+    "path": "/result/exception",
+    "exception": "com.wukong.core.exceptions.BusinessException",
+    "errors": {
+        "name": "长度需要在6和50之间",
+        "email": "不是一个合法的电子邮件地址"
+    },
+    "timestamp": "2018-05-31T09:41:16.461+0000"
+}
+```
+### 通过code值+Message格式化参数
+对于单参数的Message，在抛出时指定参数进行初始化
+```
+//抛出USER_NOT_RIGHT(66666, "用户%s权限不足"),异常,并把%s格式化为"admin"
+ @RequestMapping("/exception")
+    public String exception1(Integer code) {
+        throw new BusinessException(ResultCode.USER_NOT_RIGHT,"admin");
+    }
+```
+该Controller的返回结果如下
+```
+{
+    "status": 600,
+    "error": "Business Error",
+    "message": "用户admin权限不足",
+    "code": 66666,
+    "path": "/result/exception",
+    "exception": "com.wukong.core.exceptions.BusinessException",
+    "errors": null,
+    "timestamp": "2018-05-31T09:45:54.684+0000"
+}
+```
+对于多参数的Message，在抛出时指定参数进行初始化
+```
+//抛出USER_NOT_RIGHT2(66667, "用户%s权限不足以使用%s功能")异常,并将两个参数格式化为"admin","manage"。
+ @RequestMapping("/exception")
+    public String exception1(Integer code) {
+        throw new BusinessException(ResultCode.USER_NOT_RIGHT,"admin","manage");
+    }
+```
+该Controller的返回结果如下
+```
+{
+    "status": 600,
+    "error": "Business Error",
+    "message": "用户admin权限不足以使用manage功能",
+    "code": 66667,
+    "path": "/result/exception",
+    "exception": "com.wukong.core.exceptions.BusinessException",
+    "errors": null,
+    "timestamp": "2018-05-31T09:46:55.712+0000"
+}
+```
 
 
 
