@@ -3,7 +3,7 @@
 > 目录
 
 
-* 终结论
+* 最终结论
     * [程序中可用的数据类型](#程序中可用的数据类型)
     * [BigDecimal用法详解](#bigdecimal用法详解)
 
@@ -88,7 +88,7 @@ public static void main(String[] args) {
 
 BigDecimal是通过使用compareTo(BigDecimal)来比较的，具体比较情况如下：
 
-##### compareTo 
+##### 如何判断大小 
 
 -1、0、1，即左边比右边数大，返回1，相等返回0，比右边小返回-1
 
