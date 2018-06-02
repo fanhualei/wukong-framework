@@ -25,6 +25,8 @@ create table wk_field_type (
   timef       time,
   datetimef   datetime,
 
+  maplan     decimal(8,7),
+
 
 
   PRIMARY KEY (field_type_id)
