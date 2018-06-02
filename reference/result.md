@@ -172,16 +172,16 @@ public class GlobalExceptionHandler  {
 4. MethodArgumentNotValidException   
 违反参数校验的异常，抛出此类型。
 
-# 自定义异常的使用
+## 自定义异常的使用
 
-## 如何改变status数值
+### 如何改变status数值
 在全局异常处理的GlobalExceptionHandler里，对异常的返回结果进行处理，通过设置ResponseEnitiy的status属性，可以改变status的数值。
 ```
 //返回600状态码
 ResponseEntity.status(600).body(defaultErrorResult);
 ```
 
-## 如何定义code值
+### 如何定义code值
 在ResultCode中，定义新的枚举类型，来定义Code值。  
 最简单的定义方法为Code与Message的组合。
 ```
@@ -197,8 +197,8 @@ USER_NOT_RIGHT2(66667, "用户%s权限不足以使用%s功能");
 ```
 
 
-## 初始化BusinessException三个方法
-### 通过code值
+### 初始化BusinessException三个方法
+#### 通过code值
 以Controller为例，演示通过Code值抛出600异常的方法
 ```
 //抛出COMM_PARAM_IS_INVALID(30101, "参数无效"),异常。
@@ -220,7 +220,7 @@ USER_NOT_RIGHT2(66667, "用户%s权限不足以使用%s功能");
     "timestamp": "2018-05-31T09:42:11.224+0000"
 }
 ```
-### 通过code值+异常变量列表
+#### 通过code值+异常变量列表
 通过带异常变量列表的方式来抛出601异常。
 ```
 //抛出COMM_PARAM_IS_INVALID(30101, "参数无效"),异常。
@@ -251,7 +251,7 @@ USER_NOT_RIGHT2(66667, "用户%s权限不足以使用%s功能");
     "timestamp": "2018-05-31T09:41:16.461+0000"
 }
 ```
-### 通过code值+Message格式化参数
+#### 通过code值+Message格式化参数
 对于单参数的Message，在抛出时指定参数进行初始化
 ```
 //抛出USER_NOT_RIGHT(66666, "用户%s权限不足"),异常,并把%s格式化为"admin"
@@ -295,27 +295,7 @@ USER_NOT_RIGHT2(66667, "用户%s权限不足以使用%s功能");
 }
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<br><br>
 
 
 
