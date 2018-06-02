@@ -94,6 +94,7 @@ gitlab
     * [bugs一些错误](reference/bugs.md)
     * [maven 使用技巧](reference/maven.md)
     * [shell脚本相关技巧](reference/sh.md)
+    * [地图相关信息](reference/map.md)
     
 
 
@@ -119,7 +120,6 @@ gitlab
 * 马宇航在gitlab上配置plantuml
     * [GitLab 之 PlantUML 的配置及使用](https://blog.csdn.net/aixiaoyang168/article/details/76888254)
 
-* 地理信息
 * 基础类型的返回注释
 * springboot 多语言
 

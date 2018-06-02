@@ -11,7 +11,7 @@
 * 5:redis 安装
 * 6:idea 从github上下载代码(需要注册github)
 * 7:idea 刷新pom.xml并build整个工程
-* 8:mysql 中建立db，并执行schema.sql([reference/sql目录下](sql/security/schema.sql))
+* 8:mysql 中建立db，并执行schema.sql([reference/sql目录下](sql/security/security.sql))
 * 9:application-db.properties 修改数据库的名称与密码(wukong-examples/src/main/resources/目录下)
 * 10:右键点击 DemoApplicaiton Run, 执行整个程序
 * 11: 打开浏览器，输入下面地址,系统显示出一个字符串<br>
