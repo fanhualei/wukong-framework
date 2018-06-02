@@ -3,10 +3,9 @@
 > 目录
 
 
-
-* [最终结论](#最终结论)
-
-* [BigDecimal用法详解](#bigdecimal用法详解)
+* 终结论
+    * [程序中可用的数据类型](#程序中可用的数据类型)
+    * [BigDecimal用法详解](#bigdecimal用法详解)
 
 * 基础知识
     * [mysql的数据类型](#mysql的数据类型)
@@ -20,6 +19,8 @@
 
 
 ## 最终结论
+
+#### 程序中可用的数据类型
 
 为什么不用double与float呢？ 因为从小就定义成想阿里巴巴那样规模的交易量
 
@@ -37,16 +38,16 @@
 
 
 
-## bigdecimal用法详解
+### bigdecimal用法详解
 
-### 构造器描述
+#### 构造器描述
 
     BigDecimal(int) 创建一个具有参数所指定整数值的对象。 
     BigDecimal(double) 创建一个具有参数所指定双精度值的对象。 
     BigDecimal(long) 创建一个具有参数所指定长整数值的对象。 
     BigDecimal(String) 创建一个具有参数所指定以字符串表示的数值的对象。
     
-### 方法描述
+#### 方法描述
 
     add(BigDecimal) BigDecimal对象中的值相加，然后返回这个对象。 
     subtract(BigDecimal) BigDecimal对象中的值相减，然后返回这个对象。 
@@ -58,7 +59,7 @@
     longValue() 将BigDecimal对象中的值以长整数返回。 
     intValue() 将BigDecimal对象中的值以整数返回。    
 
-### 格式化及例子
+#### 格式化及例子
 
 ```java
 public static void main(String[] args) {
@@ -76,22 +77,22 @@ public static void main(String[] args) {
 }
 ```
 
-#### 结果显示
+##### 结果显示
 
     贷款金额: ￥15,000.48 
     利率: 0.8% 
     利息: ￥120.00
 
 
-### BigDecimal比较
+#### BigDecimal比较
 
 BigDecimal是通过使用compareTo(BigDecimal)来比较的，具体比较情况如下：
 
-#### compareTo 
+##### compareTo 
 
 -1、0、1，即左边比右边数大，返回1，相等返回0，比右边小返回-1
 
-#### 代码例子
+##### 代码例子
 
 ```java
 public static void main(String[] args) {
@@ -108,7 +109,7 @@ public static void main(String[] args) {
 }
 ```
 
-### BigDecimal.setScale 处理java小数点
+#### BigDecimal.setScale 处理java小数点
 
     BigDecimal.setScale()方法用于格式化小数点
     setScale(1)表示保留一位小数，默认用四舍五入方式 
@@ -119,7 +120,7 @@ public static void main(String[] args) {
 
 
 
-> [参考网址](https://blog.csdn.net/u012150370/article/details/47114777)
+> [BigDecimal用法详解](https://blog.csdn.net/u012150370/article/details/47114777)
 
 
 ## mysql的数据类型
