@@ -22,8 +22,25 @@
 22 | 是 |  ssh端口，已经修改成其他端口了 |
 80 | 是 |  http nginx监听 |
 443 | 是 |  https nginx监听 |
+3389 | 是 |  阿里默认端口 |
+27000 | 是 |  网络穿透端口 |
+26000 | 是 |  网络穿透ssh端口 |
+27080 | 否 |  网络穿透web服务 |
+19180 | 否 |  apache监听 |
 201** | 否 |  自定义服务的端口。 例如20180 被 wk 下tmocat使用 |
 301** | 否 |  自定义docker服务的端口。 例如30180 关联某个docker的8080端口 |
+
+
+> 域名
+
+域名 | 服务 | 端口| 
+--------- | --------| --------|
+gitlab https+http | gitlab | 待查  |
+wx  https+http | donghai tomcat | 20180  |
+docker | docker | 30180 (应该)  |
+adminproxy | frp admin | 27080(当前也不用配置)  |
+proxy | frp | 对应内网的地址不用配置 (当前也不用配置)  |
+
 
 
 
