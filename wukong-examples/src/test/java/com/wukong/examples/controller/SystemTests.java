@@ -12,6 +12,7 @@ public class SystemTests {
         //classPath的路径
         System.out.println( HelloControllerTests.class.getResource("/").getPath());
         System.out.println( HelloControllerTests.class.getClassLoader().getResource(""));
-
+        Byte tinyintf;
+        tinyintf=1;
     }
 }

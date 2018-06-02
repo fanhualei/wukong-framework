@@ -122,4 +122,8 @@ gitlab
     * [GitLab 之 PlantUML 的配置及使用](https://blog.csdn.net/aixiaoyang168/article/details/76888254)
 
 * 找个人把 Java与Mysql数据对应关系 给搞明白了
+* frp文档撰写
+* 地理信息
+* 基础类型的返回注释
+* springboot 多语言
 

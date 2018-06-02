@@ -34,10 +34,13 @@
     </modules>
 
 
-    <!-- 下面的代码是自动提交到服务器的 -->
 
-    <!--<build>-->
-             <!--<plugins>-->
+
+    <build>
+             <plugins>
+
+                 <!-- 下面的代码是自动提交到服务器的 -->
+
                  <!--<plugin>-->
                      <!--<artifactId>exec-maven-plugin</artifactId>-->
                      <!--<groupId>org.codehaus.mojo</groupId>-->
@@ -55,8 +58,9 @@
                          <!--</execution>-->
                      <!--</executions>-->
                  <!--</plugin>-->
-             <!--</plugins>-->
-    <!--</build>-->
+
+             </plugins>
+    </build>
 
 
 </project>

@@ -20,6 +20,10 @@
         <plugin type="com.wukong.generator.mybatis.plugins.WukongPlugin"/>
         <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin" />
 
+
+
+
+
         <commentGenerator>
             <property name="suppressAllComments" value="true" />
             <property name="suppressDate" value="true" />
