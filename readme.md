@@ -112,17 +112,13 @@ gitlab
 
 ## next todo list
 
-* 代码中的http转https没有意义，应该在nginx上配置，如果配置成功，删除这部分代码。
-    * [Nginx的https配置记录以及http强制跳转到https的方法梳理](https://www.cnblogs.com/kevingrace/p/6187072.html)
+
 * 持续化集成需要有人做一下
 * 性能测试需要有人研究一下
 * 需要有人研究一下树型结构的编码e
-* 测试https是否好用 step2
 * 马宇航在gitlab上配置plantuml
     * [GitLab 之 PlantUML 的配置及使用](https://blog.csdn.net/aixiaoyang168/article/details/76888254)
 
-* 找个人把 Java与Mysql数据对应关系 给搞明白了
-* frp文档撰写
 * 地理信息
 * 基础类型的返回注释
 * springboot 多语言
