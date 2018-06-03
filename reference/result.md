@@ -8,6 +8,10 @@
     * [成功返回结果](#成功返回结果)
     * [异常返回结果](#异常返回结果)
     
+* [悟空框架API返回规范](#悟空框架api返回规范)    
+    * [controller规范](#controller规范)
+    * [service命名规范](#service命名规范)
+    
 * [全局异常处理](#全局异常处理)
     * [为什么做全局异常处理](#为什么做全局异常处理)
     * [全局异常处理设计思路](#全局异常处理设计思路)
@@ -112,8 +116,33 @@ public int  num1() {
 
 [HTTP状态码](http://www.runoob.com/http/http-status-codes.html)
 
+<br>
 
 
+## 悟空框架API返回规范
+
+### controller规范
+
+功能 | 返回值 | 说明 |
+--------- | --------| --------| 
+insert添加   | long        | 负数:错误,0:没有添加成功，正数：主键(如果是联合主键返回1)     |   
+delete删除   | int         | >=0:删除的记录数，<0:表示错误|  
+update更新   | int         | >=0:更新的记录数，<0:表示错误|  
+count记录总数| long        | >=0:返回的记录数|  
+是否        | int         | 1:true,0:false,-1:错误| 
+select  | List或对象      | json字符串|  
+
+> 返回值是基础类型上 @SingleResponseResult()
+
+为了方便读取，返回一个result的json字符串
+
+```json
+{"result":666}
+```
+
+### service命名规范
+
+#### 所有更新数据库的操作，必须以insert,delete,update开头
 
 
 ## 全局异常处理
