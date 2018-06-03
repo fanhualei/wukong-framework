@@ -1,6 +1,7 @@
 package com.wukong.examples.controller;
 
 
+import com.wukong.core.result.SingleResponseResult;
 import com.wukong.examples.entity.City;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -29,6 +30,7 @@ public class HelloController  {
     @ApiOperation(value="欢迎", notes="")
     @RequestMapping
 //    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @SingleResponseResult
     public String hello() {
         return "Hello World";
     }

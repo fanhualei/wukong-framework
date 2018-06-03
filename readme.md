@@ -122,4 +122,5 @@ gitlab
 
 * 基础类型的返回注释
 * springboot 多语言
+* idea里面追加阿里巴巴的代码校验
 

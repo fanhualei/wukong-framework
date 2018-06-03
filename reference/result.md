@@ -39,19 +39,23 @@
 
 ### 成功返回结果
 
-> 成功返回结果的类型
-    
-* 基础类型->字符串
-* 对象   ->json字符串
+
+分类 | 具体类型 | 说明 |
+--------- | --------| --------| 
+基础类型   | int long Integer Long BigDecimal Date String | 直接输出|   
+对象      | Map User Object | json字符串|  
 
 
->> 字符串结果
+
+
+
+####  基础类型输出结果
 
 ```youtrack
 name:123456;email:123@189.cn;cellPhone:123;
 ```
 
->> json 结果
+#### json输出结果
 
 ````json
 {"id":1,"name":"city1","code":"001"}
@@ -86,6 +90,10 @@ name:123456;email:123@189.cn;cellPhone:123;
     "path": "/result/exception"
 }
 ```
+
+
+[HTTP状态码](http://www.runoob.com/http/http-status-codes.html)
+
 
 
 
