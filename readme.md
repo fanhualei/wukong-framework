@@ -25,6 +25,7 @@ gitlab
     * [数据校验](reference/validator.md)
     * [配置访问权限](reference/controller.md#配置访问权限)
     * [一个完整的代码例子](reference/myfirst_controller.md)
+    * [i18n多语言](reference/i18n.md)
 
     
 * 单元测试
@@ -121,7 +122,6 @@ gitlab
 * 马宇航在gitlab上配置plantuml
     * [GitLab 之 PlantUML 的配置及使用](https://blog.csdn.net/aixiaoyang168/article/details/76888254)
 
-* 基础类型的返回注释
 * springboot 多语言
 * idea里面追加阿里巴巴的代码校验
 
