@@ -55,6 +55,24 @@
 name:123456;email:123@189.cn;cellPhone:123;
 ```
 
+##### 在基础类型上添加注解
+
+```java
+@RequestMapping("/num1")
+@SingleResponseResult()
+public int  num1() {
+    return 666;
+}
+```
+
+> 输出json结果
+
+```json
+{"result":666}
+```
+
+
+
 #### json输出结果
 
 ````json

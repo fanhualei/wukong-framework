@@ -170,8 +170,9 @@ public class SingleResponseControllerTests extends AbstractTestNGSpringContextTe
     public void testMap1() {
         String url=baseUrl+"/map1";
         ResponseEntity<Map> entity = this.restTemplate.getForEntity(url, Map.class);
-        assertThat(entity.getStatusCode()).isNotEqualTo(HttpStatus.OK);
-        System.out.println(entity.getBody());
+        assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        Map<String,String> map =entity.getBody();
+        assertThat(map.get("name")).isEqualTo("xiaoming");
     }
 
 

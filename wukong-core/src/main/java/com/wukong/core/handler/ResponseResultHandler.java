@@ -1,6 +1,7 @@
 package com.wukong.core.handler;
 
 import com.wukong.core.result.SingleResponseResult;
+import org.springframework.beans.BeanUtils;
 import org.springframework.core.MethodParameter;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.http.MediaType;
@@ -43,11 +44,14 @@ public class ResponseResultHandler implements ResponseBodyAdvice<Object> {
         if(singleResponseResult!=null){
             Map<String,Object> returnMap=new HashMap<String,Object>();
             returnMap.put(singleResponseResult.value(),body);
-            return returnMap;
+
+            //只有基础类型，才抛出，其他的原路返回
+            if(BeanUtils.isSimpleValueType(body.getClass())){
+                return returnMap;
+            }
         }
         return body;
     }
-
 
 }
 
