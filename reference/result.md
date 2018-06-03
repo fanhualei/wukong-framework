@@ -123,19 +123,19 @@ public int  num1() {
 
 ### controller规范
 
-功能 | 返回值 | 说明 |
---------- | --------| --------| 
-insert添加   | long        | 负数:错误,0:没有添加成功，正数：主键(如果是联合主键返回1)     |   
-delete删除   | int         | >=0:删除的记录数，<0:表示错误|  
-update更新   | int         | >=0:更新的记录数，<0:表示错误|  
-count记录总数| long        | >=0:返回的记录数|  
-是否        | int         | 1:true,0:false,-1:错误| 
-select  | List或对象      | json字符串|  
+功能 | 返回值 | 说明 | 注解 |
+--------- | --------| --------|  --------| 
+insert添加   | long        | 负数:错误,0:没有添加成功，正数：主键(如果是联合主键返回1)     | 加注解返回json   |  
+delete删除   | int         | >=0:删除的记录数，<0:表示错误                            | 加注解返回json   | 
+update更新   | int         | >=0:更新的记录数，<0:表示错误                            | 加注解返回json  | 
+count记录总数| long        | >=0:返回的记录数                                        | 加注解返回json | 
+是否        | int         | 1:true,0:false,-1:错误                                 | 加注解返回json | 
+返回String  | String      | 字符串                                                 | 加注解返回json | 
+select     | List或对象   | json字符串                                             | 无注解返回json   | 
 
-> 返回值是基础类型上 @SingleResponseResult()
+> 基础类型加 @SingleResponseResult()注解
 
 为了方便读取，返回一个result的json字符串
-
 ```json
 {"result":666}
 ```
