@@ -26,6 +26,7 @@ gitlab
     * [配置访问权限](reference/controller.md#配置访问权限)
     * [一个完整的代码例子](reference/myfirst_controller.md)
     * [i18n多语言](reference/i18n.md)
+    * [中文乱码的问题](reference/encoding.md)
 
     
 * 单元测试
