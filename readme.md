@@ -54,6 +54,7 @@ gitlab
         * [redis-key命名规范](reference/redis.md#redis-key命名规范)  
         * [controller与service命名规范](reference/result.md#悟空框架api返回规范)
         * [Java与Mysql数据对应关系](reference/mysql_java.md)
+        * [alibaba Idea代码检查插件安装](https://github.com/alibaba/p3c/blob/master/idea-plugin/README_cn.md)
         * [其他](reference/coding_standards.md)
     * 服务器部署人员的规范
         * [代码分支规范](reference/gitlab_branch.md)
