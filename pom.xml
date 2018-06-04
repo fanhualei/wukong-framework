@@ -41,23 +41,23 @@
 
                  <!-- 下面的代码是自动提交到服务器的 -->
 
-                 <plugin>
-                     <artifactId>exec-maven-plugin</artifactId>
-                     <groupId>org.codehaus.mojo</groupId>
-                     <executions>
-                         <execution>
-                             <id>uncompress</id>
-                             <phase>package</phase>
-                             <goals>
-                                 <goal>exec</goal>
-                             </goals>
-                             <configuration>
-                                 <executable>${basedir}/wukong-donghai/deploy.sh   </executable>
-                                 <arguments>${basedir}/wukong-donghai/target/wukong-donghai-1.1.RELEASE.war</arguments>
-                             </configuration>
-                         </execution>
-                     </executions>
-                 </plugin>
+                 <!--<plugin>-->
+                     <!--<artifactId>exec-maven-plugin</artifactId>-->
+                     <!--<groupId>org.codehaus.mojo</groupId>-->
+                     <!--<executions>-->
+                         <!--<execution>-->
+                             <!--<id>uncompress</id>-->
+                             <!--<phase>package</phase>-->
+                             <!--<goals>-->
+                                 <!--<goal>exec</goal>-->
+                             <!--</goals>-->
+                             <!--<configuration>-->
+                                 <!--<executable>${basedir}/wukong-donghai/deploy.sh   </executable>-->
+                                 <!--<arguments>${basedir}/wukong-donghai/target/wukong-donghai-1.1.RELEASE.war</arguments>-->
+                             <!--</configuration>-->
+                         <!--</execution>-->
+                     <!--</executions>-->
+                 <!--</plugin>-->
 
              </plugins>
     </build>
