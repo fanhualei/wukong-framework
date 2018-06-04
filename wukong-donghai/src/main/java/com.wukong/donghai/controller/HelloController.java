@@ -1,20 +1,20 @@
 package com.wukong.donghai.controller;
 
 
-import com.wukong.core.result.SingleResponseResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.Map;
-
+/**
+* 用来测试的类
+* @author fanhl
+*/
 @RestController
 @RequestMapping("/hello")
 public class HelloController {
 
     @RequestMapping()
     public String hello() {
-        return "Hello World ";
+        return "Hello World 你好";
     }
 
 

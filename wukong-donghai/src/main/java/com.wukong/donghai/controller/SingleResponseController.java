@@ -10,7 +10,10 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-
+/**
+* 这是一个测试的类，今后要移动到test包中
+* @author fanhl
+*/
 @RestController
 @RequestMapping("/test/single")
 public class SingleResponseController {
@@ -85,7 +88,7 @@ public class SingleResponseController {
     public Integer  e() {
 
         if(1==1)
-            throw new RuntimeException("sssss");
+            throw new RuntimeException("小明");
 
         return 999;
     }
@@ -95,7 +98,7 @@ public class SingleResponseController {
     public Map<String,String> map() {
 
         Map<String,String> map=new HashMap<>();
-        map.put("name","xiaoming");
+        map.put("name","小明");
         return map;
     }
 
@@ -105,7 +108,7 @@ public class SingleResponseController {
     public Map<String,String> map1() {
 
         Map<String,String> map=new HashMap<>();
-        map.put("name","xiaoming");
+        map.put("name","小明");
         return map;
     }
 }

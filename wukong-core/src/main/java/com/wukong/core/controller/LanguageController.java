@@ -19,7 +19,7 @@ import java.util.Locale;
 public class LanguageController {
 
     @Autowired
-    private LocaleMessageSourceUtil messageSourceUtil;
+    private LocaleMessageSourceUtil messageUtil;
 
     @RequestMapping("/changeLanguage")
     public String changeLanguage(HttpServletRequest request, HttpServletResponse response,
@@ -35,7 +35,7 @@ public class LanguageController {
 
     @RequestMapping("/welcome")
     public String welcome(){
-        String welcome = messageSourceUtil.getMessage("welcome");
+        String welcome = messageUtil.getMessage("welcome");
         return welcome;
     }
 

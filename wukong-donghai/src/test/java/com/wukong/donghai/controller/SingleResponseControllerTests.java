@@ -160,7 +160,7 @@ public class SingleResponseControllerTests extends AbstractTestNGSpringContextTe
         ResponseEntity<Map> entity = this.restTemplate.getForEntity(url, Map.class);
         assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
         Map<String,String> map =entity.getBody();
-        assertThat(map.get("name")).isEqualTo("xiaoming");
+        assertThat(map.get("name")).isEqualTo("小明");
     }
 
     /**
@@ -172,7 +172,7 @@ public class SingleResponseControllerTests extends AbstractTestNGSpringContextTe
         ResponseEntity<Map> entity = this.restTemplate.getForEntity(url, Map.class);
         assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
         Map<String,String> map =entity.getBody();
-        assertThat(map.get("name")).isEqualTo("xiaoming");
+        assertThat(map.get("name")).isEqualTo("小明");
     }
 
 
