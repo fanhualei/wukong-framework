@@ -6,17 +6,17 @@
 > 目录
 
 
-* [无法自动装载](#无法自动装载) <br>
-* [多module无法引用](#多module无法引用)  <br>
-* [关闭多数据源](#关闭多数据源) <br>
-* [关闭security认证](#关闭security认证)  <br>
-* [升级到SpringBoot2注意事项](#升级到SpringBoot2注意事项)  <br>
-* [多module引用关系](#多module引用关系)  <br>
-* [module单独测试](#module单独测试)  <br>
-* [yml文件编辑技巧](#yml文件编辑技巧)<bt>
-* [分页插件的使用](#分页插件的使用)<br>
-* [maven自动部署到远程服务器](#maven自动部署到远程服务器)<br>
+* [无法自动装载](#无法自动装载) 
+* [多module无法引用](#多module无法引用)  
+* [关闭多数据源](#关闭多数据源) 
+* [关闭security认证](#关闭security认证)  
+* [升级到SpringBoot2注意事项](#升级到SpringBoot2注意事项)  
+* [多module引用关系](#多module引用关系)  
+* [module单独测试](#module单独测试) 
+* [yml文件编辑技巧](#yml文件编辑技巧)
+* [分页插件的使用](#分页插件的使用)
 * [部署Tomcat的注意事项](#部署tomcat的注意事项)
+* [改变网站favicon图标](#改变网站favicon图标)
     
 
 
@@ -242,13 +242,7 @@ bat:
     在配置文件配置：pagehelper.reasonable=true 表示-1页，成不不包错误
 
 
-## maven自动部署到远程服务器
 
-> 需要有人去做一下
-
-[参考资料1](https://www.cnblogs.com/xyb930826/p/5725340.html) <br>
-
-[参考资料2](https://www.cnblogs.com/Mercurial/p/8007358.html) <br>
 
 
 ## 部署Tomcat的注意事项
@@ -325,4 +319,18 @@ sudo gedit server.xml  <br>
 ### 参考网址
 
 [这个不一定对,但是可以参考](https://www.cnblogs.com/icewee/articles/7698455.html)
+
+
+
+##  改变网站favicon图标
+
+    到下面的网站去制作icon
+        http://www.bitbug.net/
+    application.properties中设置关闭favicon
+        spring.mvc.favicon.enabled = false
+        
+
+[SpringBoot19-springboot的Web开发-Favicon配置](https://blog.csdn.net/j903829182/article/details/77150013)
+
+
 
