@@ -35,6 +35,8 @@
 
 #### SpringBoot中配置
 
+
+##### 下面的代码作废了，因为使用utf-8的json转换机制
 在core工程中，追加了EncodingConfig.java配置类
 
 ```java
@@ -51,6 +53,29 @@ public class EncodingConfig extends WebMvcConfigurationSupport {
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         super.configureMessageConverters(converters);
         converters.add(responseBodyConverter());
+    }
+}
+```
+
+
+##### 新的转换机制
+
+```java
+@Configuration
+public class EncodingConfig extends WebMvcConfigurationSupport {
+
+    /**
+     * 这个函数的目的是将json放到最前边
+     * 因为controller返回String类型的时候，是StringHttpMessageConverter
+     * 所以在统一返回接口中出现错误，
+     * @see com.wukong.core.handler.ResponseResultHandler
+     * @param converters
+     */
+
+    @Override
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+        super.configureMessageConverters(converters);
+        converters.add(0,new MappingJackson2HttpMessageConverter());
     }
 }
 ```
