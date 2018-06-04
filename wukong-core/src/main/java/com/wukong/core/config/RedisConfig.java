@@ -8,7 +8,10 @@ import org.springframework.data.redis.cache.RedisCacheConfiguration;
 
 import java.time.Duration;
 
-//
+/**
+* redis的配置类
+* @author fanhl
+*/
 @Configuration
 @EnableCaching
 public class RedisConfig extends JCacheConfigurerSupport{
@@ -20,7 +23,8 @@ public class RedisConfig extends JCacheConfigurerSupport{
     @Bean
     public RedisCacheConfiguration redisCacheConfiguration(){
         RedisCacheConfiguration configuration = RedisCacheConfiguration.defaultCacheConfig();
-        configuration=configuration.entryTtl(Duration.ofDays(365l));//开发设置为1年
+        //开发设置为1年
+        configuration=configuration.entryTtl(Duration.ofDays(365L));
         return configuration;
     }
 }

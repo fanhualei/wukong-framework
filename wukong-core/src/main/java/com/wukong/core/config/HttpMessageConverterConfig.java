@@ -9,8 +9,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 
 import java.util.List;
 
+/**
+* 为response配置Json为第一选项
+* @author fanhl
+*/
 @Configuration
-public class InterceptorConfig extends WebMvcConfigurationSupport {
+public class HttpMessageConverterConfig extends WebMvcConfigurationSupport {
 
     /**
      * 这个函数的目的是将json放到最前边
