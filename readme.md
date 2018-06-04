@@ -124,6 +124,7 @@ gitlab
 * 马宇航在gitlab上配置plantuml
     * [GitLab 之 PlantUML 的配置及使用](https://blog.csdn.net/aixiaoyang168/article/details/76888254)
 
-* springboot 多语言
-* idea里面追加阿里巴巴的代码校验
+* 要与马宇航讨论一下 single与中文乱码的问题，问他有没有好的解决方案
+
+
 
