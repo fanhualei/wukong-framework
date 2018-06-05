@@ -21,14 +21,14 @@ public class SingleResponseController {
 
     @RequestMapping("/string")
     public String string() {
-        return "Hello World";
+        return "Hello World 你好世界";
     }
 
 
     @RequestMapping("/string1")
     @SingleResponseResult()
     public String string1() {
-        return "Hello World";
+        return "Hello World 你好世界";
     }
 
 
@@ -109,6 +109,22 @@ public class SingleResponseController {
 
         Map<String,String> map=new HashMap<>();
         map.put("name","小明");
+        return map;
+    }
+
+
+
+    @RequestMapping("/maps")
+    public Map<String,Object> maps() {
+
+        Calendar cal= Calendar.getInstance();
+        cal.set(2018,6,1,23,15,16);
+
+
+        Map<String,Object> map=new HashMap<>();
+        map.put("name","小明");
+        map.put("time",cal.getTime());
+        map.put("long",12345678L);
         return map;
     }
 }

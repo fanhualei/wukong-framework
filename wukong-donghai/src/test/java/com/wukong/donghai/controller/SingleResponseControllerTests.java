@@ -2,6 +2,7 @@ package com.wukong.donghai.controller;
 
 
 import org.apache.commons.lang3.time.DateFormatUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -12,6 +13,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -36,7 +38,7 @@ public class SingleResponseControllerTests extends AbstractTestNGSpringContextTe
 
         ResponseEntity<String> entity = this.restTemplate.getForEntity(url, String.class);
         assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(entity.getBody()).isEqualTo("\"Hello World\"");
+        assertThat(entity.getBody()).isEqualTo("Hello World 你好世界");
     }
 
     @Test
@@ -50,7 +52,7 @@ public class SingleResponseControllerTests extends AbstractTestNGSpringContextTe
 
         Map<String,String> map = entity.getBody();
         String value=map.get("result");
-        assertThat(value).isEqualTo("Hello World");
+        assertThat(value).isEqualTo("Hello World 你好世界");
     }
 
     /**
@@ -118,17 +120,22 @@ public class SingleResponseControllerTests extends AbstractTestNGSpringContextTe
      * 放入Map的日期类型，都被转换成Long
      */
     @Test
-    public void testDate1() {
+    public void testDate1() throws Exception{
         String url=baseUrl+"/date1";
 
         ResponseEntity<Map> entity
                 = this.restTemplate.getForEntity(url,Map.class);
 
         assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        Map<String,Long> map=entity.getBody();
-        Long renDateLong=map.get("result");
 
-        Date renDate=new Date(renDateLong);
+        System.out.println(entity.getBody());
+
+
+        Map<String,String> map=entity.getBody();
+
+
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date renDate=sdf.parse(map.get("result"));
 
         Calendar cal= Calendar.getInstance();
         cal.set(2018,6,1,23,15,16);

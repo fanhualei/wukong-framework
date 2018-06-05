@@ -56,6 +56,8 @@ gitlab
         * [controller与service命名规范](reference/result.md#悟空框架api返回规范)
         * [Java与Mysql数据对应关系](reference/mysql_java.md)
         * [alibaba Idea代码检查插件安装](https://github.com/alibaba/p3c/blob/master/idea-plugin/README_cn.md)
+        * [所有String操作不能自己写，用现成的](https://blog.csdn.net/tzhai27/article/details/75351861)
+        * [DateUtils](https://blog.csdn.net/softwave/article/details/75808421)
         * [其他](reference/coding_standards.md)
     * 服务器部署人员的规范
         * [代码分支规范](reference/gitlab_branch.md)
@@ -126,6 +128,7 @@ gitlab
 
 * 要与马宇航讨论一下 single与中文乱码的问题，问他有没有好的解决方案
 * 在本地没有问题，部署到服务器，却出现了乱码问题
+* 在服务器上找不到 index.html 并且出现了乱码
 
 
 

@@ -47,7 +47,15 @@ public class ResponseResultHandler implements ResponseBodyAdvice<Object> {
 
             //只有基础类型，才抛出，其他的原路返回
             if(BeanUtils.isSimpleValueType(body.getClass())){
-                return returnMap;
+                //如果是String类型，转换成Json会出现错误，所以自己又做了个封装
+                if(body instanceof String){
+                    String renStr="{\"$1\":\"$2\"}";
+                    renStr=renStr.replace("$1",singleResponseResult.value());
+                    renStr=renStr.replace("$2",(String)body);
+                    return renStr;
+                }else {
+                    return returnMap;
+                }
             }
         }
         return body;
@@ -59,6 +67,4 @@ public class ResponseResultHandler implements ResponseBodyAdvice<Object> {
 /**
  * 可以将status设置成200多，来处理
  * response.setStatusCode(HttpStatus.BANDWIDTH_LIMIT_EXCEEDED);
- *
- *
  */

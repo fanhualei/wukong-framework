@@ -17,4 +17,18 @@ public class SystemTests {
             System.out.println(url);
         }
     }
+
+    @Test
+    public void testStringUtils(){
+        String renStr="{\"$1\":\"$2\"}";
+
+        renStr=renStr.replace("$1","return");
+        renStr=renStr.replace("$2","你好中国");
+
+        System.out.println(renStr);
+
+
+    }
+
+
 }
