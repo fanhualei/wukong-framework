@@ -105,7 +105,7 @@ spring.profiles.active=sdb
 <!--<dependency>-->
     <!--<groupId>com.runzhichina.wukong</groupId>-->
     <!--<artifactId>wukong-security</artifactId>-->
-    <!--<version>1.1.RELEASE</version>-->
+    <!--<version>${revision}</version>-->
 <!--</dependency>-->
 
 ```

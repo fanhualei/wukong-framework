@@ -23,6 +23,6 @@ public class HelloControllerTests extends AbstractTestNGSpringContextTests {
 
         ResponseEntity<String> entity = this.restTemplate.getForEntity(url, String.class);
         assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(entity.getBody()).isEqualTo("\"Hello World 你好\"");
+        assertThat(entity.getBody()).isEqualTo("Hello World 你好");
     }
 }

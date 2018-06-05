@@ -57,7 +57,7 @@ public class HelloControllerTests extends AbstractTestNGSpringContextTests {
 
         ResponseEntity<String> entity = this.restTemplate.getForEntity(url, String.class);
         assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(entity.getBody()).isEqualTo("\"Hello World\"");
+        assertThat(entity.getBody()).isEqualTo("Hello World");
     }
 
 
@@ -114,7 +114,7 @@ public class HelloControllerTests extends AbstractTestNGSpringContextTests {
         String url="/hello/logo";
         ResponseEntity<String> entity = this.restTemplate.getForEntity(url, String.class);
         assertThat(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        assertThat(entity.getBody()).isEqualTo("\"show logo\"");
+        assertThat(entity.getBody()).isEqualTo("show logo");
     }
 
     @Test

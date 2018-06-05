@@ -14,7 +14,7 @@ public class HelloController {
 
     @RequestMapping()
     public String hello() {
-        return "Hello World 你好 ";
+        return "Hello World 你好";
     }
 
 
