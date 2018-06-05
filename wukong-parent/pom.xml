@@ -133,12 +133,19 @@
 
 
 
-        <!-- 便于变成的包 -->
+        <!-- 便于优化代码的包 -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
 
+        <!--热部署-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <!--默认<optional>的值为false, 及子项目必须依赖-->
+            <optional>true</optional>
+        </dependency>
 
 
     </dependencies>

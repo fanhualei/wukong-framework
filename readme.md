@@ -101,6 +101,7 @@ gitlab
     * [maven 使用技巧](reference/maven.md)
     * [shell脚本相关技巧](reference/sh.md)
     * [地图相关信息](reference/map.md)
+    * [Springboot idea调试热部署](https://blog.csdn.net/u013042707/article/details/78648259)
     
 
 
@@ -126,9 +127,7 @@ gitlab
 * 马宇航在gitlab上配置plantuml
     * [GitLab 之 PlantUML 的配置及使用](https://blog.csdn.net/aixiaoyang168/article/details/76888254)
 
-* 要与马宇航讨论一下 single与中文乱码的问题，问他有没有好的解决方案
-* 在本地没有问题，部署到服务器，却出现了乱码问题
-* 在服务器上找不到 index.html 并且出现了乱码
+
 
 
 

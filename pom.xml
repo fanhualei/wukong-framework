@@ -35,7 +35,6 @@
 
 
 
-
     <build>
              <plugins>
 
@@ -59,6 +58,16 @@
                      <!--</executions>-->
                  <!--</plugin>-->
 
+
+                 <!--调试热部署-->
+                 <plugin>
+                     <groupId>org.springframework.boot</groupId>
+                     <artifactId>spring-boot-maven-plugin</artifactId>
+                     <!--fork :  如果没有该项配置devtools不会起作用，即应用不会restart -->
+                     <configuration>
+                         <fork>true</fork>
+                     </configuration>
+                 </plugin>
              </plugins>
     </build>
 
