@@ -27,6 +27,7 @@ gitlab
     * [一个完整的代码例子](reference/myfirst_controller.md)
     * [i18n多语言](reference/i18n.md)
     * [中文乱码的问题](reference/encoding.md)
+    * [HTTP状态码对照表](http://tools.jb51.net/table/http_status_code)
 
     
 * 单元测试
@@ -129,5 +130,5 @@ gitlab
 
 
 
-
+* http://wx.runzhichina.com 那个悟空图片的图标没有扣除背景，需要有人去再做一个
 

@@ -2,11 +2,14 @@ package com.wukong.donghai.controller;
 
 
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.Test;
 
-import java.math.BigDecimal;
+import static org.assertj.core.api.Assertions.assertThat;
 
-public class SystemTests {
+
+public class SystemTests  {
 
     // 不要使用spring 的StringUtils :org.springframework.util.StringUtils
     @Test
@@ -26,6 +29,14 @@ public class SystemTests {
         renStr=renStr.replace("$2","你好中国");
 
         System.out.println(renStr);
+
+        assertThat(renStr).isEqualTo("{\"return\":\"你好中国\"}");
+
+
+        assertThat(renStr).as("检查字符串：%s",renStr).isEqualTo("{\"return\":\"你好中国\"}");
+
+
+
 
 
     }
