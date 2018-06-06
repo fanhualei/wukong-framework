@@ -4,7 +4,7 @@ wukong-framework
 gitlab
 
 
-`springboot2.0` `springsecurity` `testng`  `mybatis` `jwt` `https` `redis`
+`license:LGPL` `springboot2.0` `springsecurity` `testng`  `mybatis` `jwt` `https` `redis`
 
 
 
@@ -103,6 +103,7 @@ gitlab
     * [shell脚本相关技巧](reference/sh.md)
     * [地图相关信息](reference/map.md)
     * [Springboot idea调试热部署](https://blog.csdn.net/u013042707/article/details/78648259)
+    * [一张图看懂开源许可协议,开源许可证GPL、BSD、MIT、Mozilla、Apache和LGPL的区别](https://blog.csdn.net/testcs_dn/article/details/38496107)
     
 
 
@@ -131,4 +132,6 @@ gitlab
 
 
 * http://wx.runzhichina.com 那个悟空图片的图标没有扣除背景，需要有人去再做一个
+
+* 第一个例子, 清空所有数据， 添加5个student。 ,然后查询这100个，然后更新其中一个，然后删除。
 

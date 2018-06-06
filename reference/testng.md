@@ -34,6 +34,7 @@
     * [参数测试](#参数测试)
     * [从excel表读取测试数据](#从excel表读取测试数据)
     * [通过注解进行冒泡测试](#通过注解进行冒泡测试)
+    * [dataProviders参考网址](#https://github.com/sergueik/testng-dataproviders)
     
 * [查看测试结果](查看测试结果)    
 * [已经完成的测试脚本](#已经完成的测试脚本)        
